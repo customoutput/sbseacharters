@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Santa Barbara Sea Charters — Mockup</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0b2e52;
+    --navy-deep: #071d36;
+    --blue: #1a6fa8;
+    --blue-light: #4a9fd4;
+    --sky: #d6edf8;
+    --sky-pale: #f0f7fc;
+    --white: #ffffff;
+    --sand: #f7f4ef;
+    --text: #1a2e3f;
+    --text-muted: #6a8fa8;
+    --text-light: #a0bdd0;
+    --border: #dce8f2;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    color: var(--text);
+    background: var(--white);
+    line-height: 1.7;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .nav-logo-main {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--navy);
+    letter-spacing: 0.02em;
+  }
+
+  .nav-logo-sub {
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    color: var(--blue-light);
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .nav-links a {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+    font-weight: 400;
+  }
+
+  .nav-links a:hover { color: var(--navy); }
+
+  .nav-phone {
+    font-size: 13px;
+    color: var(--navy);
+    font-weight: 500;
+    border-left: 1px solid var(--border);
+    padding-left: 24px;
+    margin-left: 8px;
+  }
+
+  .nav-book {
+    background: var(--navy);
+    color: var(--white) !important;
+    padding: 9px 20px;
+    border-radius: 40px;
+    font-size: 11px !important;
+    letter-spacing: 0.12em !important;
+    font-weight: 500 !important;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 92vh;
+    background: var(--navy-deep);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    text-align: center;
+    padding: 80px 40px 120px;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 100%, rgba(26,111,168,0.35) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 40% at 20% 30%, rgba(74,159,212,0.12) 0%, transparent 60%),
+      linear-gradient(180deg, #071d36 0%, #0b3358 50%, #0d4572 100%);
+  }
+
+  /* Animated water lines */
+  .water-lines {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    overflow: hidden;
+  }
+
+  .water-line {
+    position: absolute;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(74,159,212,0.3), transparent);
+    animation: waveDrift linear infinite;
+  }
+
+  .water-line:nth-child(1) { bottom: 40px; width: 200%; left: -50%; animation-duration: 8s; opacity: 0.6; }
+  .water-line:nth-child(2) { bottom: 70px; width: 180%; left: -30%; animation-duration: 11s; opacity: 0.4; }
+  .water-line:nth-child(3) { bottom: 100px; width: 220%; left: -70%; animation-duration: 14s; opacity: 0.3; }
+  .water-line:nth-child(4) { bottom: 130px; width: 160%; left: -20%; animation-duration: 9s; opacity: 0.25; }
+  .water-line:nth-child(5) { bottom: 160px; width: 190%; left: -60%; animation-duration: 13s; opacity: 0.2; }
+
+  @keyframes waveDrift {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(25%); }
+  }
+
+  .hero-content { position: relative; z-index: 2; max-width: 700px; }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--blue-light);
+    margin-bottom: 28px;
+    font-weight: 400;
+  }
+
+  .hero-eyebrow::before,
+  .hero-eyebrow::after {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--blue-light);
+    opacity: 0.5;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(42px, 6vw, 68px);
+    font-weight: 400;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 24px;
+    letter-spacing: -0.01em;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: #7dd3f5;
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    color: rgba(255,255,255,0.6);
+    max-width: 460px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--white);
+    color: var(--navy);
+    padding: 14px 32px;
+    border-radius: 40px;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+
+  .btn-ghost {
+    background: transparent;
+    color: rgba(255,255,255,0.8);
+    padding: 14px 32px;
+    border-radius: 40px;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 400;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.25);
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .btn-ghost:hover { border-color: rgba(255,255,255,0.5); color: var(--white); }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    z-index: 2;
+  }
+
+  .hero-scroll span {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.3), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.8; }
+  }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .stat {
+    padding: 24px 16px;
+    text-align: center;
+    border-right: 1px solid var(--border);
+  }
+
+  .stat:last-child { border-right: none; }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    color: var(--navy);
+    font-weight: 600;
+    line-height: 1;
+    margin-bottom: 5px;
+  }
+
+  .stat-label {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    font-weight: 400;
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    padding: 88px 80px;
+  }
+
+  .section-alt { background: var(--sky-pale); }
+  .section-sand { background: var(--sand); }
+
+  .section-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 12px;
+    font-weight: 400;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 400;
+    color: var(--navy);
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .section-sub {
+    font-size: 15px;
+    color: var(--text-muted);
+    max-width: 500px;
+    line-height: 1.7;
+    margin-bottom: 48px;
+    font-weight: 300;
+  }
+
+  /* ── CHARTER CARDS ── */
+  .charters-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .charter-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+
+  .charter-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(11,46,82,0.1);
+  }
+
+  .charter-img {
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: var(--text-muted);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .charter-img.fishing {
+    background: linear-gradient(135deg, #d4eaf8 0%, #b8d8f0 100%);
+    color: #3a7ba8;
+  }
+
+  .charter-img.whale {
+    background: linear-gradient(135deg, #c8e8e0 0%, #a8d8cc 100%);
+    color: #2a7060;
+  }
+
+  .charter-img.island {
+    background: linear-gradient(135deg, #dce8f8 0%, #c4d8f0 100%);
+    color: #3a5a88;
+  }
+
+  .charter-img-icon {
+    font-size: 48px;
+    position: absolute;
+    opacity: 0.3;
+    right: 20px;
+    bottom: 10px;
+  }
+
+  .charter-body { padding: 24px; }
+
+  .charter-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--navy);
+    margin-bottom: 10px;
+  }
+
+  .charter-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin-bottom: 18px;
+    font-weight: 300;
+  }
+
+  .charter-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 18px;
+  }
+
+  .tag {
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: var(--sky);
+    color: var(--blue);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: 400;
+  }
+
+  .charter-link {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--blue);
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .charter-link::after { content: '→'; }
+
+  /* ── BOAT SECTION ── */
+  .boat-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+
+  .boat-photo {
+    border-radius: 16px;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    background: var(--sky);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 8px;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    position: relative;
+  }
+
+  .boat-photo-icon { font-size: 40px; opacity: 0.3; }
+
+  .boat-specs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 28px;
+  }
+
+  .spec-tile {
+    background: var(--sky-pale);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 16px;
+  }
+
+  .spec-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--navy);
+    font-weight: 600;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .spec-key {
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    font-weight: 400;
+  }
+
+  .boat-features {
+    list-style: none;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .boat-features li {
+    font-size: 13px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-weight: 300;
+  }
+
+  .boat-features li::before {
+    content: '—';
+    color: var(--blue-light);
+    flex-shrink: 0;
+  }
+
+  /* ── TESTIMONIALS ── */
+  .test-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .test-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    position: relative;
+  }
+
+  .test-quote-mark {
+    font-family: 'Playfair Display', serif;
+    font-size: 64px;
+    color: var(--sky);
+    line-height: 0.5;
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    font-weight: 400;
+  }
+
+  .test-stars {
+    font-size: 13px;
+    color: #e8a020;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .test-text {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    font-style: italic;
+    margin-bottom: 18px;
+    font-weight: 300;
+    position: relative;
+    z-index: 1;
+  }
+
+  .test-divider {
+    width: 24px;
+    height: 1px;
+    background: var(--border);
+    margin-bottom: 12px;
+  }
+
+  .test-author {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--navy);
+    letter-spacing: 0.04em;
+  }
+
+  .test-detail {
+    font-size: 11px;
+    color: var(--text-light);
+    font-weight: 300;
+  }
+
+  /* ── CTA BAND ── */
+  .cta-band {
+    background: var(--navy-deep);
+    padding: 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-band::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 80% at 50% 120%, rgba(26,111,168,0.3), transparent);
+  }
+
+  .cta-band-inner { position: relative; z-index: 1; }
+
+  .cta-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--blue-light);
+    margin-bottom: 16px;
+    font-weight: 400;
+  }
+
+  .cta-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 400;
+    color: var(--white);
+    margin-bottom: 16px;
+    line-height: 1.15;
+  }
+
+  .cta-sub {
+    font-size: 15px;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 36px;
+    font-weight: 300;
+  }
+
+  .cta-btns {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #060f1a;
+    padding: 56px 80px 32px;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2.5fr 1fr 1fr 1fr;
+    gap: 48px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    margin-bottom: 28px;
+  }
+
+  .footer-brand-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 12px;
+    font-weight: 400;
+  }
+
+  .footer-brand-desc {
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+    line-height: 1.7;
+    font-weight: 300;
+    max-width: 280px;
+  }
+
+  .footer-col h4 {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: 16px;
+    font-weight: 400;
+  }
+
+  .footer-col a {
+    display: block;
+    font-size: 12px;
+    color: rgba(255,255,255,0.45);
+    text-decoration: none;
+    margin-bottom: 10px;
+    font-weight: 300;
+    transition: color 0.2s;
+  }
+
+  .footer-col a:hover { color: rgba(255,255,255,0.75); }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-bottom span {
+    font-size: 11px;
+    color: rgba(255,255,255,0.2);
+    font-weight: 300;
+  }
+
+  /* ── PLACEHOLDER NOTICE ── */
+  .notice {
+    background: #fff8e8;
+    border: 1px solid #f0d080;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 12px;
+    color: #8a6010;
+    text-align: center;
+    margin: 0 80px;
+    position: relative;
+    z-index: 10;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="nav-logo-main">Santa Barbara Sea Charters</div>
+    <div class="nav-logo-sub">Santa Barbara, California</div>
+  </div>
+  <div class="nav-links">
+    <a href="#">Charters</a>
+    <a href="#">The Boat</a>
+    <a href="#">Crew</a>
+    <a href="#">FAQ</a>
+    <span class="nav-phone">805-896-0541</span>
+    <a href="#" class="nav-book">Book Now</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="water-lines">
+    <div class="water-line"></div>
+    <div class="water-line"></div>
+    <div class="water-line"></div>
+    <div class="water-line"></div>
+    <div class="water-line"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Santa Barbara Harbor · Private Charters</div>
+    <h1 class="hero-title">Your adventure<br>on the <em>open water</em></h1>
+    <p class="hero-sub">Private sportfishing, whale watching, and Channel Islands exploration aboard the Finaddict — up to 6 guests, entirely your own.</p>
+    <div class="hero-btns">
+      <a href="#" class="btn-primary">View Charter Trips</a>
+      <a href="#" class="btn-ghost">Meet the Crew</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat"><div class="stat-num">41 ft</div><div class="stat-label">Radon Sportfisher</div></div>
+  <div class="stat"><div class="stat-num">6</div><div class="stat-label">Max Passengers</div></div>
+  <div class="stat"><div class="stat-num">20 kts</div><div class="stat-label">Cruising Speed</div></div>
+  <div class="stat"><div class="stat-num">400 mi</div><div class="stat-label">Range</div></div>
+  <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Private Charter</div></div>
+</div>
+
+<div class="notice" style="margin-top: 20px;">
+  📸 Image placeholders shown in blue — your photos will replace these when uploaded to /public/images/
+</div>
+
+<!-- CHARTERS -->
+<section class="section">
+  <p class="section-eyebrow">What We Offer</p>
+  <h2 class="section-title">Choose your adventure</h2>
+  <p class="section-sub">Every trip is a private charter — just your group, our experienced crew, and the Santa Barbara Channel.</p>
+  <div class="charters-grid">
+    <div class="charter-card">
+      <div class="charter-img fishing">
+        <span>Your fishing photo</span>
+        <span class="charter-img-icon">🎣</span>
+      </div>
+      <div class="charter-body">
+        <h3 class="charter-title">Sportfishing</h3>
+        <p class="charter-desc">Target rockfish, halibut, yellowtail, and more in the rich waters of the Santa Barbara Channel. Our experienced crew handles bait, rigging, and fish cleaning.</p>
+        <div class="charter-tags">
+          <span class="tag">Half day</span>
+          <span class="tag">Full day</span>
+          <span class="tag">Overnight</span>
+        </div>
+        <a href="#" class="charter-link">Learn more</a>
+      </div>
+    </div>
+    <div class="charter-card">
+      <div class="charter-img whale">
+        <span>Your whale watching photo</span>
+        <span class="charter-img-icon">🐋</span>
+      </div>
+      <div class="charter-body">
+        <h3 class="charter-title">Whale Watching</h3>
+        <p class="charter-desc">Enjoy personalized whale watching without the crowds. The Santa Barbara Channel offers remarkable opportunities to observe gray whales, humpbacks, dolphins, and sea lions.</p>
+        <div class="charter-tags">
+          <span class="tag">Seasonal</span>
+          <span class="tag">Flexible timing</span>
+        </div>
+        <a href="#" class="charter-link">Learn more</a>
+      </div>
+    </div>
+    <div class="charter-card">
+      <div class="charter-img island">
+        <span>Your Channel Islands photo</span>
+        <span class="charter-img-icon">⛵</span>
+      </div>
+      <div class="charter-body">
+        <h3 class="charter-title">Channel Islands</h3>
+        <p class="charter-desc">Explore the islands by sea — snorkeling, sightseeing, or a scenic day on the water with family and friends. Custom itineraries available.</p>
+        <div class="charter-tags">
+          <span class="tag">Day trips</span>
+          <span class="tag">Multi-day</span>
+          <span class="tag">Custom</span>
+        </div>
+        <a href="#" class="charter-link">Learn more</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOAT -->
+<section class="section section-alt">
+  <div class="boat-row">
+    <div>
+      <p class="section-eyebrow">The Vessel</p>
+      <h2 class="section-title">Meet the Finaddict</h2>
+      <p class="section-sub">A 41-ft custom Radon Sportfisher, rebuilt stem to stern in 2016. Locally built in Santa Barbara and renowned for strength, stability, and a comfortable ride.</p>
+      <ul class="boat-features">
+        <li>Flying bridge with integrated swim step</li>
+        <li>Spacious cockpit — plenty of room for 6 passengers</li>
+        <li>Full galley with microwave, refrigerator, coffee maker & BBQ</li>
+        <li>Private restroom/shower with hot water</li>
+        <li>Cabin bunks for overnight trips</li>
+        <li>Raymarine electronics — depth sounder, chart plotter, 48-mile radar</li>
+        <li>Annual voluntary Coast Guard inspection</li>
+      </ul>
+      <div class="boat-specs">
+        <div class="spec-tile"><div class="spec-val">Twin 435hp</div><div class="spec-key">Volvo Diesel Engines</div></div>
+        <div class="spec-tile"><div class="spec-val">12.5kW</div><div class="spec-key">Onboard Generator</div></div>
+        <div class="spec-tile"><div class="spec-val">1-ton</div><div class="spec-key">Insulated Fish Hold</div></div>
+        <div class="spec-tile"><div class="spec-val">110 & 220V</div><div class="spec-key">Power Throughout</div></div>
+      </div>
+    </div>
+    <div class="boat-photo">
+      <div class="boat-photo-icon">⚓</div>
+      <span>Your Finaddict photo here</span>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section section-sand">
+  <p class="section-eyebrow">What Guests Say</p>
+  <h2 class="section-title">Happy anglers & explorers</h2>
+  <p class="section-sub" style="margin-bottom: 40px;">Every person on the charter caught their limit in one hour.</p>
+  <div class="test-grid">
+    <div class="test-card">
+      <div class="test-quote-mark">"</div>
+      <div class="test-stars">★★★★★</div>
+      <p class="test-text">Jim & Joe were awesome, the boat was spacious with a great bathroom and cabin. Every person on the charter caught their limit in one hour on rockfish. Spectacular fishing.</p>
+      <div class="test-divider"></div>
+      <div class="test-author">Cody Woodward</div>
+    </div>
+    <div class="test-card">
+      <div class="test-quote-mark">"</div>
+      <div class="test-stars">★★★★★</div>
+      <p class="test-text">Growing up in Santa Barbara, Captain Jim and his crew took my family out on a day trip. The boat was clean and comfortable, the crew friendly and knowledgeable. I can't wait to go again!</p>
+      <div class="test-divider"></div>
+      <div class="test-author">Philip McFadden</div>
+      <div class="test-detail">Santa Barbara, CA</div>
+    </div>
+    <div class="test-card">
+      <div class="test-quote-mark">"</div>
+      <div class="test-stars">★★★★★</div>
+      <p class="test-text">Fantastic fishing! 5 people caught our limit — in only one hour we caught 50 fish. Capt. Jim and Joe baited our hooks, cleaned all our fish. Best fishing trip ever!</p>
+      <div class="test-divider"></div>
+      <div class="test-author">Linda Brock</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band">
+  <div class="cta-band-inner">
+    <p class="cta-eyebrow">Ready to cast off?</p>
+    <h2 class="cta-title">Let's get you on the water</h2>
+    <p class="cta-sub">Call us at 805-896-0541 or send a message — we'll get your trip on the calendar.</p>
+    <div class="cta-btns">
+      <a href="#" class="btn-primary">Contact Us</a>
+      <a href="#" class="btn-ghost">Get Directions</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand-name">Santa Barbara Sea Charters</div>
+      <p class="footer-brand-desc">Private sportfishing, whale watching, and coastal adventures aboard the Finaddict. Departing from Santa Barbara Harbor since day one.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <a href="#">Charter trips</a>
+      <a href="#">The Finaddict</a>
+      <a href="#">Our crew</a>
+      <a href="#">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="#">805-896-0541</a>
+      <a href="#">Send a message</a>
+      <a href="#">Directions</a>
+    </div>
+    <div class="footer-col">
+      <h4>Follow</h4>
+      <a href="#">Instagram</a>
+      <a href="#">Facebook</a>
+      <a href="#">Yelp</a>
+      <a href="#">TripAdvisor</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Santa Barbara Sea Charters. All rights reserved.</span>
+    <span>sbseacharters.com</span>
+  </div>
+</footer>
+
+</body>
+</html>
