@@ -181,6 +181,8 @@ a.hero-nav-contact {
 .charter-desc { font-size: 16px; color: var(--text-muted); line-height: 1.75; margin-bottom: 20px; font-weight: 300; }
 .charter-link { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); font-weight: 500; text-decoration: none; }
 .charter-link::after { content: ' →'; }
+.charter-card--image-only { display: flex; }
+.charter-img--full { aspect-ratio: unset; flex: 1; height: 100%; min-height: 280px; }
 
 
 /* ================================================
@@ -280,6 +282,7 @@ footer {
       <a href="finaddict.html">The Boat</a>
       <a href="crew.html">Crew</a>
       <a href="faq.html">FAQ</a>
+      <a href="gallery.html">Gallery</a>
       <div class="hero-nav-divider"></div>
       <a href="contact.html" class="hero-nav-contact">Contact</a>
     </nav>
@@ -304,15 +307,12 @@ footer {
      Each card has src="" placeholder — fill in filename when ready
      ================================================ -->
 <section class="charters-section">
-  <p class="section-eyebrow">What We Offer</p>
   <h2 class="section-title">Charter Experiences</h2>
-  <p class="section-sub">Private charters tailored to your group — from world-class sportfishing to unforgettable coastal adventures.</p>
-
   <div class="charters-grid">
 
-    <!-- CARD 1: Sportfishing — IMAGE: src="YOUR_FILENAME.jpg" -->
+    <!-- CARD 1: Sportfishing -->
     <div class="charter-card">
-      <img class="charter-img" src="" alt="Sportfishing" />
+      <img class="charter-img" src="Sportfishing.png" alt="Sportfishing" />
       <div class="charter-body">
         <h3 class="charter-title">Sportfishing</h3>
         <p class="charter-desc">Target halibut, white sea bass, ling cod, and rock cod in the rich waters off the Santa Barbara coast. Full-day and half-day trips for groups up to 6.</p>
@@ -320,19 +320,9 @@ footer {
       </div>
     </div>
 
-    <!-- CARD 2: Whale Watching — IMAGE: src="YOUR_FILENAME.jpg" -->
+    <!-- CARD 2: Tours & Sightseeing -->
     <div class="charter-card">
-      <img class="charter-img" src="" alt="Whale Watching" />
-      <div class="charter-body">
-        <h3 class="charter-title">Whale Watching</h3>
-        <p class="charter-desc">Experience blue whales, humpbacks, and gray whales in the Santa Barbara Channel — one of the richest whale watching corridors on the Pacific Coast.</p>
-        <a href="contact.html" class="charter-link">Inquire</a>
-      </div>
-    </div>
-
-    <!-- CARD 3: Tours & Sightseeing — IMAGE: src="YOUR_FILENAME.jpg" -->
-    <div class="charter-card">
-      <img class="charter-img" src="" alt="Tours and Sightseeing" />
+      <img class="charter-img" src="Tours.png" alt="Tours and Sightseeing" />
       <div class="charter-body">
         <h3 class="charter-title">Tours &amp; Sightseeing</h3>
         <p class="charter-desc">Cruise the coastline, explore the Channel Islands, and take in Santa Barbara from the water. Perfect for families, special occasions, and first-time visitors.</p>
@@ -340,29 +330,9 @@ footer {
       </div>
     </div>
 
-    <!-- CARD 4: Research Trips — IMAGE: src="YOUR_FILENAME.jpg" -->
+    <!-- CARD 3: Photography & Filming -->
     <div class="charter-card">
-      <img class="charter-img" src="" alt="Research Trips" />
-      <div class="charter-body">
-        <h3 class="charter-title">Research Trips</h3>
-        <p class="charter-desc">Equipped for scientific and academic fieldwork in the Santa Barbara Channel. Captain Jim has worked with research institutions throughout the region.</p>
-        <a href="contact.html" class="charter-link">Inquire</a>
-      </div>
-    </div>
-
-    <!-- CARD 5: Memorials at Sea — IMAGE: src="YOUR_FILENAME.jpg" -->
-    <div class="charter-card">
-      <img class="charter-img" src="" alt="Memorials at Sea" />
-      <div class="charter-body">
-        <h3 class="charter-title">Memorials at Sea</h3>
-        <p class="charter-desc">A private, respectful setting for ash scatterings and memorial services on the water. Captain Jim provides a dignified and peaceful experience for your family.</p>
-        <a href="contact.html" class="charter-link">Inquire</a>
-      </div>
-    </div>
-
-    <!-- CARD 6: Photography & Filming — IMAGE: src="YOUR_FILENAME.jpg" -->
-    <div class="charter-card">
-      <img class="charter-img" src="" alt="Photography and Filming" />
+      <img class="charter-img" src="Filming.png" alt="Photography and Filming" />
       <div class="charter-body">
         <h3 class="charter-title">Photography &amp; Filming</h3>
         <p class="charter-desc">The Finaddict is available for commercial photography, film production, and content creation on the water. Ideal for brands, agencies, and production teams.</p>
@@ -370,7 +340,42 @@ footer {
       </div>
     </div>
 
-    <!-- CARD 7: Corporate Events — IMAGE: src="YOUR_FILENAME.jpg" -->
+    <!-- CARD 4: Memorials at Sea -->
+    <div class="charter-card">
+      <img class="charter-img" src="Memorial.png" alt="Memorials at Sea" />
+      <div class="charter-body">
+        <h3 class="charter-title">Memorials at Sea</h3>
+        <p class="charter-desc">A private, respectful setting for ash scatterings and memorial services on the water. Captain Jim provides a dignified and peaceful experience for your family.</p>
+        <a href="contact.html" class="charter-link">Inquire</a>
+      </div>
+    </div>
+
+    <!-- CARD 5: Research Trips -->
+    <div class="charter-card">
+      <img class="charter-img" src="Research.png" alt="Research Trips" />
+      <div class="charter-body">
+        <h3 class="charter-title">Research Trips</h3>
+        <p class="charter-desc">Equipped for scientific and academic fieldwork in the Santa Barbara Channel. Captain Jim has worked with research institutions throughout the region.</p>
+        <a href="contact.html" class="charter-link">Inquire</a>
+      </div>
+    </div>
+
+    <!-- CARD 6: Whale Watching -->
+    <div class="charter-card">
+      <img class="charter-img" src="Whale.png" alt="Whale Watching" />
+      <div class="charter-body">
+        <h3 class="charter-title">Whale Watching</h3>
+        <p class="charter-desc">Experience blue whales, humpbacks, and gray whales in the Santa Barbara Channel — one of the richest whale watching corridors on the Pacific Coast.</p>
+        <a href="contact.html" class="charter-link">Inquire</a>
+      </div>
+    </div>
+
+    <!-- CARD 7: Open image card (no title/body) -->
+    <div class="charter-card charter-card--image-only">
+      <img class="charter-img charter-img--full" src="" alt="" />
+    </div>
+
+    <!-- CARD 8: Corporate Events -->
     <div class="charter-card">
       <img class="charter-img" src="" alt="Corporate Events" />
       <div class="charter-body">
@@ -380,14 +385,9 @@ footer {
       </div>
     </div>
 
-    <!-- CARD 8: Custom Charter — IMAGE: src="YOUR_FILENAME.jpg" -->
-    <div class="charter-card">
-      <img class="charter-img" src="" alt="Custom Charter" />
-      <div class="charter-body">
-        <h3 class="charter-title">Custom Charter</h3>
-        <p class="charter-desc">Have something specific in mind? Captain Jim works with you to build the perfect private charter experience tailored to your group and goals.</p>
-        <a href="contact.html" class="charter-link">Inquire</a>
-      </div>
+    <!-- CARD 9: Open image card (no title/body) -->
+    <div class="charter-card charter-card--image-only">
+      <img class="charter-img charter-img--full" src="" alt="" />
     </div>
 
   </div>
@@ -402,14 +402,14 @@ footer {
 
     <div class="footer-logo">
       <img src="Logo.png" alt="Santa Barbara Sea Charters" />
-      <p class="footer-desc">Private sportfishing, whale watching, and coastal adventures aboard the Finaddict. Departing from Santa Barbara Harbor.</p>
+      <p class="footer-desc">Sportfishing, whale watching, and coastal adventures aboard the Finaddict. Departing from Santa Barbara Harbor.</p>
     </div>
 
     <div class="footer-col">
       <h4>Charters</h4>
       <a href="charters.html">Sportfishing</a>
-      <a href="charters.html">Whale Watching</a>
       <a href="charters.html">Tours &amp; Sightseeing</a>
+      <a href="charters.html">Photography &amp; Filming</a>
       <a href="charters.html">All Charters</a>
     </div>
 
