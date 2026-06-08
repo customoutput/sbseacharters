@@ -124,6 +124,96 @@ a.hero-nav-contact {
   border-radius: 2px;
 }
 
+
+/* ================================================
+   PAGE INTRO BANNER  (navy, with anchor SVG)
+   ================================================ */
+.crew-banner {
+  background: #0f3d6b;
+  padding: 72px 80px 64px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.crew-banner-anchor {
+  margin: 0 auto 28px;
+  display: block;
+  width: 52px;
+  height: 52px;
+  opacity: 0.55;
+}
+.crew-banner-eyebrow {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--blue-light);
+  margin-bottom: 18px;
+  opacity: 0.8;
+}
+.crew-banner-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 52px;
+  font-weight: 400;
+  color: var(--white);
+  line-height: 1.1;
+  margin-bottom: 24px;
+}
+.crew-banner-sub {
+  font-size: 18px;
+  color: rgba(255,255,255,0.55);
+  font-weight: 300;
+  line-height: 1.8;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+/* Thin rule under banner */
+.crew-rule {
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--blue-light) 30%, var(--blue) 50%, var(--blue-light) 70%, transparent);
+  opacity: 0.35;
+}
+
+
+/* ================================================
+   CREW ETHOS STRIP  (3 pillars)
+   ================================================ */
+.crew-ethos {
+  background: var(--sky-pale);
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-bottom: 1px solid var(--border);
+}
+.ethos-tile {
+  padding: 48px 40px;
+  border-right: 1px solid var(--border);
+  position: relative;
+}
+.ethos-tile:last-child { border-right: none; }
+.ethos-tile-bar {
+  width: 32px;
+  height: 2px;
+  background: var(--blue-light);
+  margin-bottom: 20px;
+}
+.ethos-tile-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 10px;
+}
+.ethos-tile-value {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  color: var(--navy);
+  line-height: 1.4;
+}
+
+
 /* ================================================
    CAPTAIN BIO  (photo left / text right)
    ================================================ */
@@ -511,48 +601,6 @@ footer {
 </section>
 
 
-<!-- CREW INTRO BANNER -->
-<div class="crew-banner">
-
-  <!-- Nautical anchor SVG -->
-  <svg class="crew-banner-anchor" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <circle cx="32" cy="14" r="6" stroke="white" stroke-width="2.5" fill="none"/>
-    <line x1="32" y1="20" x2="32" y2="54" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-    <line x1="14" y1="30" x2="50" y2="30" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-    <path d="M14 30 Q8 38 14 46 Q20 54 32 54 Q44 54 50 46 Q56 38 50 30" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-    <line x1="14" y1="46" x2="20" y2="54" stroke="white" stroke-width="2" stroke-linecap="round"/>
-    <line x1="50" y1="46" x2="44" y2="54" stroke="white" stroke-width="2" stroke-linecap="round"/>
-  </svg>
-
-  <div class="crew-banner-eyebrow">Finaddict · Santa Barbara Harbor</div>
-  <h1 class="crew-banner-title">The Crew</h1>
-  <p class="crew-banner-sub">The crew of Finaddict all share a passion for the ocean, teaching others to fish, and the joy of sharing all that is found on the Santa Barbara Channel. We are experienced fishermen and sailors. Your safety and comfort is our number one concern. And most of all we think that a day on the ocean beats a day of just about any other activity in the world.</p>
-
-</div>
-
-<div class="crew-rule"></div>
-
-
-<!-- ETHOS PILLARS -->
-<div class="crew-ethos">
-  <div class="ethos-tile">
-    <div class="ethos-tile-bar"></div>
-    <div class="ethos-tile-label">Safety First</div>
-    <div class="ethos-tile-value">Your safety and comfort is our number one concern on every trip.</div>
-  </div>
-  <div class="ethos-tile">
-    <div class="ethos-tile-bar"></div>
-    <div class="ethos-tile-label">Experience</div>
-    <div class="ethos-tile-value">More than 50 years fishing the waters of the California coast.</div>
-  </div>
-  <div class="ethos-tile">
-    <div class="ethos-tile-bar"></div>
-    <div class="ethos-tile-label">Passion</div>
-    <div class="ethos-tile-value">A day on the ocean beats a day of just about any other activity in the world.</div>
-  </div>
-</div>
-
-
 <!-- CAPTAIN BIO -->
 <section class="captain-section">
   <div class="captain-inner">
@@ -587,7 +635,7 @@ footer {
     <!-- Right — bio -->
     <div class="captain-bio-col">
 
-      <div class="captain-eyebrow">Captain &amp; Owner</div>
+      <div class="captain-eyebrow">Master &amp; Owner</div>
       <h2 class="captain-name">Captain Jim Klein</h2>
       <div class="captain-rank">USCG Licensed Master · 100 Ton</div>
 
