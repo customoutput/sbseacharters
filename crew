@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Crew — Santa Barbara Sea Charters</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+
+/* ── TOKENS ── */
+:root {
+  --navy:       #0b2e52;
+  --blue:       #1a6fa8;
+  --blue-light: #4fa3d1;
+  --sky:        #e8f4fb;
+  --sky-pale:   #f4f9fd;
+  --white:      #ffffff;
+  --sand:       #f7f4ef;
+  --text:       #1a2a3a;
+  --text-muted: #4a6278;
+  --text-light: #7a95aa;
+  --border:     #d4e6f1;
+  --mono:       'Share Tech Mono', monospace;
+  --serif:      'Playfair Display', serif;
+  --sans:       'Jost', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); color: var(--text); background: var(--white); }
+
+
+/* ================================================
+   HEADER / NAV
+   ================================================ */
+.hero {
+  background: #0b2e52;
+  padding: 0 60px;
+  min-height: 160px;
+  display: flex;
+  align-items: center;
+}
+.hero-inner {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 32px 0;
+}
+.hero-left {
+  min-width: 140px;
+  display: flex;
+  align-items: center;
+}
+.hero-logo img {
+  height: 90px;
+  width: auto;
+  display: block;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));
+}
+.hero-center {
+  text-align: center;
+  flex: 1;
+}
+.hero-title {
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  font-size: 52px;
+  font-weight: 400;
+  color: var(--white);
+  letter-spacing: 0.01em;
+  line-height: 1.1;
+  margin-bottom: 14px;
+}
+.hero-subtitle {
+  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  font-size: 36px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #4fa3d1;
+}
+.hero-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  min-width: 140px;
+}
+.hero-nav a {
+  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  font-size: 15px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.hero-nav a:hover { color: var(--white); }
+.hero-nav-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(255,255,255,0.12);
+  margin: 4px 0;
+}
+a.hero-nav-contact {
+  color: #c94f2a !important;
+  font-weight: 500;
+}
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  flex-direction: column;
+  gap: 5px;
+  flex-shrink: 0;
+}
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: rgba(255,255,255,0.7);
+  border-radius: 2px;
+}
+
+
+/* ================================================
+   PAGE INTRO BANNER  (navy, with anchor SVG)
+   ================================================ */
+.crew-banner {
+  background: var(--navy);
+  padding: 72px 80px 64px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+/* Subtle rope-line texture across banner */
+.crew-banner::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 60px,
+    rgba(255,255,255,0.025) 60px,
+    rgba(255,255,255,0.025) 61px
+  );
+  pointer-events: none;
+}
+.crew-banner-anchor {
+  margin: 0 auto 28px;
+  display: block;
+  width: 52px;
+  height: 52px;
+  opacity: 0.55;
+}
+.crew-banner-eyebrow {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--blue-light);
+  margin-bottom: 18px;
+  opacity: 0.8;
+}
+.crew-banner-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 52px;
+  font-weight: 400;
+  color: var(--white);
+  line-height: 1.1;
+  margin-bottom: 24px;
+}
+.crew-banner-sub {
+  font-size: 18px;
+  color: rgba(255,255,255,0.55);
+  font-weight: 300;
+  line-height: 1.8;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+/* Thin rule under banner */
+.crew-rule {
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--blue-light) 30%, var(--blue) 50%, var(--blue-light) 70%, transparent);
+  opacity: 0.35;
+}
+
+
+/* ================================================
+   CREW ETHOS STRIP  (3 pillars)
+   ================================================ */
+.crew-ethos {
+  background: var(--sky-pale);
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-bottom: 1px solid var(--border);
+}
+.ethos-tile {
+  padding: 48px 40px;
+  border-right: 1px solid var(--border);
+  position: relative;
+}
+.ethos-tile:last-child { border-right: none; }
+.ethos-tile-bar {
+  width: 32px;
+  height: 2px;
+  background: var(--blue-light);
+  margin-bottom: 20px;
+}
+.ethos-tile-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 10px;
+}
+.ethos-tile-value {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  color: var(--navy);
+  line-height: 1.4;
+}
+
+
+/* ================================================
+   CAPTAIN BIO  (photo left / text right)
+   ================================================ */
+.captain-section {
+  background: var(--white);
+  padding: 96px 80px;
+}
+.captain-inner {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+/* Left — photo + credentials card */
+.captain-photo-col {}
+
+.captain-photo-wrap {
+  position: relative;
+  margin-bottom: 0;
+}
+/* IMAGE PLACEHOLDER — replace src="" with your filename, e.g. src="CaptainJim.jpg" */
+.captain-photo {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  background: #b8cdd8;  /* placeholder colour — remove when image added */
+  border: 1px solid var(--border);
+}
+.captain-photo-caption {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* Credentials card below photo */
+.captain-creds {
+  margin-top: 28px;
+  border: 1px solid var(--border);
+  background: var(--sky-pale);
+}
+.captain-creds-head {
+  background: var(--navy);
+  padding: 14px 24px;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.65);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.captain-creds-head svg {
+  width: 14px;
+  height: 14px;
+  opacity: 0.7;
+  flex-shrink: 0;
+}
+.captain-cred-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 24px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+  color: var(--text-muted);
+  font-weight: 300;
+  line-height: 1.5;
+}
+.captain-cred-row:last-child { border-bottom: none; }
+.captain-cred-row::before {
+  content: '▸';
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--blue-light);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Right — bio text */
+.captain-bio-col {}
+
+.captain-eyebrow {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 16px;
+}
+.captain-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 48px;
+  font-weight: 400;
+  color: var(--navy);
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+.captain-rank {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--blue-light);
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.captain-rank::before {
+  content: '';
+  display: inline-block;
+  width: 28px;
+  height: 1px;
+  background: var(--blue-light);
+  opacity: 0.5;
+}
+
+.captain-bio-divider {
+  width: 40px;
+  height: 2px;
+  background: var(--blue-light);
+  opacity: 0.4;
+  margin: 32px 0;
+}
+
+.captain-bio p {
+  font-size: 18px;
+  color: var(--text-muted);
+  line-height: 1.9;
+  font-weight: 300;
+  margin-bottom: 24px;
+}
+.captain-bio p:last-child { margin-bottom: 0; }
+
+/* CTA at bottom of bio */
+.captain-cta {
+  margin-top: 48px;
+  padding-top: 40px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.captain-cta-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  color: var(--navy);
+  line-height: 1.3;
+}
+.captain-cta-btn {
+  display: inline-block;
+  background: var(--navy);
+  color: var(--white);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 16px 36px;
+  transition: background 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.captain-cta-btn:hover { background: var(--blue); }
+
+
+/* ================================================
+   ANCHOR DIVIDER
+   ================================================ */
+.anchor-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 48px 80px;
+  background: var(--sky-pale);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.anchor-divider-line {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+  max-width: 300px;
+}
+.anchor-divider svg {
+  width: 32px;
+  height: 32px;
+  opacity: 0.3;
+}
+
+
+/* ================================================
+   FOOTER
+   ================================================ */
+footer {
+  background: #0b2e52;
+  padding: 52px 80px 32px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 48px;
+}
+.footer-logo img {
+  height: 56px;
+  width: auto;
+  margin-bottom: 16px;
+  display: block;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.35));
+}
+.footer-desc {
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  line-height: 1.8;
+  font-weight: 300;
+  margin-top: 8px;
+}
+.footer-col h4 {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 16px;
+}
+.footer-col a {
+  display: block;
+  font-size: 13px;
+  color: rgba(255,255,255,0.55);
+  text-decoration: none;
+  margin-bottom: 10px;
+  transition: color 0.2s;
+}
+.footer-col a:hover { color: var(--white); }
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 24px;
+}
+.footer-bottom span {
+  font-size: 12px;
+  color: rgba(255,255,255,0.25);
+  font-weight: 300;
+}
+.footer-back {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-back:hover { color: rgba(255,255,255,0.7); }
+
+
+/* ================================================
+   MOBILE / RESPONSIVE
+   ================================================ */
+
+/* ── Tablet (≤900px) ── */
+@media (max-width: 900px) {
+  .hero { padding: 0 32px; min-height: auto; }
+  .hero-inner { gap: 24px; padding: 24px 0; }
+  .hero-title { font-size: 36px; margin-bottom: 8px; }
+  .hero-subtitle { font-size: 24px; }
+  .hero-logo img { height: 64px; }
+  .hero-left { min-width: auto; }
+  .hero-nav { min-width: auto; gap: 8px; }
+  .hero-nav a { font-size: 12px; }
+
+  .crew-banner { padding: 56px 40px 48px; }
+  .crew-banner-title { font-size: 38px; }
+
+  .crew-ethos { grid-template-columns: 1fr; }
+  .ethos-tile { border-right: none; border-bottom: 1px solid var(--border); }
+  .ethos-tile:last-child { border-bottom: none; }
+
+  .captain-section { padding: 64px 40px; }
+  .captain-inner { grid-template-columns: 1fr; gap: 48px; }
+  .captain-photo { aspect-ratio: 4/3; }
+  .captain-name { font-size: 38px; }
+
+  .anchor-divider { padding: 40px; }
+
+  footer { padding: 48px 40px 28px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+  .footer-logo { grid-column: 1 / -1; }
+}
+
+/* ── Mobile (≤600px) ── */
+@media (max-width: 600px) {
+  /* Header stacks */
+  .hero { padding: 0 20px; }
+  .hero-inner { flex-wrap: wrap; gap: 0; padding: 20px 0 0; align-items: flex-start; }
+  .hero-left { order: 1; min-width: auto; }
+  .hero-logo img { height: 52px; }
+  .nav-toggle { display: flex; order: 3; margin-left: auto; margin-top: 6px; }
+  .hero-center { order: 2; width: 100%; flex: none; padding: 16px 0 20px; }
+  .hero-title { font-size: 26px; margin-bottom: 6px; }
+  .hero-subtitle { font-size: 18px; letter-spacing: 0.18em; }
+  .hero-nav {
+    order: 4; width: 100%; flex-direction: column; align-items: stretch;
+    gap: 0; min-width: auto; max-height: 0; overflow: hidden;
+    transition: max-height 0.3s ease;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .nav-open .hero-nav { max-height: 400px; }
+  .hero-nav a {
+    font-size: 13px; padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    text-align: right; letter-spacing: 0.16em;
+  }
+  .hero-nav-divider { display: none; }
+  a.hero-nav-contact { padding: 14px 0 20px; }
+
+  .crew-banner { padding: 48px 20px 40px; }
+  .crew-banner-title { font-size: 30px; }
+  .crew-banner-sub { font-size: 16px; }
+
+  .captain-section { padding: 48px 20px; }
+  .captain-inner { gap: 40px; }
+  .captain-name { font-size: 30px; }
+  .captain-bio p { font-size: 16px; }
+  .captain-cta { flex-direction: column; align-items: flex-start; gap: 20px; }
+  .captain-cta-btn { width: 100%; text-align: center; }
+
+  .anchor-divider { padding: 32px 20px; }
+
+  footer { padding: 40px 20px 24px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+  .footer-logo { grid-column: auto; }
+  .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+
+<!-- HEADER / NAV -->
+<section class="hero">
+  <div class="hero-inner">
+
+    <div class="hero-left hero-logo">
+      <img src="Logo.png" alt="Santa Barbara Sea Charters logo" />
+    </div>
+
+    <div class="hero-center">
+      <h1 class="hero-title">Santa Barbara Sea Charters</h1>
+      <div class="hero-subtitle">Finaddict</div>
+    </div>
+
+    <button class="nav-toggle" aria-label="Toggle navigation"
+      onclick="this.closest('.hero-inner').parentElement.classList.toggle('nav-open')">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="hero-nav">
+      <a href="index.html">Home</a>
+      <a href="charters.html">Charters</a>
+      <a href="finaddict.html">The Boat</a>
+      <a href="crew.html">Crew</a>
+      <a href="faq.html">FAQ</a>
+      <a href="gallery.html">Gallery</a>
+      <div class="hero-nav-divider"></div>
+      <a href="contact.html" class="hero-nav-contact">Contact</a>
+    </nav>
+
+  </div>
+</section>
+
+
+<!-- CREW INTRO BANNER -->
+<div class="crew-banner">
+
+  <!-- Nautical anchor SVG -->
+  <svg class="crew-banner-anchor" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <circle cx="32" cy="14" r="6" stroke="white" stroke-width="2.5" fill="none"/>
+    <line x1="32" y1="20" x2="32" y2="54" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="14" y1="30" x2="50" y2="30" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M14 30 Q8 38 14 46 Q20 54 32 54 Q44 54 50 46 Q56 38 50 30" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <line x1="14" y1="46" x2="20" y2="54" stroke="white" stroke-width="2" stroke-linecap="round"/>
+    <line x1="50" y1="46" x2="44" y2="54" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+
+  <div class="crew-banner-eyebrow">M/V Finaddict · Santa Barbara Harbor</div>
+  <h1 class="crew-banner-title">The Crew</h1>
+  <p class="crew-banner-sub">The crew of Finaddict all share a passion for the ocean, teaching others to fish, and the joy of sharing all that is found on the Santa Barbara Channel. We are experienced fishermen and sailors. Your safety and comfort is our number one concern. And most of all we think that a day on the ocean beats a day of just about any other activity in the world.</p>
+
+</div>
+
+<div class="crew-rule"></div>
+
+
+<!-- ETHOS PILLARS -->
+<div class="crew-ethos">
+  <div class="ethos-tile">
+    <div class="ethos-tile-bar"></div>
+    <div class="ethos-tile-label">Safety First</div>
+    <div class="ethos-tile-value">Your safety and comfort is our number one concern on every trip.</div>
+  </div>
+  <div class="ethos-tile">
+    <div class="ethos-tile-bar"></div>
+    <div class="ethos-tile-label">Experience</div>
+    <div class="ethos-tile-value">More than 50 years fishing the waters of the California coast.</div>
+  </div>
+  <div class="ethos-tile">
+    <div class="ethos-tile-bar"></div>
+    <div class="ethos-tile-label">Passion</div>
+    <div class="ethos-tile-value">A day on the ocean beats a day of just about any other activity in the world.</div>
+  </div>
+</div>
+
+
+<!-- CAPTAIN BIO -->
+<section class="captain-section">
+  <div class="captain-inner">
+
+    <!-- Left — photo + credentials -->
+    <div class="captain-photo-col">
+
+      <!-- IMAGE PLACEHOLDER: replace src="" with your filename, e.g. src="CaptainJim.jpg" -->
+      <div class="captain-photo-wrap">
+        <img class="captain-photo" src="" alt="Captain Jim Klein" />
+        <div class="captain-photo-caption">▸ Add photo: CaptainJim.jpg</div>
+      </div>
+
+      <!-- Credentials card -->
+      <div class="captain-creds">
+        <div class="captain-creds-head">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+          </svg>
+          Licenses &amp; Credentials
+        </div>
+        <div class="captain-cred-row">USCG 100 Ton Master Captain's License — obtained 2001</div>
+        <div class="captain-cred-row">Certified Perfusionist (retired)</div>
+        <div class="captain-cred-row">Registered Respiratory Therapist (retired)</div>
+        <div class="captain-cred-row">Master's Degree in Healthcare Administration</div>
+        <div class="captain-cred-row">50+ years fishing the California coast</div>
+        <div class="captain-cred-row">Charter boat operator since 2005</div>
+      </div>
+
+    </div>
+
+    <!-- Right — bio -->
+    <div class="captain-bio-col">
+
+      <div class="captain-eyebrow">Master &amp; Owner</div>
+      <h2 class="captain-name">Captain Jim Klein</h2>
+      <div class="captain-rank">USCG Licensed Master · 100 Ton</div>
+
+      <div class="captain-bio">
+        <p>Captain Jim grew up in Long Beach, California. He began fishing with his father when he was 6 years old. His first job at the age of 13 was a deckhand on a charter boat in San Pedro, CA. At that time he and his father were close friends with a charter boat captain in Santa Barbara. Jim would come to Santa Barbara during the summer months to work as a deckhand on the Santa Barbara charter boat — Robinette. He has been fishing the waters of the west coast for more than 50 years.</p>
+
+        <div class="captain-bio-divider"></div>
+
+        <p>Captain Jim moved to Santa Barbara in 1973 to work in a local hospital. He is a retired certified Perfusionist and retired registered Respiratory Therapist holding a Master's degree in Healthcare Administration. The move allowed him to pursue his fishing passion, fishing as much as possible in Santa Barbara since then.</p>
+
+        <p>He worked hard and obtained his 100 ton Master USCG Captain's license in 2001. Although Captain Jim has owned boats most of his life, it was always his dream to build an offshore fishing charter boat. In 2005, his dream came true and he launched Finaddict.</p>
+
+        <p>Finaddict is a mixture of his experience with larger boats and smaller custom boats. The boat was designed from his vast experience gained on many boats over his life. The outcome is one of the greatest 6 passenger offshore charter boats on the coast. The goal of our trips is to provide a safe, fun, enriching, comfortable and enjoyable trip.</p>
+      </div>
+
+      <div class="captain-cta">
+        <div class="captain-cta-text">Ready to fish with Captain Jim?</div>
+        <a href="contact.html" class="captain-cta-btn">Inquire About a Charter</a>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ANCHOR DIVIDER -->
+<div class="anchor-divider">
+  <div class="anchor-divider-line"></div>
+  <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <circle cx="32" cy="14" r="6" stroke="#0b2e52" stroke-width="2.5" fill="none"/>
+    <line x1="32" y1="20" x2="32" y2="54" stroke="#0b2e52" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="14" y1="30" x2="50" y2="30" stroke="#0b2e52" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M14 30 Q8 38 14 46 Q20 54 32 54 Q44 54 50 46 Q56 38 50 30" stroke="#0b2e52" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <line x1="14" y1="46" x2="20" y2="54" stroke="#0b2e52" stroke-width="2" stroke-linecap="round"/>
+    <line x1="50" y1="46" x2="44" y2="54" stroke="#0b2e52" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+  <div class="anchor-divider-line"></div>
+</div>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+
+    <div class="footer-logo">
+      <img src="Logo.png" alt="Santa Barbara Sea Charters" />
+      <p class="footer-desc">Sportfishing, whale watching, and coastal adventures aboard the Finaddict. Departing from Santa Barbara Harbor.</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Charters</h4>
+      <a href="charters.html">Sportfishing</a>
+      <a href="charters.html">Tours &amp; Sightseeing</a>
+      <a href="charters.html">Photography &amp; Filming</a>
+      <a href="charters.html">All Charters</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>The Boat</h4>
+      <a href="finaddict.html">Finaddict</a>
+      <a href="crew.html">Our Crew</a>
+      <a href="faq.html">FAQ</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="contact.html">Send a Message</a>
+      <a href="tel:+18058960541">805-896-0541</a>
+      <a href="contact.html">Directions</a>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <span>&copy; 2026 Santa Barbara Sea Charters. All rights reserved.</span>
+    <a href="#" class="footer-back">Back to Top &uarr;</a>
+  </div>
+</footer>
+
+
+</body>
+</html>
