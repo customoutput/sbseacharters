@@ -151,7 +151,7 @@ a.hero-nav-contact {
   font-weight: 400;
   color: var(--navy);
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 10px;
 }
 .section-sub {
   font-size: 16px;
@@ -251,6 +251,124 @@ footer {
   transition: color 0.2s;
 }
 .footer-back:hover { color: rgba(255,255,255,0.7); }
+
+
+/* ================================================
+   MOBILE / RESPONSIVE
+   ================================================ */
+
+/* ── Hamburger toggle (no JS) ── */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  flex-direction: column;
+  gap: 5px;
+  flex-shrink: 0;
+}
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: rgba(255,255,255,0.7);
+  border-radius: 2px;
+  transition: opacity 0.2s;
+}
+
+/* ── Tablet: 2-col cards, tighten header ── */
+@media (max-width: 900px) {
+  .hero { padding: 0 32px; min-height: auto; }
+  .hero-inner { gap: 24px; padding: 24px 0; }
+  .hero-title { font-size: 36px; margin-bottom: 8px; }
+  .hero-subtitle { font-size: 24px; }
+  .hero-logo img { height: 64px; }
+  .hero-left { min-width: auto; }
+  .hero-nav { min-width: auto; gap: 8px; }
+  .hero-nav a { font-size: 12px; }
+
+  .boat-wrap img { height: 420px; }
+
+  .charters-section { padding: 60px 32px; }
+  .charters-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+
+  footer { padding: 48px 40px 28px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+  .footer-logo { grid-column: 1 / -1; }
+}
+
+/* ── Mobile: single column, stacked header ── */
+@media (max-width: 600px) {
+  /* Header stacks: logo + title centered, hamburger toggles nav */
+  .hero { padding: 0 20px; }
+  .hero-inner {
+    flex-wrap: wrap;
+    gap: 0;
+    padding: 20px 0 0;
+    align-items: flex-start;
+  }
+
+  /* Logo row: logo left, hamburger right */
+  .hero-left { order: 1; min-width: auto; }
+  .hero-logo img { height: 52px; }
+
+  .nav-toggle { display: flex; order: 3; margin-left: auto; margin-top: 6px; }
+
+  /* Title block goes full-width below logo row */
+  .hero-center {
+    order: 2;
+    width: 100%;
+    flex: none;
+    padding: 16px 0 20px;
+  }
+  .hero-title { font-size: 26px; margin-bottom: 6px; }
+  .hero-subtitle { font-size: 18px; letter-spacing: 0.18em; }
+
+  /* Nav: hidden by default, shown when checkbox is checked */
+  .hero-nav {
+    order: 4;
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    min-width: auto;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  /* Show nav when toggle is active */
+  .nav-open .hero-nav { max-height: 400px; }
+
+  .hero-nav a {
+    font-size: 13px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    text-align: right;
+    letter-spacing: 0.16em;
+  }
+  .hero-nav-divider { display: none; }
+  a.hero-nav-contact { padding: 14px 0 20px; }
+
+  /* Boat image */
+  .boat-wrap img { height: 260px; object-position: center 30%; }
+
+  /* Charter section */
+  .charters-section { padding: 48px 20px; }
+  .section-title { font-size: 28px; margin-bottom: 40px; }
+  .charters-grid { grid-template-columns: 1fr; gap: 16px; }
+
+  /* Image-only cards: give a fixed height on mobile */
+  .charter-card--image-only { min-height: 220px; }
+  .charter-img--full { min-height: 220px; }
+
+  /* Footer */
+  footer { padding: 40px 20px 24px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+  .footer-logo { grid-column: auto; }
+  .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+}
 </style>
 </head>
 <body>
@@ -274,6 +392,11 @@ footer {
       <h1 class="hero-title">Santa Barbara Sea Charters</h1>
       <div class="hero-subtitle">Finaddict</div>
     </div>
+
+    <!-- Hamburger (mobile only) -->
+    <button class="nav-toggle" aria-label="Toggle navigation" onclick="this.closest('.hero-inner').parentElement.classList.toggle('nav-open')">
+      <span></span><span></span><span></span>
+    </button>
 
     <!-- Nav right -->
     <nav class="hero-nav">
@@ -315,7 +438,7 @@ footer {
       <img class="charter-img" src="Sportfishing.png" alt="Sportfishing" />
       <div class="charter-body">
         <h3 class="charter-title">Sportfishing</h3>
-        <p class="charter-desc">Target halibut, white sea bass, ling cod, and rock cod in the rich waters off the Santa Barbara coast. Full-day, 3/4-day and half-day trips for groups up to 6.</p>
+        <p class="charter-desc">Target halibut, white sea bass, ling cod, and rock cod in the rich waters off the Santa Barbara coast. Full-day and half-day trips for groups up to 6.</p>
         <a href="contact.html" class="charter-link">Inquire</a>
       </div>
     </div>
@@ -370,14 +493,14 @@ footer {
       </div>
     </div>
 
-   <!-- CARD 7: Open image card (no title/body) -->
-<div class="charter-card charter-card--image-only">
-  <img class="charter-img charter-img--full" src="chartercard7.png" alt="" />
-</div>
+    <!-- CARD 7: Open image card (no title/body) -->
+    <div class="charter-card charter-card--image-only">
+      <img class="charter-img charter-img--full" src="" alt="" />
+    </div>
 
     <!-- CARD 8: Corporate Events -->
     <div class="charter-card">
-      <img class="charter-img" src="Corporate.png" alt="Corporate Events" />
+      <img class="charter-img" src="" alt="Corporate Events" />
       <div class="charter-body">
         <h3 class="charter-title">Corporate Events</h3>
         <p class="charter-desc">Host client entertaining, team outings, and corporate celebrations on the water. An unforgettable backdrop for your next company event.</p>
@@ -385,10 +508,10 @@ footer {
       </div>
     </div>
 
-   <!-- CARD 9: Open image card (no title/body) -->
-<div class="charter-card charter-card--image-only">
-  <img class="charter-img charter-img--full" src="chartercard9.png" alt="" />
-</div>
+    <!-- CARD 9: Open image card (no title/body) -->
+    <div class="charter-card charter-card--image-only">
+      <img class="charter-img charter-img--full" src="" alt="" />
+    </div>
 
   </div>
 </section>
