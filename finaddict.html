@@ -377,38 +377,22 @@ a.hero-nav-contact {
 
 
 /* ================================================
-   SECTION: VESSEL PHOTO GALLERY STRIP
+   SINGLE WIDE VESSEL PHOTO  (3/4 page width, centered)
    ================================================ */
-.photo-strip {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0;
+.vessel-photo-wide {
+  background: var(--sky-pale);
+  padding: 64px 0;
+  display: flex;
+  justify-content: center;
 }
-.photo-strip-item {
-  position: relative;
-  overflow: hidden;
-}
-.photo-strip-item img {
-  width: 100%;
-  height: 300px;
+.vessel-photo-wide img {
+  width: 75%;
+  height: 520px;
   object-fit: cover;
+  object-position: center;
   display: block;
   background: #9ab4c4;
-  transition: transform 0.4s ease;
 }
-.photo-strip-item:hover img { transform: scale(1.04); }
-.photo-strip-label {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  background: linear-gradient(to top, rgba(7,20,36,0.7) 0%, transparent 100%);
-  padding: 24px 20px 14px;
-  font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.75);
-}
-/* IMAGE PLACEHOLDER NOTE: add src filenames to the img tags in the photo strip below */
 
 
 /* ================================================
@@ -560,9 +544,8 @@ footer {
   .spec-label { padding: 20px 20px; font-size: 9px; }
   .spec-value { padding: 20px 28px; font-size: 16px; }
 
-  /* Photo strip */
-  .photo-strip { grid-template-columns: 1fr 1fr; }
-  .photo-strip-item:last-child { display: none; } /* hide 3rd on tablet */
+  /* Wide photo */
+  .vessel-photo-wide img { width: 90%; height: 400px; }
 
   /* CTA */
   .cta-strip { padding: 56px 40px; gap: 32px; }
@@ -624,10 +607,9 @@ footer {
   .spec-photo-row img { height: 220px; }
   .specs-table-head { padding: 14px 20px; }
 
-  /* Photo strip */
-  .photo-strip { grid-template-columns: 1fr; }
-  .photo-strip-item { display: block !important; }
-  .photo-strip-item img { height: 240px; }
+  /* Wide photo */
+  .vessel-photo-wide { padding: 40px 0; }
+  .vessel-photo-wide img { width: 100%; height: 260px; }
 
   /* CTA */
   .cta-strip { flex-direction: column; padding: 48px 20px; align-items: flex-start; }
@@ -685,9 +667,9 @@ footer {
      IMAGE PLACEHOLDER: replace src="" with your filename, e.g. src="finaddict-hero.jpg"
      ================================================ -->
 <div class="boat-banner">
-  <img src="Corporate.png" alt="The Finaddict at Santa Barbara Harbor" />
+  <img src="" alt="The Finaddict at Santa Barbara Harbor" />
   <div class="boat-banner-caption">
-    <div class="boat-banner-name">Finaddict</div>
+    <div class="boat-banner-name">M/V Finaddict</div>
     <div class="boat-banner-tag">41-ft Radon Sportfisher &nbsp;·&nbsp; Santa Barbara Harbor</div>
   </div>
 </div>
@@ -725,10 +707,10 @@ footer {
     <!-- Right — photo stack -->
     <!-- IMAGE PLACEHOLDERS: replace src="" with filenames, e.g. src="finaddict-dock.jpg" -->
     <div class="overview-photos">
-      <img class="overview-photo" src="Sidedock.png" alt="Finaddict at the dock" />
-      <div class="overview-photo-label">▸ Finaddict · Santa Barbara Harbor /div>
+      <img class="overview-photo" src="" alt="Finaddict at the dock" />
+      <div class="overview-photo-label">▸ Finaddict · Santa Barbara Harbor — add photo: finaddict-dock.jpg</div>
 
-      <img class="overview-photo" src="Helm.png" alt="Finaddict cockpit" />
+      <img class="overview-photo" src="" alt="Finaddict cockpit" />
       <div class="overview-photo-label">▸ Cockpit & deck — add photo: finaddict-cockpit.jpg</div>
     </div>
 
@@ -773,13 +755,6 @@ footer {
         <div class="spec-value">12.5 kW onboard generator providing 110V and 220V throughout the vessel. Charge all electrical devices underway.</div>
       </div>
 
-      <!-- PHOTO INSERT — IMAGE PLACEHOLDER -->
-      <!-- Replace src="" with your filename, e.g. src="finaddict-engine.jpg" -->
-      <div class="spec-photo-row">
-        <img src="Engine.png" alt="Finaddict engine room / propulsion" />
-        <div class="spec-photo-caption">▸ Engine room — add photo: finaddict-engine.jpg</div>
-      </div>
-
       <div class="spec-row">
         <div class="spec-label">Water Systems</div>
         <div class="spec-value">Hot and cold running fresh water. Equipped with an onboard water maker for extended offshore trips.</div>
@@ -793,13 +768,6 @@ footer {
       <div class="spec-row">
         <div class="spec-label">Fishing Systems</div>
         <div class="spec-value">1-ton insulated fish hold below deck. 10-scoop live bait tank. Large cockpit with transom door for swim step access. Built-in ice chest supplementing the galley refrigerator.</div>
-      </div>
-
-      <!-- PHOTO INSERT — IMAGE PLACEHOLDER -->
-      <!-- Replace src="" with your filename, e.g. src="finaddict-fishing.jpg" -->
-      <div class="spec-photo-row">
-        <img src="Logo.png" alt="Finaddict fishing setup" />
-        <div class="spec-photo-caption">▸ Cockpit fishing setup — add photo: finaddict-fishing.jpg</div>
       </div>
 
       <div class="spec-row">
@@ -833,27 +801,11 @@ footer {
 
 
 <!-- ================================================
-     PHOTO STRIP  (3 across)
-     IMAGE PLACEHOLDERS: replace src="" with filenames
-     e.g. src="finaddict-bridge.jpg", src="finaddict-bow.jpg", src="finaddict-cabin.jpg"
+     FULL-WIDTH PHOTO
+     IMAGE PLACEHOLDER: replace src="" with your filename, e.g. src="finaddict-wide.jpg"
      ================================================ -->
-<div class="photo-strip">
-
-  <div class="photo-strip-item">
-    <img src="Whitefish.png" alt="Finaddict flying bridge" />
-    <div class="photo-strip-label">Flying Bridge — add photo: finaddict-bridge.jpg</div>
-  </div>
-
-  <div class="photo-strip-item">
-    <img src="Lingcod.png" alt="Finaddict bow view" />
-    <div class="photo-strip-label">Bow — add photo: finaddict-bow.jpg</div>
-  </div>
-
-  <div class="photo-strip-item">
-    <img src="Halibut.png" alt="Finaddict cabin interior" />
-    <div class="photo-strip-label">Cabin — add photo: finaddict-cabin.jpg</div>
-  </div>
-
+<div class="vessel-photo-wide">
+  <img src="" alt="The Finaddict" />
 </div>
 
 
