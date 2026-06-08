@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ — Santa Barbara Sea Charters</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+
+/* ── TOKENS ── */
+:root {
+  --navy:       #0b2e52;
+  --blue:       #1a6fa8;
+  --blue-light: #4fa3d1;
+  --sky:        #e8f4fb;
+  --sky-pale:   #f4f9fd;
+  --white:      #ffffff;
+  --sand:       #f7f4ef;
+  --text:       #1a2a3a;
+  --text-muted: #4a6278;
+  --text-light: #7a95aa;
+  --border:     #d4e6f1;
+  --mono:       'Share Tech Mono', monospace;
+  --serif:      'Playfair Display', serif;
+  --sans:       'Jost', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); color: var(--text); background: var(--white); }
+
+
+/* ================================================
+   HEADER / NAV
+   ================================================ */
+.hero {
+  background: #0b2e52;
+  padding: 0 60px;
+  min-height: 160px;
+  display: flex;
+  align-items: center;
+}
+.hero-inner {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 32px 0;
+}
+.hero-left {
+  min-width: 140px;
+  display: flex;
+  align-items: center;
+}
+.hero-logo img {
+  height: 90px;
+  width: auto;
+  display: block;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));
+}
+.hero-center {
+  text-align: center;
+  flex: 1;
+}
+.hero-title {
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  font-size: 52px;
+  font-weight: 400;
+  color: var(--white);
+  letter-spacing: 0.01em;
+  line-height: 1.1;
+  margin-bottom: 14px;
+}
+.hero-subtitle {
+  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  font-size: 36px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #4fa3d1;
+}
+.hero-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  min-width: 140px;
+}
+.hero-nav a {
+  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  font-size: 15px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.hero-nav a:hover { color: var(--white); }
+.hero-nav-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(255,255,255,0.12);
+  margin: 4px 0;
+}
+a.hero-nav-contact {
+  color: #c94f2a !important;
+  font-weight: 500;
+}
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  flex-direction: column;
+  gap: 5px;
+  flex-shrink: 0;
+}
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: rgba(255,255,255,0.7);
+  border-radius: 2px;
+}
+
+
+/* ================================================
+   PAGE HEADER
+   ================================================ */
+.page-header {
+  background: var(--sand);
+  padding: 72px 80px 64px;
+  border-bottom: 1px solid var(--border);
+}
+.page-header-inner {
+  max-width: 860px;
+}
+.page-eyebrow {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 18px;
+}
+.page-headline {
+  font-family: 'Playfair Display', serif;
+  font-size: 52px;
+  font-weight: 400;
+  color: var(--navy);
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+.page-desc {
+  font-size: 18px;
+  color: var(--text-muted);
+  line-height: 1.8;
+  font-weight: 300;
+  max-width: 580px;
+}
+
+
+/* ================================================
+   FAQ BODY
+   ================================================ */
+.faq-body {
+  background: var(--white);
+  padding: 0 80px 96px;
+}
+.faq-body-inner {
+  max-width: 860px;
+}
+
+/* ── Section group ── */
+.faq-group {
+  padding-top: 64px;
+}
+.faq-group-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 32px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid var(--navy);
+}
+.faq-group-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.faq-group-icon svg {
+  width: 20px;
+  height: 20px;
+  stroke: rgba(255,255,255,0.75);
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.faq-group-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--navy);
+}
+
+/* ── Accordion items ── */
+.faq-item {
+  border-bottom: 1px solid var(--border);
+}
+.faq-item:first-of-type {
+  border-top: 1px solid var(--border);
+}
+
+.faq-question {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 22px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  cursor: pointer;
+  text-align: left;
+}
+.faq-question-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 19px;
+  font-weight: 400;
+  color: var(--navy);
+  line-height: 1.4;
+}
+.faq-chevron {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: var(--blue-light);
+  transition: transform 0.25s ease;
+}
+.faq-item.open .faq-chevron {
+  transform: rotate(180deg);
+}
+.faq-item.open .faq-question-text {
+  color: var(--blue);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+.faq-answer-inner {
+  padding: 0 0 24px;
+}
+.faq-answer-inner p {
+  font-size: 16px;
+  color: var(--text-muted);
+  line-height: 1.85;
+  font-weight: 300;
+  margin-bottom: 14px;
+}
+.faq-answer-inner p:last-child { margin-bottom: 0; }
+.faq-answer-inner ul {
+  list-style: none;
+  margin-top: 4px;
+}
+.faq-answer-inner ul li {
+  font-size: 16px;
+  color: var(--text-muted);
+  line-height: 1.75;
+  font-weight: 300;
+  padding: 6px 0 6px 20px;
+  position: relative;
+  border-bottom: 1px solid var(--sky);
+}
+.faq-answer-inner ul li:last-child { border-bottom: none; }
+.faq-answer-inner ul li::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  font-size: 24px;
+  color: var(--blue-light);
+  line-height: 1.2;
+}
+.faq-answer-inner a {
+  color: var(--blue);
+  text-decoration: none;
+  border-bottom: 1px solid var(--blue-light);
+  padding-bottom: 1px;
+  transition: color 0.2s;
+}
+.faq-answer-inner a:hover { color: var(--navy); }
+
+/* Mono note — used for tips/warnings */
+.faq-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: var(--sky-pale);
+  border-left: 3px solid var(--blue-light);
+  padding: 14px 18px;
+  margin-top: 14px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+.faq-note::before {
+  content: '▸';
+  color: var(--blue-light);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+
+/* ================================================
+   CTA STRIP
+   ================================================ */
+.faq-cta {
+  background: var(--navy);
+  padding: 64px 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+.faq-cta-text {}
+.faq-cta-eyebrow {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--blue-light);
+  margin-bottom: 10px;
+  opacity: 0.8;
+}
+.faq-cta-headline {
+  font-family: 'Playfair Display', serif;
+  font-size: 30px;
+  font-weight: 400;
+  color: var(--white);
+  line-height: 1.2;
+}
+.faq-cta-btn {
+  display: inline-block;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.35);
+  color: var(--white);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 18px 44px;
+  transition: background 0.2s, border-color 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.faq-cta-btn:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.6);
+}
+
+
+/* ================================================
+   FOOTER
+   ================================================ */
+footer {
+  background: #0b2e52;
+  padding: 52px 80px 32px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 48px;
+}
+.footer-logo img {
+  height: 56px;
+  width: auto;
+  margin-bottom: 16px;
+  display: block;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.35));
+}
+.footer-desc {
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  line-height: 1.8;
+  font-weight: 300;
+  margin-top: 8px;
+}
+.footer-col h4 {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 16px;
+}
+.footer-col a {
+  display: block;
+  font-size: 13px;
+  color: rgba(255,255,255,0.55);
+  text-decoration: none;
+  margin-bottom: 10px;
+  transition: color 0.2s;
+}
+.footer-col a:hover { color: var(--white); }
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 24px;
+}
+.footer-bottom span {
+  font-size: 12px;
+  color: rgba(255,255,255,0.25);
+  font-weight: 300;
+}
+.footer-back {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-back:hover { color: rgba(255,255,255,0.7); }
+
+
+/* ================================================
+   MOBILE / RESPONSIVE
+   ================================================ */
+@media (max-width: 900px) {
+  .hero { padding: 0 32px; min-height: auto; }
+  .hero-inner { gap: 24px; padding: 24px 0; }
+  .hero-title { font-size: 36px; margin-bottom: 8px; }
+  .hero-subtitle { font-size: 24px; }
+  .hero-logo img { height: 64px; }
+  .hero-left { min-width: auto; }
+  .hero-nav { min-width: auto; gap: 8px; }
+  .hero-nav a { font-size: 12px; }
+
+  .page-header { padding: 56px 40px 48px; }
+  .page-headline { font-size: 38px; }
+  .faq-body { padding: 0 40px 72px; }
+  .faq-cta { padding: 56px 40px; gap: 32px; }
+
+  footer { padding: 48px 40px 28px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+  .footer-logo { grid-column: 1 / -1; }
+}
+
+@media (max-width: 600px) {
+  .hero { padding: 0 20px; }
+  .hero-inner { flex-wrap: wrap; gap: 0; padding: 20px 0 0; align-items: flex-start; }
+  .hero-left { order: 1; min-width: auto; }
+  .hero-logo img { height: 52px; }
+  .nav-toggle { display: flex; order: 3; margin-left: auto; margin-top: 6px; }
+  .hero-center { order: 2; width: 100%; flex: none; padding: 16px 0 20px; }
+  .hero-title { font-size: 26px; margin-bottom: 6px; }
+  .hero-subtitle { font-size: 18px; letter-spacing: 0.18em; }
+  .hero-nav {
+    order: 4; width: 100%; flex-direction: column; align-items: stretch;
+    gap: 0; min-width: auto; max-height: 0; overflow: hidden;
+    transition: max-height 0.3s ease;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .nav-open .hero-nav { max-height: 400px; }
+  .hero-nav a {
+    font-size: 13px; padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    text-align: right; letter-spacing: 0.16em;
+  }
+  .hero-nav-divider { display: none; }
+  a.hero-nav-contact { padding: 14px 0 20px; }
+
+  .page-header { padding: 40px 20px 36px; }
+  .page-headline { font-size: 30px; }
+  .page-desc { font-size: 16px; }
+  .faq-body { padding: 0 20px 60px; }
+  .faq-group { padding-top: 48px; }
+  .faq-group-title { font-size: 22px; }
+  .faq-question-text { font-size: 17px; }
+  .faq-cta { flex-direction: column; padding: 48px 20px; align-items: flex-start; }
+  .faq-cta-btn { width: 100%; text-align: center; }
+  .faq-cta-headline { font-size: 24px; }
+
+  footer { padding: 40px 20px 24px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+  .footer-logo { grid-column: auto; }
+  .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+
+<!-- HEADER / NAV -->
+<section class="hero">
+  <div class="hero-inner">
+
+    <div class="hero-left hero-logo">
+      <img src="Logo.png" alt="Santa Barbara Sea Charters logo" />
+    </div>
+
+    <div class="hero-center">
+      <h1 class="hero-title">Santa Barbara Sea Charters</h1>
+      <div class="hero-subtitle">Finaddict</div>
+    </div>
+
+    <button class="nav-toggle" aria-label="Toggle navigation"
+      onclick="this.closest('.hero-inner').parentElement.classList.toggle('nav-open')">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="hero-nav">
+      <a href="index.html">Home</a>
+      <a href="charters.html">Charters</a>
+      <a href="finaddict.html">The Boat</a>
+      <a href="crew.html">Crew</a>
+      <a href="faq.html">FAQ</a>
+      <a href="gallery.html">Gallery</a>
+      <div class="hero-nav-divider"></div>
+      <a href="contact.html" class="hero-nav-contact">Contact</a>
+    </nav>
+
+  </div>
+</section>
+
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-eyebrow">M/V Finaddict · Santa Barbara Harbor</div>
+    <h1 class="page-headline">Frequently Asked Questions</h1>
+    <p class="page-desc">Everything you need to know before boarding. Don't see your question? Reach out to Captain Jim directly.</p>
+  </div>
+</div>
+
+
+<!-- FAQ BODY -->
+<div class="faq-body">
+  <div class="faq-body-inner">
+
+
+    <!-- ── GETTING HERE ── -->
+    <div class="faq-group">
+      <div class="faq-group-header">
+        <div class="faq-group-icon">
+          <!-- Anchor icon -->
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="6" r="2"/><line x1="12" y1="8" x2="12" y2="20"/><line x1="6" y1="12" x2="18" y2="12"/><path d="M6 12 Q4 16 6 18 Q8 20 12 20 Q16 20 18 18 Q20 16 18 12"/></svg>
+        </div>
+        <div class="faq-group-title">Getting Here</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-question-text">Where is Finaddict docked?</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p>Finaddict is conveniently located at <strong>Santa Barbara Harbor — Marina 2, Slip B-2</strong>. It will be at the bottom of the ramp on the left. A gate secures access to the Marina II docks — Captain Jim will escort you through.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-question-text">Driving directions from the South</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p>Take the 101 to Santa Barbara. Take the <strong>Garden Street Exit</strong> and head toward the ocean on Garden Street. Turn right onto Cabrillo Boulevard at the beach. Continue on Cabrillo until you pass Los Banos Pool on the left, then turn left into the harbor.</p>
+            <p>Take the first left in the harbor into the parking lot. Take a ticket at the kiosk and find a parking space. The first building on the right is the restroom for Marina II. Wait at the gate — we will escort you through. Finaddict is in Slip B-2 at the bottom of the ramp on the left.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-question-text">Driving directions from the North</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p>Take the 101 to Santa Barbara. Take the <strong>Castillo Street Exit</strong> and head toward the ocean on Castillo Street. Turn right onto Cabrillo Boulevard at the beach, then turn left into the harbor.</p>
+            <p>Take the first left in the harbor into the parking lot. Take a ticket at the kiosk and find a parking space. The first building on the right is the restroom for Marina II. Wait at the gate — we will escort you through. Finaddict is in Slip B-2 at the bottom of the ramp on the left.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ── FISHING ── -->
+    <div class="faq-group">
+      <div class="faq-group-header">
+        <div class="faq-group-icon">
+          <!-- Fish icon -->
+          <svg viewBox="0 0 24 24"><path d="M2 12 Q6 6 12 8 Q16 6 22 12 Q16 18 12 16 Q6 18 2 12Z"/><circle cx="18" cy="12" r="1" fill="rgba(255,255,255,0.75)" stroke="none"/><path d="M2 12 L5 9 M2 12 L5 15"/></svg>
+        </div>
+        <div class="faq-group-title">Fishing</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-question-text">Do I need a fishing license?</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p>Yes. A fishing license is required for any trip where fish or game are taken. Anyone over the age of 16 must have a valid California fishing license.</p>
+            <p>Licenses may be obtained from the <a href="http://www.dfg.ca.gov/licensing/ols/" target="_blank" rel="noopener">California Department of Fish &amp; Game</a> or purchased at the Sea Landing.</p>
+            <div class="faq-note">Hoop net fishing also requires a Lobster Report Card, available online through the CA Department of Fish &amp; Game.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-question-text">Do I need to bring my own fishing gear?</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p>No — we supply fishing tackle and gear if you do not bring your own. We also clean and fillet your fish to take home, and always keep your catch on ice throughout the trip.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ── WHAT TO BRING ── -->
+    <div class="faq-group">
+      <div class="faq-group-header">
+        <div class="faq-group-icon">
+          <!-- Bag/pack icon -->
+          <svg viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="13" rx="1"/><path d="M9 8 Q9 5 12 5 Q15 5 15 8"/><line x1="4" y1="13" x2="20" y2="13"/></svg>
+        </div>
+        <div class="faq-group-title">What to Bring</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-question-text">What should I pack for a charter?</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <ul>
+              <li>Sunglasses and hat</li>
+              <li>Sweatshirt or jacket (mornings can be cool on the water)</li>
+              <li>Camera or video camera</li>
+              <li>Boat-friendly shoes or boots — rubber soles strongly recommended</li>
+              <li>Sunscreen</li>
+              <li>Seasickness medication (take before boarding)</li>
+              <li>Food and drinks</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-question-text">What type of footwear should I wear?</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p>The most common injuries on boats come from slipping on a wet deck. <strong>Rubber-soled footwear is strongly recommended.</strong> Please avoid high heels, mid heels, or leather soles — they are not permitted on the boat.</p>
+            <div class="faq-note">No black-sole shoes please — they mark the deck.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ── FOOD & BEVERAGE ── -->
+    <div class="faq-group">
+      <div class="faq-group-header">
+        <div class="faq-group-icon">
+          <!-- Coffee/cup icon -->
+          <svg viewBox="0 0 24 24"><path d="M6 8 L6 18 Q6 20 8 20 L14 20 Q16 20 16 18 L16 8Z"/><path d="M16 10 Q20 10 20 13 Q20 16 16 16"/><line x1="4" y1="8" x2="18" y2="8"/></svg>
+        </div>
+        <div class="faq-group-title">Food &amp; Beverage</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-question-text">What food and drinks are available on board?</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p>We offer coffee, a selection of soft drinks, and filtered water. We do not provide or sell alcoholic beverages, but you are welcome to bring whatever you'd like to drink.</p>
+            <p>There is ample space for refrigerated items. Generally, ice chests are not allowed on Finaddict for safety reasons. Food and catering services can be arranged — just let us know in advance.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ── PRICING & BOOKING ── -->
+    <div class="faq-group">
+      <div class="faq-group-header">
+        <div class="faq-group-icon">
+          <!-- Receipt/dollar icon -->
+          <svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="1"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="12" y2="16"/></svg>
+        </div>
+        <div class="faq-group-title">Pricing &amp; Booking</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-question-text">How much does a charter cost?</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p>Pricing varies depending on season, trip length, and other factors. Please <a href="contact.html">contact us</a> directly for pricing information and availability.</p>
+            <div class="faq-note">Charter prices do not include food, fishing licenses, or gratuities.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-question-text">What is required to book a charter?</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p>A <strong>50% deposit</strong> is required when booking. Please reach out by phone or email to confirm availability and reserve your date.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ── SAFETY ── -->
+    <div class="faq-group">
+      <div class="faq-group-header">
+        <div class="faq-group-icon">
+          <!-- Shield icon -->
+          <svg viewBox="0 0 24 24"><path d="M12 3 L20 6 L20 12 Q20 18 12 21 Q4 18 4 12 L4 6 Z"/><polyline points="9 12 11 14 15 10"/></svg>
+        </div>
+        <div class="faq-group-title">Safety</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-question-text">What safety measures are in place?</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p>All crew members participate in a random drug screening program and are trained in the operation and mechanics of Finaddict. The Coast Guard has zero tolerance for drugs and firearms on charter boats — Santa Barbara Sea Charters strictly enforces all Coast Guard policies.</p>
+            <p>Finaddict undergoes annual voluntary U.S. Coast Guard inspections and carries fire and safety equipment that exceeds minimum requirements.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-question-text">What about seasickness?</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p>We recommend taking seasickness medication <strong>before you board</strong> — it is much more effective taken preventatively. Common options include Dramamine, Bonine, and scopolamine patches. Your pharmacist or physician can advise on the best option for you.</p>
+            <div class="faq-note">If you are prone to motion sickness, plan ahead. Once symptoms begin, medication is far less effective.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-question-text">Is a waiver required for off-boat activities?</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p>Yes. For any charter that involves passengers stepping off the boat — including diving, snorkeling, and swimming — each passenger must sign a waiver releasing Santa Barbara Sea Charters of liability when not physically on board.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ── SCUBA & DIVING ── -->
+    <div class="faq-group">
+      <div class="faq-group-header">
+        <div class="faq-group-icon">
+          <!-- Waves icon -->
+          <svg viewBox="0 0 24 24"><path d="M2 10 Q6 6 10 10 Q14 14 18 10 Q20 8 22 10"/><path d="M2 16 Q6 12 10 16 Q14 20 18 16 Q20 14 22 16"/></svg>
+        </div>
+        <div class="faq-group-title">SCUBA, Free Diving &amp; Snorkeling</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-question-text">Can I book a SCUBA or diving charter?</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p>Yes. For your safety, SCUBA diving charters must have a qualified dive master present. All divers must be currently certified, or diving under the direct supervision of a certified SCUBA instructor.</p>
+            <p>A fishing license is also required for any trip where fish or game are taken, and all passengers stepping off the boat must sign a liability waiver.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div><!-- /faq-body-inner -->
+</div><!-- /faq-body -->
+
+
+<!-- CTA STRIP -->
+<div class="faq-cta">
+  <div class="faq-cta-text">
+    <div class="faq-cta-eyebrow">Still Have Questions?</div>
+    <div class="faq-cta-headline">Captain Jim is happy<br>to help — get in touch.</div>
+  </div>
+  <a href="contact.html" class="faq-cta-btn">Contact Us</a>
+</div>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+
+    <div class="footer-logo">
+      <img src="Logo.png" alt="Santa Barbara Sea Charters" />
+      <p class="footer-desc">Sportfishing, whale watching, and coastal adventures aboard the Finaddict. Departing from Santa Barbara Harbor.</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Charters</h4>
+      <a href="charters.html">Sportfishing</a>
+      <a href="charters.html">Tours &amp; Sightseeing</a>
+      <a href="charters.html">Photography &amp; Filming</a>
+      <a href="charters.html">All Charters</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>The Boat</h4>
+      <a href="finaddict.html">Finaddict</a>
+      <a href="crew.html">Our Crew</a>
+      <a href="faq.html">FAQ</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="contact.html">Send a Message</a>
+      <a href="tel:+18058960541">805-896-0541</a>
+      <a href="contact.html">Directions</a>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <span>&copy; 2026 Santa Barbara Sea Charters. All rights reserved.</span>
+    <a href="#" class="footer-back">Back to Top &uarr;</a>
+  </div>
+</footer>
+
+
+<script>
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const answer = item.querySelector('.faq-answer');
+  const isOpen = item.classList.contains('open');
+
+  // Close all open items
+  document.querySelectorAll('.faq-item.open').forEach(el => {
+    el.classList.remove('open');
+    el.querySelector('.faq-answer').style.maxHeight = '0';
+  });
+
+  // Open clicked item if it was closed
+  if (!isOpen) {
+    item.classList.add('open');
+    answer.style.maxHeight = answer.scrollHeight + 'px';
+  }
+}
+</script>
+
+</body>
+</html>
