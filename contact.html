@@ -157,9 +157,9 @@ a.hero-nav-contact {
   flex-shrink: 0; font-size: 18px;
 }
 .contact-detail-label {
-  font-family: var(--mono); font-size: 9px; letter-spacing: 0.18em;
+  font-family: var(--mono); font-size: 18px; letter-spacing: 0.18em;
   text-transform: uppercase; color: var(--blue-light);
-  margin-bottom: 4px; opacity: 0.85;
+  margin-bottom: 8px; opacity: 0.85;
 }
 .contact-detail-value {
   font-family: 'Playfair Display', serif;
@@ -195,7 +195,7 @@ a.hero-nav-contact {
 
 label {
   display: block;
-  font-family: var(--mono); font-size: 9px; letter-spacing: 0.2em;
+  font-family: var(--mono); font-size: 18px; letter-spacing: 0.2em;
   text-transform: uppercase; color: var(--blue-light);
   margin-bottom: 10px; opacity: 0.9;
 }
@@ -228,7 +228,7 @@ textarea { min-height: 160px; resize: vertical; line-height: 1.7; }
 .form-submit-row {
   margin-top: 36px;
   display: flex; align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 20px; flex-wrap: wrap;
 }
 .form-submit {
@@ -239,19 +239,6 @@ textarea { min-height: 160px; resize: vertical; line-height: 1.7; }
   cursor: pointer; transition: background 0.2s; flex-shrink: 0;
 }
 .form-submit:hover { background: var(--blue); }
-.form-direct {
-  font-family: var(--mono); font-size: 9px; letter-spacing: 0.14em;
-  text-transform: uppercase; color: var(--text-light); line-height: 1.8;
-}
-.form-direct a {
-  color: var(--blue); text-decoration: none;
-  border-bottom: 1px solid var(--blue-light);
-}
-.placeholder-notice {
-  font-family: var(--mono); font-size: 8px; letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--blue-light);
-  opacity: 0.55; margin-top: 16px; line-height: 1.7;
-}
 
 /* Bottom padding after form */
 .contact-footer-pad { background: var(--sand); padding: 64px 0 0; }
@@ -323,6 +310,108 @@ footer {
   transition: color 0.2s;
 }
 .footer-back:hover { color: rgba(255,255,255,0.7); }
+
+
+/* ================================================
+   MOBILE / RESPONSIVE
+   ================================================ */
+
+/* ── Hamburger toggle ── */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  flex-direction: column;
+  gap: 5px;
+  flex-shrink: 0;
+}
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: rgba(255,255,255,0.7);
+  border-radius: 2px;
+}
+
+/* ── Tablet ── */
+@media (max-width: 900px) {
+  .hero { padding: 0 32px; min-height: auto; }
+  .hero-inner { gap: 24px; padding: 24px 0; }
+  .hero-title { font-size: 36px; margin-bottom: 8px; }
+  .hero-subtitle { font-size: 24px; }
+  .hero-logo img { height: 64px; }
+  .hero-left { min-width: auto; }
+  .hero-nav { min-width: auto; gap: 8px; }
+  .hero-nav a { font-size: 12px; }
+
+  .contact-body { padding: 60px 40px 0; }
+  .contact-layout { grid-template-columns: 1fr; gap: 48px; }
+  .contact-headline { font-size: 38px; }
+
+  footer { padding: 48px 40px 28px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+  .footer-logo { grid-column: 1 / -1; }
+}
+
+/* ── Mobile ── */
+@media (max-width: 600px) {
+  .hero { padding: 0 20px; }
+  .hero-inner {
+    flex-wrap: wrap;
+    gap: 0;
+    padding: 20px 0 0;
+    align-items: flex-start;
+  }
+  .hero-left { order: 1; min-width: auto; }
+  .hero-logo img { height: 52px; }
+  .nav-toggle { display: flex; order: 3; margin-left: auto; margin-top: 6px; }
+  .hero-center {
+    order: 2;
+    width: 100%;
+    flex: none;
+    padding: 16px 0 20px;
+  }
+  .hero-title { font-size: 26px; margin-bottom: 6px; }
+  .hero-subtitle { font-size: 18px; letter-spacing: 0.18em; }
+
+  .hero-nav {
+    order: 4;
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    min-width: auto;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .nav-open .hero-nav { max-height: 400px; }
+  .hero-nav a {
+    font-size: 13px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    text-align: right;
+    letter-spacing: 0.16em;
+  }
+  .hero-nav-divider { display: none; }
+  a.hero-nav-contact { padding: 14px 0 20px; }
+
+  .contact-body { padding: 40px 20px 0; }
+  .contact-layout { grid-template-columns: 1fr; gap: 40px; }
+  .contact-headline { font-size: 30px; }
+  .contact-desc { font-size: 16px; }
+  .contact-form-panel { padding: 28px 20px; }
+  .form-row { grid-template-columns: 1fr; gap: 0; }
+  .form-title { font-size: 24px; margin-bottom: 24px; padding-bottom: 20px; }
+
+  footer { padding: 40px 20px 24px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+  .footer-logo { grid-column: auto; }
+  .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+}
 </style>
 </head>
 <body>
@@ -340,6 +429,11 @@ footer {
       <h1 class="hero-title">Santa Barbara Sea Charters</h1>
       <div class="hero-subtitle">Finaddict</div>
     </div>
+
+    <!-- Hamburger (mobile only) -->
+    <button class="nav-toggle" aria-label="Toggle navigation" onclick="this.closest('.hero-inner').parentElement.classList.toggle('nav-open')">
+      <span></span><span></span><span></span>
+    </button>
 
     <nav class="hero-nav">
       <a href="index.html">Home</a>
@@ -364,7 +458,7 @@ footer {
     <div class="contact-intro">
       <div class="contact-eyebrow">Get in Touch</div>
       <h2 class="contact-headline">We would love<br>to <em>hear from you.</em></h2>
-      <p class="contact-desc">Ready to plan a trip or have questions about a charter? Send us a message and Captain Jim will get back to you, usually within 24 hours.</p>
+      <p class="contact-desc">Ready to plan a trip or have questions about a charter? Send us a message and Captain Jim will get back to you directly — usually within 24 hours.</p>
 
       <div class="contact-details">
         <div class="contact-detail">
@@ -426,10 +520,7 @@ footer {
 
       <div class="form-submit-row">
         <button type="submit" class="form-submit">Send Message</button>
-     
-        </div>
       </div>
- 
     </div>
 
   </div>
