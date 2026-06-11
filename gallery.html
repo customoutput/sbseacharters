@@ -83,14 +83,20 @@ a.hero-nav-contact { color: #c94f2a !important; font-weight: 500; }
 
 
 /* ================================================
-   PAGE HEADER
+   PAGE HEADER  (title left, QR right)
    ================================================ */
 .page-header {
   background: var(--sand);
   padding: 72px 80px 64px;
   border-bottom: 1px solid var(--border);
 }
-.page-header-inner { max-width: 75%; }
+.page-header-inner {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 60px;
+}
+.page-header-copy { flex: 1; }
 .page-eyebrow {
   font-family: var(--mono); font-size: 10px; letter-spacing: 0.28em;
   text-transform: uppercase; color: var(--blue); margin-bottom: 18px;
@@ -103,120 +109,88 @@ a.hero-nav-contact { color: #c94f2a !important; font-weight: 500; }
   font-size: 18px; color: var(--text-muted); line-height: 1.8; font-weight: 300;
 }
 
-
-/* ================================================
-   GALLERY FILTER TABS
-   ================================================ */
-.gallery-filters {
-  background: var(--white);
-  padding: 32px 80px;
-  border-bottom: 1px solid var(--border);
+/* QR code block */
+.page-header-qr {
+  flex-shrink: 0;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
+  gap: 14px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  padding: 24px;
+  text-align: center;
+  width: 200px;
 }
-.filter-btn {
+.page-header-qr-label {
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 9px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--text-muted);
-  background: none;
-  border: 1px solid var(--border);
-  padding: 10px 20px;
-  cursor: pointer;
-  transition: all 0.2s;
+  color: var(--blue);
+  line-height: 1.6;
 }
-.filter-btn:hover,
-.filter-btn.active {
-  background: var(--navy);
-  color: var(--white);
-  border-color: var(--navy);
+/*
+  QR IMAGE PLACEHOLDER:
+  Replace src="" below with your QR code image filename, e.g. src="qr-upload.png"
+  Generate your Dropbox File Request QR at: https://www.qr-code-generator.com
+  Paste your Dropbox File Request link as the URL.
+*/
+.page-header-qr img {
+  width: 140px;
+  height: 140px;
+  display: block;
+  object-fit: contain;
+  background: #d4e6f1;   /* placeholder — remove when real QR added */
+}
+.page-header-qr-sub {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 300;
+  line-height: 1.5;
 }
 
 
 /* ================================================
-   GALLERY SECTIONS
+   GALLERY BODY
    ================================================ */
-.gallery-body { background: var(--white); padding: 64px 80px 96px; }
-
-.gallery-section { margin-bottom: 80px; }
-.gallery-section:last-child { margin-bottom: 0; }
-
-.gallery-section-header {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  margin-bottom: 28px;
-  padding-bottom: 18px;
-  border-bottom: 2px solid var(--navy);
-}
-.gallery-section-icon {
-  width: 40px; height: 40px; background: var(--navy);
-  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-}
-.gallery-section-icon svg {
-  width: 20px; height: 20px; stroke: rgba(255,255,255,0.75);
-  fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
-}
-.gallery-section-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 26px; font-weight: 400; color: var(--navy);
+.gallery-body {
+  background: var(--white);
+  padding: 64px 80px 96px;
 }
 
-/* Photo grid — 3 columns */
-.photo-grid {
+/*
+  PHOTO GRID — 3 across, uniform squares
+  Each .photo-row holds exactly 3 .photo-cell divs.
+
+  TO ADD A NEW ROW:
+  Copy the block marked "<!-- ROW TEMPLATE -->" below
+  and paste it after the last </div><!-- /photo-row -->
+  Then update the src="" attributes with your filenames.
+*/
+.photo-row {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
+  margin-bottom: 12px;
 }
+.photo-row:last-child { margin-bottom: 0; }
 
-/* Standard photo cell */
 .photo-cell {
   position: relative;
   overflow: hidden;
   background: #b8cdd8;
-  cursor: pointer;
 }
 .photo-cell img {
   width: 100%;
-  height: 280px;
+  height: 320px;
   object-fit: cover;
   display: block;
+  background: #b8cdd8;
   transition: transform 0.4s ease;
 }
 .photo-cell:hover img { transform: scale(1.04); }
-
-/* Wide cell spans 2 columns */
-.photo-cell--wide {
-  grid-column: span 2;
-}
-.photo-cell--wide img { height: 280px; }
-
-/* Tall cell spans 2 rows */
-.photo-cell--tall img { height: 572px; } /* 2×280 + gap */
-
-/* Caption overlay */
-.photo-caption {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  background: linear-gradient(to top, rgba(7,20,36,0.65) 0%, transparent 100%);
-  padding: 28px 16px 14px;
-  font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.8);
-  opacity: 0;
-  transition: opacity 0.25s;
-}
-.photo-cell:hover .photo-caption { opacity: 1; }
-
-/* IMAGE PLACEHOLDER styling — grey box when src="" */
-.photo-cell img[src=""] {
-  background: #b8cdd8;
-}
+.photo-cell img[src=""] { background: #c8d8e5; }
 
 
 /* ================================================
@@ -297,14 +271,13 @@ footer { background: #0b2e52; padding: 52px 80px 32px; }
   .hero-nav a { font-size: 12px; }
 
   .page-header { padding: 56px 40px 48px; }
-  .page-header-inner { max-width: 100%; }
   .page-headline { font-size: 38px; }
+  .page-header-qr { width: 160px; }
+  .page-header-qr img { width: 110px; height: 110px; }
 
-  .gallery-filters { padding: 24px 40px; }
   .gallery-body { padding: 48px 40px 72px; }
-  .photo-grid { grid-template-columns: repeat(2, 1fr); }
-  .photo-cell--wide { grid-column: span 2; }
-  .photo-cell--tall img { height: 280px; }
+  .photo-row { grid-template-columns: repeat(2, 1fr); }
+  .photo-cell img { height: 260px; }
 
   .gallery-cta { padding: 56px 40px; gap: 32px; }
 
@@ -334,19 +307,15 @@ footer { background: #0b2e52; padding: 52px 80px 32px; }
   a.hero-nav-contact { padding: 14px 0 20px; }
 
   .page-header { padding: 40px 20px 36px; }
+  .page-header-inner { flex-direction: column; gap: 32px; }
   .page-headline { font-size: 30px; }
   .page-desc { font-size: 16px; }
+  .page-header-qr { width: 100%; }
+  .page-header-qr img { width: 120px; height: 120px; }
 
-  .gallery-filters { padding: 20px; gap: 8px; }
-  .filter-btn { font-size: 9px; padding: 8px 14px; }
-
-  .gallery-body { padding: 40px 20px 60px; }
-  .gallery-section { margin-bottom: 56px; }
-  .gallery-section-title { font-size: 22px; }
-  .photo-grid { grid-template-columns: 1fr; gap: 10px; }
-  .photo-cell--wide { grid-column: span 1; }
-  .photo-cell img, .photo-cell--wide img, .photo-cell--tall img { height: 240px; }
-  .photo-caption { opacity: 1; }
+  .gallery-body { padding: 32px 20px 60px; }
+  .photo-row { grid-template-columns: 1fr; }
+  .photo-cell img { height: 260px; }
 
   .gallery-cta { flex-direction: column; padding: 48px 20px; align-items: flex-start; }
   .gallery-cta-btn { width: 100%; text-align: center; }
@@ -393,176 +362,104 @@ footer { background: #0b2e52; padding: 52px 80px 32px; }
 <!-- PAGE HEADER -->
 <div class="page-header">
   <div class="page-header-inner">
-    <div class="page-eyebrow">M/V Finaddict · Santa Barbara Harbor</div>
-    <h1 class="page-headline">Gallery</h1>
-    <p class="page-desc">Life on the water — from the catch to the coast. Photos from charters, the boat, and the Santa Barbara Channel.</p>
+
+    <!-- Left — title + description -->
+    <div class="page-header-copy">
+      <div class="page-eyebrow">M/V Finaddict · Santa Barbara Harbor</div>
+      <h1 class="page-headline">Gallery</h1>
+      <p class="page-desc">Life on the water — from the catch to the coast. Photos from charters, the boat, and the Santa Barbara Channel.</p>
+    </div>
+
+    <!-- Right — QR code upload box -->
+    <!--
+      QR CODE SETUP:
+      1. Go to dropbox.com → create a File Request
+      2. Copy the File Request link
+      3. Go to qr-code-generator.com, paste the link, download the QR as a PNG
+      4. Add the PNG to your GitHub repo (e.g. "qr-upload.png")
+      5. Replace src="" below with src="qr-upload.png"
+    -->
+    <div class="page-header-qr">
+      <div class="page-header-qr-label">Share Your Photos</div>
+      <img src="" alt="QR code to upload charter photos" />
+      <div class="page-header-qr-sub">Scan to upload your photos from today's charter</div>
+    </div>
+
   </div>
-</div>
-
-
-<!-- FILTER TABS -->
-<div class="gallery-filters">
-  <button class="filter-btn active">All Photos</button>
-  <button class="filter-btn">Sportfishing</button>
-  <button class="filter-btn">The Boat</button>
-  <button class="filter-btn">Whale Watching</button>
-  <button class="filter-btn">The Channel</button>
-  <button class="filter-btn">The Crew</button>
 </div>
 
 
 <!-- GALLERY BODY -->
 <div class="gallery-body">
 
+  <!--
+    ════════════════════════════════════════
+    HOW TO ADD PHOTOS:
 
-  <!-- ── SPORTFISHING ── -->
-  <div class="gallery-section">
-    <div class="gallery-section-header">
-      <div class="gallery-section-icon">
-        <svg viewBox="0 0 24 24"><path d="M2 12 Q6 6 12 8 Q16 6 22 12 Q16 18 12 16 Q6 18 2 12Z"/><circle cx="18" cy="12" r="1" fill="rgba(255,255,255,0.75)" stroke="none"/></svg>
+    Each row holds exactly 3 photos.
+    Replace src="" with your image filename.
+    Example: src="RockCod.png"
+
+    TO ADD A NEW ROW — copy this block and
+    paste it after the last photo-row div:
+
+    <div class="photo-row">
+      <div class="photo-cell">
+        <img src="your-photo-1.jpg" alt="" />
       </div>
-      <div class="gallery-section-title">Sportfishing</div>
+      <div class="photo-cell">
+        <img src="your-photo-2.jpg" alt="" />
+      </div>
+      <div class="photo-cell">
+        <img src="your-photo-3.jpg" alt="" />
+      </div>
     </div>
 
-    <!--
-      IMAGE PLACEHOLDERS — Sportfishing
-      Replace src="" with your filenames, e.g. src="fish-halibut.jpg"
-      photo-cell--wide spans 2 columns; photo-cell--tall spans 2 rows
-    -->
-    <div class="photo-grid">
-      <div class="photo-cell photo-cell--wide">
-        <img src="" alt="Catch of the day" />
-        <div class="photo-caption">Catch of the day</div>
-      </div>
-      <div class="photo-cell">
-        <img src="" alt="Halibut" />
-        <div class="photo-caption">Halibut</div>
-      </div>
-      <div class="photo-cell">
-        <img src="" alt="Rock cod" />
-        <div class="photo-caption">Rock cod</div>
-      </div>
-      <div class="photo-cell">
-        <img src="" alt="White sea bass" />
-        <div class="photo-caption">White sea bass</div>
-      </div>
-      <div class="photo-cell photo-cell--wide">
-        <img src="" alt="Fishing the Channel Islands" />
-        <div class="photo-caption">Channel Islands</div>
-      </div>
+    ════════════════════════════════════════
+  -->
+
+  <!-- ROW 1 -->
+  <div class="photo-row">
+    <div class="photo-cell">
+      <img src="" alt="" />
     </div>
-  </div>
-
-
-  <!-- ── THE BOAT ── -->
-  <div class="gallery-section">
-    <div class="gallery-section-header">
-      <div class="gallery-section-icon">
-        <svg viewBox="0 0 24 24"><path d="M3 17 Q7 13 12 14 Q17 13 21 17"/><path d="M6 14 L8 8 L16 8 L18 14"/><line x1="12" y1="8" x2="12" y2="5"/><line x1="9" y1="5" x2="15" y2="5"/></svg>
-      </div>
-      <div class="gallery-section-title">The Boat</div>
+    <div class="photo-cell">
+      <img src="" alt="" />
     </div>
-
-    <!--
-      IMAGE PLACEHOLDERS — The Boat
-      Replace src="" with your filenames, e.g. src="boat-bridge.jpg"
-    -->
-    <div class="photo-grid">
-      <div class="photo-cell">
-        <img src="" alt="Finaddict at the dock" />
-        <div class="photo-caption">At the dock</div>
-      </div>
-      <div class="photo-cell photo-cell--tall">
-        <img src="" alt="Flying bridge" />
-        <div class="photo-caption">Flying bridge</div>
-      </div>
-      <div class="photo-cell">
-        <img src="" alt="Cockpit" />
-        <div class="photo-caption">Cockpit</div>
-      </div>
-      <div class="photo-cell">
-        <img src="" alt="Cabin interior" />
-        <div class="photo-caption">Cabin</div>
-      </div>
-      <div class="photo-cell">
-        <img src="" alt="Helm station" />
-        <div class="photo-caption">Helm</div>
-      </div>
+    <div class="photo-cell">
+      <img src="" alt="" />
     </div>
   </div>
 
-
-  <!-- ── WHALE WATCHING ── -->
-  <div class="gallery-section">
-    <div class="gallery-section-header">
-      <div class="gallery-section-icon">
-        <svg viewBox="0 0 24 24"><path d="M2 14 Q6 8 10 10 Q14 6 18 10 Q20 8 22 10 L20 14 Q18 18 14 16 Q10 18 6 16 Z"/><path d="M18 10 Q22 6 22 10"/></svg>
-      </div>
-      <div class="gallery-section-title">Whale Watching</div>
+  <!-- ROW 2 -->
+  <div class="photo-row">
+    <div class="photo-cell">
+      <img src="" alt="" />
     </div>
-
-    <!--
-      IMAGE PLACEHOLDERS — Whale Watching
-      Replace src="" with your filenames, e.g. src="whale-blue.jpg"
-    -->
-    <div class="photo-grid">
-      <div class="photo-cell photo-cell--wide">
-        <img src="" alt="Blue whale" />
-        <div class="photo-caption">Blue whale</div>
-      </div>
-      <div class="photo-cell">
-        <img src="" alt="Humpback breach" />
-        <div class="photo-caption">Humpback breach</div>
-      </div>
-      <div class="photo-cell">
-        <img src="" alt="Gray whale" />
-        <div class="photo-caption">Gray whale</div>
-      </div>
-      <div class="photo-cell">
-        <img src="" alt="Dolphin pod" />
-        <div class="photo-caption">Dolphins</div>
-      </div>
+    <div class="photo-cell">
+      <img src="" alt="" />
+    </div>
+    <div class="photo-cell">
+      <img src="" alt="" />
     </div>
   </div>
 
-
-  <!-- ── THE CHANNEL & COAST ── -->
-  <div class="gallery-section">
-    <div class="gallery-section-header">
-      <div class="gallery-section-icon">
-        <svg viewBox="0 0 24 24"><path d="M2 10 Q6 6 10 10 Q14 14 18 10 Q20 8 22 10"/><path d="M2 16 Q6 12 10 16 Q14 20 18 16 Q20 14 22 16"/></svg>
-      </div>
-      <div class="gallery-section-title">The Channel &amp; Coast</div>
+  <!-- ROW 3 -->
+  <div class="photo-row">
+    <div class="photo-cell">
+      <img src="" alt="" />
     </div>
-
-    <!--
-      IMAGE PLACEHOLDERS — The Channel & Coast
-      Replace src="" with your filenames, e.g. src="channel-islands.jpg"
-    -->
-    <div class="photo-grid">
-      <div class="photo-cell">
-        <img src="" alt="Channel Islands" />
-        <div class="photo-caption">Channel Islands</div>
-      </div>
-      <div class="photo-cell">
-        <img src="" alt="Santa Barbara coastline" />
-        <div class="photo-caption">Santa Barbara coast</div>
-      </div>
-      <div class="photo-cell">
-        <img src="" alt="Sunset on the water" />
-        <div class="photo-caption">Sunset</div>
-      </div>
-      <div class="photo-cell photo-cell--wide">
-        <img src="" alt="Open water" />
-        <div class="photo-caption">Open water</div>
-      </div>
-      <div class="photo-cell">
-        <img src="" alt="Harbor at dawn" />
-        <div class="photo-caption">Harbor at dawn</div>
-      </div>
+    <div class="photo-cell">
+      <img src="" alt="" />
+    </div>
+    <div class="photo-cell">
+      <img src="" alt="" />
     </div>
   </div>
 
+  <!--
+    ↑ PASTE NEW ROWS ABOVE THIS LINE
+  -->
 
 </div><!-- /gallery-body -->
 
