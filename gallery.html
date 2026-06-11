@@ -83,7 +83,7 @@ a.hero-nav-contact { color: #c94f2a !important; font-weight: 500; }
 
 
 /* ================================================
-   PAGE HEADER  (title left, QR right)
+   PAGE HEADER
    ================================================ */
 .page-header {
   background: var(--sand);
@@ -92,10 +92,12 @@ a.hero-nav-contact { color: #c94f2a !important; font-weight: 500; }
 }
 .page-header-inner {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   gap: 60px;
 }
+
+/* Left — title, desc, arrow + label */
 .page-header-copy { flex: 1; }
 .page-eyebrow {
   font-family: var(--mono); font-size: 10px; letter-spacing: 0.28em;
@@ -107,48 +109,65 @@ a.hero-nav-contact { color: #c94f2a !important; font-weight: 500; }
 }
 .page-desc {
   font-size: 18px; color: var(--text-muted); line-height: 1.8; font-weight: 300;
+  margin-bottom: 36px;
 }
 
-/* QR code block */
+/* Arrow + label row pointing right toward QR */
+.page-header-arrow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.page-header-arrow-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-style: italic;
+  color: var(--navy);
+  line-height: 1.3;
+}
+.page-header-arrow-svg {
+  flex-shrink: 0;
+}
+
+/* Right — QR block */
 .page-header-qr {
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 14px;
+  gap: 16px;
   background: var(--white);
   border: 1px solid var(--border);
-  padding: 24px;
+  padding: 28px 28px 24px;
   text-align: center;
-  width: 200px;
+  width: 360px;
 }
-.page-header-qr-label {
-  font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--blue);
-  line-height: 1.6;
-}
-/*
-  QR IMAGE PLACEHOLDER:
-  Replace src="" below with your QR code image filename, e.g. src="qr-upload.png"
-  Generate your Dropbox File Request QR at: https://www.qr-code-generator.com
-  Paste your Dropbox File Request link as the URL.
-*/
 .page-header-qr img {
-  width: 140px;
-  height: 140px;
+  width: 300px;
+  height: 300px;
   display: block;
   object-fit: contain;
-  background: #d4e6f1;   /* placeholder — remove when real QR added */
 }
 .page-header-qr-sub {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--text-muted);
   font-weight: 300;
-  line-height: 1.5;
+  line-height: 1.6;
 }
+.page-header-qr-link {
+  display: inline-block;
+  background: #c94f2a;
+  color: var(--white);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 12px 28px;
+  transition: background 0.2s;
+  width: 100%;
+}
+.page-header-qr-link:hover { background: var(--navy); }
 
 
 /* ================================================
@@ -273,8 +292,8 @@ footer { background: #0b2e52; padding: 52px 80px 32px; }
 
   .page-header { padding: 56px 40px 48px; }
   .page-headline { font-size: 38px; }
-  .page-header-qr { width: 160px; }
-  .page-header-qr img { width: 110px; height: 110px; }
+  .page-header-qr { width: 220px; }
+  .page-header-qr img { width: 180px; height: 180px; }
 
   .gallery-body { padding: 48px 40px 72px; }
   .photo-row { grid-template-columns: repeat(2, 1fr); }
@@ -311,8 +330,9 @@ footer { background: #0b2e52; padding: 52px 80px 32px; }
   .page-header-inner { flex-direction: column; gap: 32px; }
   .page-headline { font-size: 30px; }
   .page-desc { font-size: 16px; }
+  .page-header-arrow-svg { display: none; }
   .page-header-qr { width: 100%; }
-  .page-header-qr img { width: 120px; height: 120px; }
+  .page-header-qr img { width: 180px; height: 180px; }
 
   .gallery-body { padding: 32px 20px 60px; }
   .photo-row { grid-template-columns: 1fr; }
@@ -364,26 +384,27 @@ footer { background: #0b2e52; padding: 52px 80px 32px; }
 <div class="page-header">
   <div class="page-header-inner">
 
-    <!-- Left — title + description -->
+    <!-- Left — title, description, arrow -->
     <div class="page-header-copy">
       <div class="page-eyebrow">Finaddict · Santa Barbara Harbor</div>
       <h1 class="page-headline">Gallery</h1>
       <p class="page-desc">Life on the water — from the catch to the coast. Photos from charters, the boat, and the Santa Barbara Channel.</p>
+
+      <!-- Red arrow pointing right toward QR -->
+      <div class="page-header-arrow">
+        <div class="page-header-arrow-text">Scan to share<br>your photos</div>
+        <svg class="page-header-arrow-svg" width="120" height="32" viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="0" y1="16" x2="104" y2="16" stroke="#c94f2a" stroke-width="3" stroke-linecap="round"/>
+          <polyline points="96,6 112,16 96,26" stroke="#c94f2a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+      </div>
     </div>
 
-    <!-- Right — QR code upload box -->
-    <!--
-      QR CODE SETUP:
-      1. Go to dropbox.com → create a File Request
-      2. Copy the File Request link
-      3. Go to qr-code-generator.com, paste the link, download the QR as a PNG
-      4. Add the PNG to your GitHub repo (e.g. "qr-upload.png")
-      5. Replace src="" below with src="qr-upload.png"
-    -->
+    <!-- Right — QR code + link -->
     <div class="page-header-qr">
-      <div class="page-header-qr-label">Share Your Photos</div>
-      <img src="qr-upload.png" alt="QR code to upload charter photos" />
-      <div class="page-header-qr-sub">Scan to upload your photos from your charter</div>
+      <img src="qr-upload.png" alt="Scan to upload your charter photos to Dropbox" />
+      <div class="page-header-qr-sub">Scan with your phone camera to upload photos from your charter</div>
+      <a href="https://www.dropbox.com/request/nqrte7yewuju5kqyxjbc" target="_blank" rel="noopener" class="page-header-qr-link">Click Here</a>
     </div>
 
   </div>
@@ -422,13 +443,13 @@ footer { background: #0b2e52; padding: 52px 80px 32px; }
   <!-- ROW 1 -->
   <div class="photo-row">
     <div class="photo-cell">
-      <img src="chartercard7.png" alt="" />
+      <img src="" alt="" />
     </div>
     <div class="photo-cell">
-      <img src="chartercard9.png" alt="" />
+      <img src="" alt="" />
     </div>
     <div class="photo-cell">
-      <img src="Sportfishing.png" alt="" />
+      <img src="" alt="" />
     </div>
   </div>
 
