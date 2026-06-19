@@ -113,19 +113,72 @@ a.hero-nav-contact {
 
 
 /* ================================================
-   SECTION 2: BOAT IMAGE (HERO PHOTO)
-   Slightly taller than original 640px
+   SECTION 2: HERO SPLIT (TEXT LEFT / PHOTO RIGHT)
+   Left 1/3 text column on navy, right 2/3 framed photo
    ================================================ */
 .boat-wrap {
-  width: 100%;
+  background: var(--navy);
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  align-items: stretch;
+  padding: 56px 60px 64px;
+  gap: 48px;
+}
+
+/* Left text column */
+.hero-split-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-right: 8px;
+}
+.hero-split-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 64px;
+  font-weight: 400;
+  color: var(--white);
+  line-height: 1.05;
+  margin-bottom: 18px;
+}
+.hero-split-location {
+  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  font-size: 16px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--blue-light);
+  margin-bottom: 28px;
+}
+.hero-split-lead {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-size: 24px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.92);
+  line-height: 1.35;
+  margin-bottom: 22px;
+}
+.hero-split-desc {
+  font-size: 16px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.7;
+}
+
+/* Right photo column — white border frame */
+.hero-split-photo {
+  background: var(--white);
+  padding: 14px;
+  border-radius: 4px;
+  box-shadow: 0 18px 50px rgba(0,0,0,0.3);
   line-height: 0;
 }
-.boat-wrap img {
+.hero-split-photo img {
   width: 100%;
-  height: 700px;        /* was 640px — slightly bigger */
+  height: 620px;
   object-fit: cover;
   object-position: center 75%;
   display: block;
+  border-radius: 2px;
 }
 
 
@@ -288,7 +341,12 @@ footer {
   .hero-nav { min-width: auto; gap: 8px; }
   .hero-nav a { font-size: 12px; }
 
-  .boat-wrap img { height: 420px; }
+  /* Hero split: stack text over photo */
+  .boat-wrap { grid-template-columns: 1fr; gap: 28px; padding: 40px 32px 48px; }
+  .hero-split-text { padding-right: 0; }
+  .hero-split-title { font-size: 48px; }
+  .hero-split-lead { font-size: 21px; }
+  .hero-split-photo img { height: 420px; }
 
   .charters-section { padding: 60px 32px; }
   .charters-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
@@ -351,8 +409,14 @@ footer {
   .hero-nav-divider { display: none; }
   a.hero-nav-contact { padding: 14px 0 20px; }
 
-  /* Boat image */
-  .boat-wrap img { height: 260px; object-position: center 30%; }
+  /* Hero split */
+  .boat-wrap { padding: 32px 20px 40px; gap: 22px; }
+  .hero-split-title { font-size: 38px; }
+  .hero-split-location { font-size: 14px; margin-bottom: 20px; }
+  .hero-split-lead { font-size: 19px; margin-bottom: 16px; }
+  .hero-split-desc { font-size: 15px; }
+  .hero-split-photo { padding: 10px; }
+  .hero-split-photo img { height: 260px; object-position: center 30%; }
 
   /* Charter section */
   .charters-section { padding: 48px 20px; }
@@ -376,8 +440,6 @@ footer {
 
 <!-- ================================================
      SECTION 1: HEADER / NAV
-     Changes: Removed Captain Jim Klein, Santa Barbara Harbor, Private Charters
-     FINADDICT made slightly larger (36px vs original 28px), centered
      ================================================ -->
 <section class="hero">
   <div class="hero-inner">
@@ -415,19 +477,29 @@ footer {
 
 
 <!-- ================================================
-     SECTION 2: BOAT HERO IMAGE
-     Height increased to 700px (was 640px)
-     IMAGE: replace src="" with Finaddict.png (or your hero image filename)
+     SECTION 2: HERO SPLIT — text left / framed photo right
+     IMAGE: src left as Finaddict.png (unchanged)
      ================================================ -->
 <div class="boat-wrap">
-  <img src="Finaddict.png" alt="The Finaddict — 41ft Radon Sportfisher at Santa Barbara Harbor" />
+
+  <!-- Left: hero text -->
+  <div class="hero-split-text">
+    <h2 class="hero-split-title">Finaddict</h2>
+    <div class="hero-split-location">Santa Barbara, California</div>
+    <p class="hero-split-lead">Sportfishing charters in the Santa Barbara Channel.</p>
+    <p class="hero-split-desc">A 41-ft long and 12.5-ft wide custom built Radon Sportfisher.</p>
+  </div>
+
+  <!-- Right: framed photo -->
+  <div class="hero-split-photo">
+    <img src="Finaddict.png" alt="The Finaddict — 41ft Radon Sportfisher at Santa Barbara Harbor" />
+  </div>
+
 </div>
 
 
 <!-- ================================================
      SECTION 3: CHARTER EXPERIENCES
-     All CTA links go to charters.html (not yet built)
-     Each card has src="" placeholder — fill in filename when ready
      ================================================ -->
 <section class="charters-section">
   <h2 class="section-title">Charter Experiences</h2>
