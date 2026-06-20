@@ -96,8 +96,6 @@ a.hero-nav-contact { color: #c94f2a !important; font-weight: 500; }
   justify-content: space-between;
   gap: 60px;
 }
-
-/* Left — title, desc, arrow + label */
 .page-header-copy { flex: 1; }
 .page-eyebrow {
   font-family: var(--mono); font-size: 10px; letter-spacing: 0.28em;
@@ -111,106 +109,141 @@ a.hero-nav-contact { color: #c94f2a !important; font-weight: 500; }
   font-size: 18px; color: var(--text-muted); line-height: 1.8; font-weight: 300;
   margin-bottom: 36px;
 }
-
-/* Arrow + label row pointing right toward QR */
-.page-header-arrow {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
+.page-header-arrow { display: flex; align-items: center; gap: 16px; }
 .page-header-arrow-text {
-  font-family: 'Playfair Display', serif;
-  font-size: 18px;
-  font-style: italic;
-  color: var(--navy);
-  line-height: 1.3;
+  font-family: 'Playfair Display', serif; font-size: 18px;
+  font-style: italic; color: var(--navy); line-height: 1.3;
 }
-.page-header-arrow-svg {
-  flex-shrink: 0;
-}
-
-/* Right — QR block */
+.page-header-arrow-svg { flex-shrink: 0; }
 .page-header-qr {
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  background: var(--white);
-  border: 1px solid var(--border);
-  padding: 28px 28px 24px;
-  text-align: center;
-  width: 360px;
+  flex-shrink: 0; display: flex; flex-direction: column; align-items: center;
+  gap: 16px; background: var(--white); border: 1px solid var(--border);
+  padding: 28px 28px 24px; text-align: center; width: 360px;
 }
-.page-header-qr img {
-  width: 300px;
-  height: 300px;
-  display: block;
-  object-fit: contain;
-}
-.page-header-qr-sub {
-  font-size: 13px;
-  color: var(--text-muted);
-  font-weight: 300;
-  line-height: 1.6;
-}
+.page-header-qr img { width: 300px; height: 300px; display: block; object-fit: contain; }
+.page-header-qr-sub { font-size: 13px; color: var(--text-muted); font-weight: 300; line-height: 1.6; }
 .page-header-qr-link {
-  display: inline-block;
-  background: #c94f2a;
-  color: var(--white);
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  text-decoration: none;
-  padding: 12px 28px;
-  transition: background 0.2s;
-  width: 100%;
+  display: inline-block; background: #c94f2a; color: var(--white);
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.22em;
+  text-transform: uppercase; text-decoration: none; padding: 12px 28px;
+  transition: background 0.2s; width: 100%;
 }
 .page-header-qr-link:hover { background: var(--navy); }
 
 
 /* ================================================
-   GALLERY BODY
+   GALLERY BODY — 5 across, uniform thumbnails
    ================================================ */
 .gallery-body {
   background: var(--white);
-  padding: 64px 80px 96px;
+  padding: 56px 80px 96px;
 }
-
-/*
-  PHOTO GRID — 3 across, uniform squares
-  Each .photo-row holds exactly 3 .photo-cell divs.
-
-  TO ADD A NEW ROW:
-  Copy the block marked "<!-- ROW TEMPLATE -->" below
-  and paste it after the last </div><!-- /photo-row -->
-  Then update the src="" attributes with your filenames.
-*/
-.photo-row {
+.photo-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin-bottom: 12px;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
 }
-.photo-row:last-child { margin-bottom: 0; }
 
+/* Each cell is a fixed-ratio tile. Images are letterboxed
+   (object-fit: contain) on a soft backdrop so nothing is
+   ever cropped, no matter the original dimensions. */
 .photo-cell {
   position: relative;
+  aspect-ratio: 1 / 1;
+  background: var(--sky-pale);
+  border: 1px solid var(--border);
+  border-radius: 8px;
   overflow: hidden;
-  background: #b8cdd8;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.photo-cell:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(11,46,82,0.16);
 }
 .photo-cell img {
   width: 100%;
-  height: 320px;
+  height: 100%;
   object-fit: contain;
   object-position: center;
   display: block;
-  background: var(--white);
-  transition: transform 0.4s ease;
+  padding: 6px;
 }
-.photo-cell:hover img { transform: scale(1.04); }
-.photo-cell img[src=""] { background: #c8d8e5; }
+/* Subtle zoom-cue overlay on hover */
+.photo-cell::after {
+  content: "⤢";
+  position: absolute;
+  bottom: 8px;
+  right: 10px;
+  font-size: 15px;
+  color: var(--white);
+  background: rgba(11,46,82,0.6);
+  width: 26px; height: 26px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+.photo-cell:hover::after { opacity: 1; }
+
+
+/* ================================================
+   LIGHTBOX (click to magnify)
+   ================================================ */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(7, 22, 40, 0.92);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 40px;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.lightbox.open { display: flex; opacity: 1; }
+.lightbox img {
+  max-width: 90vw;
+  max-height: 86vh;
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 24px 70px rgba(0,0,0,0.5);
+}
+.lightbox-close {
+  position: absolute;
+  top: 24px; right: 32px;
+  width: 48px; height: 48px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 50%;
+  color: var(--white);
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s;
+}
+.lightbox-close:hover { background: rgba(255,255,255,0.22); }
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 54px; height: 54px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 50%;
+  color: var(--white);
+  font-size: 24px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s;
+  user-select: none;
+}
+.lightbox-nav:hover { background: rgba(255,255,255,0.22); }
+.lightbox-prev { left: 24px; }
+.lightbox-next { right: 24px; }
 
 
 /* ================================================
@@ -280,6 +313,10 @@ footer { background: #0b2e52; padding: 52px 80px 32px; }
 /* ================================================
    MOBILE / RESPONSIVE
    ================================================ */
+@media (max-width: 1100px) {
+  .photo-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
 @media (max-width: 900px) {
   .hero { padding: 0 32px; min-height: auto; }
   .hero-inner { gap: 24px; padding: 24px 0; }
@@ -296,8 +333,7 @@ footer { background: #0b2e52; padding: 52px 80px 32px; }
   .page-header-qr img { width: 180px; height: 180px; }
 
   .gallery-body { padding: 48px 40px 72px; }
-  .photo-row { grid-template-columns: repeat(2, 1fr); }
-  .photo-cell img { height: 260px; object-fit: contain; }
+  .photo-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
 
   .gallery-cta { padding: 56px 40px; gap: 32px; }
 
@@ -335,8 +371,13 @@ footer { background: #0b2e52; padding: 52px 80px 32px; }
   .page-header-qr img { width: 180px; height: 180px; }
 
   .gallery-body { padding: 32px 20px 60px; }
-  .photo-row { grid-template-columns: 1fr; }
-  .photo-cell img { height: 260px; object-fit: contain; }
+  .photo-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+
+  .lightbox { padding: 16px; }
+  .lightbox-nav { width: 44px; height: 44px; font-size: 20px; }
+  .lightbox-prev { left: 8px; }
+  .lightbox-next { right: 8px; }
+  .lightbox-close { top: 12px; right: 12px; }
 
   .gallery-cta { flex-direction: column; padding: 48px 20px; align-items: flex-start; }
   .gallery-cta-btn { width: 100%; text-align: center; }
@@ -383,14 +424,10 @@ footer { background: #0b2e52; padding: 52px 80px 32px; }
 <!-- PAGE HEADER -->
 <div class="page-header">
   <div class="page-header-inner">
-
-    <!-- Left — title, description, arrow -->
     <div class="page-header-copy">
       <div class="page-eyebrow">Finaddict · Santa Barbara Harbor</div>
       <h1 class="page-headline">Gallery</h1>
       <p class="page-desc">Life on the water — from the catch to the coast. Photos from charters, the boat, and the Santa Barbara Channel.</p>
-
-      <!-- Red arrow pointing right toward QR -->
       <div class="page-header-arrow">
         <div class="page-header-arrow-text">Scan to share<br>your photos</div>
         <svg class="page-header-arrow-svg" width="360" height="32" viewBox="0 0 220 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -399,132 +436,56 @@ footer { background: #0b2e52; padding: 52px 80px 32px; }
         </svg>
       </div>
     </div>
-
-    <!-- Right — QR code + link -->
     <div class="page-header-qr">
       <img src="qr-upload.png" alt="Scan to upload your charter photos to Dropbox" />
       <div class="page-header-qr-sub">Scan with your phone camera to upload photos from your charter</div>
       <a href="https://www.dropbox.com/request/nqrte7yewuju5kqyxjbc" target="_blank" rel="noopener" class="page-header-qr-link">Click Here</a>
     </div>
-
   </div>
 </div>
 
 
 <!-- GALLERY BODY -->
 <div class="gallery-body">
-
   <!--
     ════════════════════════════════════════
     HOW TO ADD PHOTOS:
-
-    Each row holds exactly 3 photos.
-    Replace src="" with your image filename.
-    Example: src="RockCod.png"
-
-    TO ADD A NEW ROW — copy this block and
-    paste it after the last photo-row div:
-
-    <div class="photo-row">
-      <div class="photo-cell">
-        <img src="your-photo-1.jpg" alt="" />
-      </div>
-      <div class="photo-cell">
-        <img src="your-photo-2.jpg" alt="" />
-      </div>
-      <div class="photo-cell">
-        <img src="your-photo-3.jpg" alt="" />
-      </div>
-    </div>
-
+    Each tile is one <div class="photo-cell"> with an <img>.
+    Just copy a photo-cell block and change src="".
+    The grid automatically flows into rows of 5
+    (4 / 3 / 2 on smaller screens) — no need to
+    manage rows manually. Click any image to magnify.
     ════════════════════════════════════════
   -->
-
-  <!-- ROW 1 -->
-  <div class="photo-row">
-    <div class="photo-cell">
-      <img src="Sportfishing.png" alt="" />
-    </div>
-    <div class="photo-cell">
-      <img src="chartercard7.png" alt="" />
-    </div>
-    <div class="photo-cell">
-      <img src="chartercard9.png" alt="" />
-    </div>
+  <div class="photo-grid">
+    <div class="photo-cell"><img src="Sportfishing.png" alt="Sportfishing aboard the Finaddict" /></div>
+    <div class="photo-cell"><img src="chartercard7.png" alt="On the water" /></div>
+    <div class="photo-cell"><img src="chartercard9.png" alt="Santa Barbara Channel" /></div>
+    <div class="photo-cell"><img src="Julie-Summer.jpeg" alt="Summer charter" /></div>
+    <div class="photo-cell"><img src="images/6152601.jpeg" alt="Charter photo" /></div>
+    <div class="photo-cell"><img src="images/6152602.jpeg" alt="Charter photo" /></div>
+    <div class="photo-cell"><img src="images/6152603.jpeg" alt="Charter photo" /></div>
+    <div class="photo-cell"><img src="images/6152604.jpeg" alt="Charter photo" /></div>
+    <div class="photo-cell"><img src="images/61601.jpeg" alt="Charter photo" /></div>
+    <div class="photo-cell"><img src="images/61602.jpeg" alt="Charter photo" /></div>
+    <div class="photo-cell"><img src="images/61603.jpeg" alt="Charter photo" /></div>
+    <div class="photo-cell"><img src="images/61604.jpeg" alt="Charter photo" /></div>
+    <div class="photo-cell"><img src="images/61605.jpeg" alt="Charter photo" /></div>
+    <div class="photo-cell"><img src="images/61606.jpeg" alt="Charter photo" /></div>
+    <div class="photo-cell"><img src="images/61607.jpeg" alt="Charter photo" /></div>
+    <div class="photo-cell"><img src="images/61608.jpeg" alt="Charter photo" /></div>
+    <div class="photo-cell"><img src="images/61609.jpeg" alt="Charter photo" /></div>
   </div>
-
-  <!-- ROW 2 -->
-  <div class="photo-row">
-    <div class="photo-cell">
-      <img src="Julie-Summer.jpeg" alt="" />
-    </div>
-    <div class="photo-cell">
-      <img src="images/6152601.jpeg" alt="" />
-    </div>
-    <div class="photo-cell">
-      <img src="images/6152602.jpeg" alt="" />
-    </div>
-  </div>
-
-  <!-- ROW 3 -->
-  <div class="photo-row">
-    <div class="photo-cell">
-      <img src="images/6152603.jpeg" alt="" />
-    </div>
-    <div class="photo-cell">
-      <img src="images/6152604.jpeg" alt="" />
-    </div>
-    <div class="photo-cell">
-      <img src="images/61601.jpeg" alt="" />
-    </div>
-  </div>
-
-  <!-- Row 4 -->
-    <div class="photo-row">
-      <div class="photo-cell">
-        <img src="images/61602.jpeg" alt="" />
-      </div>
-      <div class="photo-cell">
-        <img src="images/61603.jpeg" alt="" />
-      </div>
-      <div class="photo-cell">
-        <img src="images/61604.jpeg" alt="" />
-      </div>
-    </div>
-
-  
-  <!-- Row 5 -->
-    <div class="photo-row">
-      <div class="photo-cell">
-        <img src="images/61605.jpeg" alt="" />
-      </div>
-      <div class="photo-cell">
-        <img src="images/61606.jpeg" alt="" />
-      </div>
-      <div class="photo-cell">
-        <img src="images/61607.jpeg" alt="" />
-      </div>
-    </div>
-  
-  <!-- Row 6 -->
-    <div class="photo-row">
-      <div class="photo-cell">
-        <img src="images/61608.jpeg" alt="" />
-      </div>
-      <div class="photo-cell">
-        <img src="images/61609.jpeg" alt="" />
-      </div>
-      <div class="photo-cell">
-        <img src="your-photo-3.jpg" alt="" />
-      </div>
-    </div>
-
- <!--
-  
-    ↑ PASTE NEW ROWS ABOVE THIS LINE
-  -->
-
 </div><!-- /gallery-body -->
+
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" aria-label="Close">&times;</button>
+  <div class="lightbox-nav lightbox-prev" aria-label="Previous">&#8249;</div>
+  <img src="" alt="Enlarged gallery image" id="lightbox-img" />
+  <div class="lightbox-nav lightbox-next" aria-label="Next">&#8250;</div>
+</div>
 
 
 <!-- FOOTER -->
@@ -559,6 +520,49 @@ footer { background: #0b2e52; padding: 52px 80px 32px; }
     <a href="#" class="footer-back">Back to Top &uarr;</a>
   </div>
 </footer>
+
+
+<!-- LIGHTBOX SCRIPT -->
+<script>
+(function () {
+  var cells = Array.prototype.slice.call(document.querySelectorAll('.photo-cell img'));
+  var lightbox = document.getElementById('lightbox');
+  var lbImg = document.getElementById('lightbox-img');
+  var closeBtn = lightbox.querySelector('.lightbox-close');
+  var prevBtn = lightbox.querySelector('.lightbox-prev');
+  var nextBtn = lightbox.querySelector('.lightbox-next');
+  var current = 0;
+
+  function show(i) {
+    current = (i + cells.length) % cells.length;
+    lbImg.src = cells[current].src;
+    lbImg.alt = cells[current].alt || 'Enlarged gallery image';
+  }
+  function open(i) {
+    show(i);
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function close() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  cells.forEach(function (img, i) {
+    img.parentElement.addEventListener('click', function () { open(i); });
+  });
+  closeBtn.addEventListener('click', close);
+  prevBtn.addEventListener('click', function (e) { e.stopPropagation(); show(current - 1); });
+  nextBtn.addEventListener('click', function (e) { e.stopPropagation(); show(current + 1); });
+  lightbox.addEventListener('click', function (e) { if (e.target === lightbox) close(); });
+  document.addEventListener('keydown', function (e) {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    else if (e.key === 'ArrowLeft') show(current - 1);
+    else if (e.key === 'ArrowRight') show(current + 1);
+  });
+})();
+</script>
 
 </body>
 </html>
