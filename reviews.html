@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tales from the Sea — Santa Barbara Sea Charters</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+
+/* ── TOKENS ── */
+:root {
+  --navy:       #0b2e52;
+  --blue:       #1a6fa8;
+  --blue-light: #4fa3d1;
+  --sky:        #e8f4fb;
+  --sky-pale:   #f4f9fd;
+  --white:      #ffffff;
+  --sand:       #f7f4ef;
+  --text:       #1a2a3a;
+  --text-muted: #4a6278;
+  --text-light: #7a95aa;
+  --border:     #d4e6f1;
+  --mono:       'Share Tech Mono', monospace;
+  --serif:      'Playfair Display', serif;
+  --sans:       'Jost', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); color: var(--text); background: var(--white); }
+
+
+/* ================================================
+   SECTION 1: HEADER / NAV  (nav bar at bottom — matches index)
+   ================================================ */
+.hero {
+  background: #0b2e52;
+  padding: 0 60px;
+}
+.hero-inner {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  padding: 30px 0;
+  position: relative;
+}
+.hero-left {
+  position: absolute;
+  left: 0;
+  display: flex;
+  align-items: center;
+}
+.hero-logo img {
+  height: 90px;
+  width: auto;
+  display: block;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));
+}
+.hero-center { text-align: center; }
+.hero-title {
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  font-size: 52px;
+  font-weight: 400;
+  color: var(--white);
+  letter-spacing: 0.01em;
+  line-height: 1.1;
+  margin-bottom: 14px;
+}
+.hero-subtitle {
+  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  font-size: 36px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #4fa3d1;
+}
+.hero-bottomnav {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 14px 0 20px;
+  border-top: 1px solid rgba(255,255,255,0.10);
+  flex-wrap: wrap;
+}
+.hero-bottomnav a {
+  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  font-size: 15px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+.hero-bottomnav a:hover { color: var(--white); }
+.hero-bottomnav a.hero-nav-contact { color: #c94f2a; font-weight: 500; }
+.hero-bottomnav a.hero-nav-directions { color: #c94f2a; font-weight: 500; }
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  flex-direction: column;
+  gap: 5px;
+  flex-shrink: 0;
+}
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: rgba(255,255,255,0.7);
+  border-radius: 2px;
+}
+
+
+/* ================================================
+   PAGE INTRO BANNER  (navy, with wave/quote motif)
+   ================================================ */
+.reviews-banner {
+  background: #0f3d6b;
+  padding: 72px 80px 64px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.reviews-banner-mark {
+  font-family: 'Playfair Display', serif;
+  font-size: 72px;
+  line-height: 0.6;
+  color: var(--blue-light);
+  opacity: 0.4;
+  margin-bottom: 18px;
+}
+.reviews-banner-eyebrow {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--blue-light);
+  margin-bottom: 18px;
+  opacity: 0.85;
+}
+.reviews-banner-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 52px;
+  font-weight: 400;
+  color: var(--white);
+  line-height: 1.1;
+  margin-bottom: 24px;
+}
+.reviews-banner-sub {
+  font-size: 18px;
+  color: rgba(255,255,255,0.55);
+  font-weight: 300;
+  line-height: 1.8;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+
+/* ================================================
+   TESTIMONIALS
+   ================================================ */
+.reviews-section {
+  background: var(--white);
+  padding: 96px 80px;
+}
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.review-card {
+  background: var(--sky-pale);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 40px 36px 34px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.review-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(11,46,82,0.1);
+}
+
+/* Decorative opening quote mark */
+.review-quote-mark {
+  font-family: 'Playfair Display', serif;
+  font-size: 64px;
+  line-height: 0.5;
+  color: var(--blue-light);
+  opacity: 0.45;
+  margin-bottom: 20px;
+  height: 32px;
+}
+
+.review-body {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-style: italic;
+  color: var(--text);
+  line-height: 1.6;
+  margin-bottom: 28px;
+  flex: 1;
+}
+
+.review-footer {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-top: 22px;
+  border-top: 1px solid var(--border);
+}
+.review-footer-rule {
+  width: 24px;
+  height: 2px;
+  background: var(--blue-light);
+  flex-shrink: 0;
+}
+.review-author {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+
+
+/* ================================================
+   CTA STRIP
+   ================================================ */
+.reviews-cta {
+  background: var(--navy);
+  padding: 72px 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+.reviews-cta-eyebrow {
+  font-family: var(--mono); font-size: 13px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--blue-light); margin-bottom: 12px; opacity: 0.8;
+}
+.reviews-cta-headline {
+  font-family: 'Playfair Display', serif;
+  font-size: 34px; font-weight: 400; color: var(--white); line-height: 1.2;
+}
+.reviews-cta-btn {
+  display: inline-block; background: transparent;
+  border: 1px solid rgba(255,255,255,0.35); color: var(--white);
+  font-family: var(--mono); font-size: 13px; letter-spacing: 0.22em;
+  text-transform: uppercase; text-decoration: none; padding: 18px 48px;
+  transition: background 0.2s, border-color 0.2s; white-space: nowrap; flex-shrink: 0;
+}
+.reviews-cta-btn:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.6); }
+
+
+/* ================================================
+   FOOTER
+   ================================================ */
+footer {
+  background: #0b2e52;
+  padding: 52px 80px 32px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 48px;
+}
+.footer-logo img {
+  height: 56px;
+  width: auto;
+  margin-bottom: 16px;
+  display: block;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.35));
+}
+.footer-desc {
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  line-height: 1.8;
+  font-weight: 300;
+  margin-top: 8px;
+}
+.footer-col h4 {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 16px;
+}
+.footer-col a {
+  display: block;
+  font-size: 13px;
+  color: rgba(255,255,255,0.55);
+  text-decoration: none;
+  margin-bottom: 10px;
+  transition: color 0.2s;
+}
+.footer-col a:hover { color: var(--white); }
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 24px;
+}
+.footer-bottom span {
+  font-size: 12px;
+  color: rgba(255,255,255,0.25);
+  font-weight: 300;
+}
+.footer-back {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-back:hover { color: rgba(255,255,255,0.7); }
+
+
+/* ================================================
+   MOBILE / RESPONSIVE
+   ================================================ */
+
+/* ── Tablet (≤900px) ── */
+@media (max-width: 900px) {
+  .hero { padding: 0 32px; }
+  .hero-bottomnav { gap: 24px; }
+  .hero-bottomnav a { font-size: 13px; letter-spacing: 0.16em; }
+  .hero-inner { gap: 24px; padding: 24px 0; }
+  .hero-title { font-size: 36px; margin-bottom: 8px; }
+  .hero-subtitle { font-size: 24px; }
+  .hero-logo img { height: 60px; }
+
+  .reviews-banner { padding: 56px 40px 48px; }
+  .reviews-banner-title { font-size: 38px; }
+
+  .reviews-section { padding: 64px 40px; }
+  .reviews-grid { grid-template-columns: 1fr; gap: 24px; max-width: 620px; }
+
+  .reviews-cta { padding: 56px 40px; gap: 32px; }
+  .reviews-cta-headline { font-size: 26px; }
+
+  footer { padding: 48px 40px 28px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+  .footer-logo { grid-column: 1 / -1; }
+}
+
+/* ── Mobile (≤600px) ── */
+@media (max-width: 600px) {
+  /* Header stacks */
+  .hero { padding: 0 20px; }
+  .hero-inner {
+    flex-wrap: wrap; gap: 0; padding: 20px 0 0;
+    align-items: flex-start; justify-content: flex-start;
+  }
+  .hero-left { position: static; order: 1; }
+  .hero-logo img { height: 52px; }
+  .nav-toggle { display: flex; order: 3; margin-left: auto; margin-top: 6px; }
+  .hero-center { order: 2; width: 100%; padding: 16px 0 20px; }
+  .hero-title { font-size: 26px; margin-bottom: 6px; }
+  .hero-subtitle { font-size: 18px; letter-spacing: 0.18em; }
+  .hero-bottomnav {
+    order: 4; width: 100%; flex-direction: column; align-items: stretch;
+    gap: 0; max-height: 0; padding: 0; overflow: hidden; border-top: none;
+    transition: max-height 0.3s ease;
+  }
+  .nav-open .hero-bottomnav {
+    max-height: 600px; border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .hero-bottomnav a {
+    font-size: 13px; padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    text-align: right; letter-spacing: 0.16em;
+  }
+
+  .reviews-banner { padding: 48px 20px 40px; }
+  .reviews-banner-title { font-size: 30px; }
+  .reviews-banner-sub { font-size: 16px; }
+
+  .reviews-section { padding: 48px 20px; }
+  .review-card { padding: 32px 26px 28px; }
+  .review-body { font-size: 18px; }
+
+  .reviews-cta { flex-direction: column; padding: 48px 20px; align-items: flex-start; }
+  .reviews-cta-btn { width: 100%; text-align: center; }
+  .reviews-cta-headline { font-size: 24px; }
+
+  footer { padding: 40px 20px 24px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+  .footer-logo { grid-column: auto; }
+  .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+
+<!-- HEADER / NAV  (matches index.html — nav bar at bottom of blue header) -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-left hero-logo">
+      <img src="Logo.png" alt="Santa Barbara Sea Charters logo" />
+    </div>
+    <div class="hero-center">
+      <h1 class="hero-title">Santa Barbara Sea Charters</h1>
+      <div class="hero-subtitle">Finaddict</div>
+    </div>
+    <button class="nav-toggle" aria-label="Toggle navigation" onclick="this.closest('.hero').classList.toggle('nav-open')">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="hero-bottomnav">
+    <a href="index.html">Home</a>
+    <a href="charters.html">Charters</a>
+    <a href="finaddict.html">The Boat</a>
+    <a href="crew.html">Crew</a>
+    <a href="directions.html" class="hero-nav-directions">Directions</a>
+    <a href="faq.html">FAQ</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="reviews.html">Reviews</a>
+    <a href="contact.html" class="hero-nav-contact">Contact</a>
+  </nav>
+</section>
+
+
+<!-- PAGE INTRO BANNER -->
+<div class="reviews-banner">
+  <div class="reviews-banner-mark">&ldquo;</div>
+  <div class="reviews-banner-eyebrow">Finaddict · Santa Barbara Harbor</div>
+  <h1 class="reviews-banner-title">Tales from the Sea</h1>
+  <p class="reviews-banner-sub">Hear from the anglers, families, and first-timers who've spent a day on the water with Captain Jim aboard the Finaddict.</p>
+</div>
+
+
+<!-- TESTIMONIALS -->
+<section class="reviews-section">
+  <div class="reviews-grid">
+
+    <!-- REVIEW 1 -->
+    <div class="review-card">
+      <div class="review-quote-mark">&ldquo;</div>
+      <p class="review-body">Hi Jim, just wanted to thank you and Ceasar for taking care of us today. Definitely enjoyed today. Thank you again!</p>
+      <div class="review-footer">
+        <span class="review-footer-rule"></span>
+        <span class="review-author">Clay C.</span>
+      </div>
+    </div>
+
+    <!-- REVIEW 2 -->
+    <div class="review-card">
+      <div class="review-quote-mark">&ldquo;</div>
+      <p class="review-body">Thank you again Captain Jim! My husband always has such a great time going fishing with you and I enjoy eating all the fish he brings back 😋</p>
+      <div class="review-footer">
+        <span class="review-footer-rule"></span>
+        <span class="review-author">Julie K.</span>
+      </div>
+    </div>
+
+    <!-- REVIEW 3 -->
+    <div class="review-card">
+      <div class="review-quote-mark">&ldquo;</div>
+      <p class="review-body">Great crew. Great boat. Great experience. 10/10. Highly recommend.</p>
+      <div class="review-footer">
+        <span class="review-footer-rule"></span>
+        <span class="review-author">Michael C.</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- CTA STRIP -->
+<div class="reviews-cta">
+  <div class="reviews-cta-text">
+    <div class="reviews-cta-eyebrow">Your Turn on the Water</div>
+    <div class="reviews-cta-headline">Ready to make your own tale?</div>
+  </div>
+  <a href="contact.html" class="reviews-cta-btn">Book a Charter</a>
+</div>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+
+    <div class="footer-logo">
+      <img src="Logo.png" alt="Santa Barbara Sea Charters" />
+      <p class="footer-desc">Sportfishing, whale watching, and coastal adventures aboard the Finaddict. Departing from Santa Barbara Harbor.</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Charters</h4>
+      <a href="charters.html">Sportfishing</a>
+      <a href="charters.html">Tours &amp; Sightseeing</a>
+      <a href="charters.html">Photography &amp; Filming</a>
+      <a href="charters.html">All Charters</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>The Boat</h4>
+      <a href="finaddict.html">Finaddict</a>
+      <a href="crew.html">Our Crew</a>
+      <a href="faq.html">FAQ</a>
+      <a href="directions.html">Directions</a>
+      <a href="reviews.html">Reviews</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="contact.html">Send a Message</a>
+      <a href="tel:+18058960541">805-896-0541</a>
+      <a href="directions.html">Directions</a>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <span>&copy; 2026 Santa Barbara Sea Charters. All rights reserved.</span>
+    <a href="#" class="footer-back">Back to Top &uarr;</a>
+  </div>
+</footer>
+
+
+</body>
+</html>
