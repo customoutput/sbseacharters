@@ -223,8 +223,8 @@ body { font-family: var(--sans); color: var(--text); background: var(--white); }
 
 .charter-details {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  flex-wrap: nowrap;
+  gap: 0;
   margin: 28px 0;
   padding: 24px 0;
   border-top: 1px solid var(--border);
@@ -233,10 +233,13 @@ body { font-family: var(--sans); color: var(--text); background: var(--white); }
 .charter-detail-chip {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  padding-right: 24px;
+  gap: 6px;
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 0 20px;
   border-right: 1px solid var(--border);
 }
+.charter-detail-chip:first-child { padding-left: 0; }
 .charter-detail-chip:last-child { border-right: none; padding-right: 0; }
 .charter-detail-label {
   font-family: var(--mono);
@@ -249,6 +252,7 @@ body { font-family: var(--sans); color: var(--text); background: var(--white); }
   font-family: 'Playfair Display', serif;
   font-size: 17px;
   color: var(--navy);
+  line-height: 1.35;
 }
 
 .charter-inquire {
@@ -405,7 +409,19 @@ footer { background: #0b2e52; padding: 52px 80px 32px; }
   .charter-headline { font-size: 26px; }
   .charter-body { font-size: 16px; }
   .charter-section-photo img { height: 240px; }
-  .charter-details { gap: 16px; }
+
+  /* Stack the three detail chips vertically on phones so the
+     values have full width and never cramp or overflow. */
+  .charter-details { flex-direction: column; gap: 0; }
+  .charter-detail-chip {
+    flex: none;
+    width: 100%;
+    padding: 14px 0;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+  .charter-detail-chip:first-child { padding-top: 0; }
+  .charter-detail-chip:last-child { border-bottom: none; padding-bottom: 0; }
 
   .charters-cta { flex-direction: column; padding: 48px 20px; align-items: flex-start; }
   .charters-cta-btn { width: 100%; text-align: center; }
@@ -480,7 +496,7 @@ footer { background: #0b2e52; padding: 52px 80px 32px; }
     </div>
 
     <div class="charter-section-copy">
-      <div class="charter-eyebrow">Full-Day · ¾-Day · Half-Day</div>
+      <div class="charter-eyebrow">Full-Day · 3/4-Day · Half-Day</div>
       <h2 class="charter-headline">Sportfishing</h2>
 
       <p class="charter-body">Captain Jim will work with you to target the best species in season from the rich waters of the Santa Barbara Channel.</p>
@@ -492,11 +508,11 @@ footer { background: #0b2e52; padding: 52px 80px 32px; }
         </div>
         <div class="charter-detail-chip">
           <span class="charter-detail-label">Duration</span>
-          <span class="charter-detail-value">Half, ¾ or Full Day</span>
+          <span class="charter-detail-value">Half, 3/4 or Full Day</span>
         </div>
         <div class="charter-detail-chip">
           <span class="charter-detail-label">Target Species</span>
-          <span class="charter-detail-value">Rock Fish, Sheepshead, Ling Cod</span>
+          <span class="charter-detail-value">Rock Fish, Sheepshead, Ling Cod &amp; Halibut</span>
         </div>
       </div>
 
