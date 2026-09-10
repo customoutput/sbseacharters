@@ -351,6 +351,18 @@ footer {
   .charters-section { padding: 60px 32px; }
   .charters-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
 
+  /* Keep image-only cards at their natural ratio so a taller
+     neighbor doesn't stretch and crop them. */
+  .charter-card--image-only { display: block; }
+  .charter-img--full {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    object-position: center;
+  }
+
   footer { padding: 48px 40px 28px; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
   .footer-logo { grid-column: 1 / -1; }
@@ -415,6 +427,19 @@ footer {
   .charters-section { padding: 48px 20px; }
   .section-title { font-size: 28px; margin-bottom: 40px; }
   .charters-grid { grid-template-columns: 1fr; gap: 16px; }
+
+  /* Image-only cards stack alone in one column on mobile.
+     Show the whole image (no top/bottom crop) at its natural
+     ratio instead of stretching to fill a tall card. */
+  .charter-card--image-only { display: block; }
+  .charter-img--full {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    object-position: center;
+  }
 
   footer { padding: 40px 20px 24px; }
   .footer-grid { grid-template-columns: 1fr; gap: 28px; }
@@ -568,7 +593,7 @@ footer {
 
     <!-- CARD 9: Open image card (no title/body) -->
     <div class="charter-card charter-card--image-only">
-      <img class="charter-img charter-img--full" src="redrockfish.jpg" alt="" />
+      <img class="charter-img charter-img--full" src="redrockfish.png" alt="" />
     </div>
 
   </div>
