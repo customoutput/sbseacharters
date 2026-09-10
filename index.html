@@ -223,14 +223,19 @@ body { font-family: var(--sans); color: var(--text); background: var(--white); }
 .charter-link { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); font-weight: 500; text-decoration: none; }
 .charter-link::after { content: ' →'; }
 
-/* Image-only cards: use the SAME 4/3 ratio box as the others.
-   The image fills it via object-fit: cover so it renders
-   consistently across Chrome, Edge, and Safari. */
-.charter-card--image-only { display: block; }
+/* Image-only cards: stretch to fill the full height of the
+   tallest card in the same row. The card becomes a flex column
+   and the image grows to fill it, cropping via object-fit: cover.
+   min-height keeps it sensible if it's ever alone in a row.
+   Renders consistently across Chrome, Edge, and Safari. */
+.charter-card--image-only {
+  display: flex;
+  flex-direction: column;
+}
 .charter-img--full {
   width: 100%;
-  aspect-ratio: 4/3;
-  height: auto;
+  flex: 1 1 auto;
+  min-height: 280px;
   object-fit: cover;
   object-position: center;
   display: block;
