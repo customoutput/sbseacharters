@@ -30,25 +30,24 @@ body { font-family: var(--sans); color: var(--text); background: var(--white); }
 
 
 /* ================================================
-   HEADER / NAV (matches index.html exactly)
+   SECTION 1: HEADER / NAV  (nav bar at bottom — matches index)
    ================================================ */
 .hero {
   background: #0b2e52;
   padding: 0 60px;
-  min-height: 160px;
-  display: flex;
-  align-items: center;
 }
 .hero-inner {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 40px;
-  padding: 32px 0;
+  padding: 30px 0;
+  position: relative;
 }
 .hero-left {
-  min-width: 140px;
+  position: absolute;
+  left: 0;
   display: flex;
   align-items: center;
 }
@@ -58,10 +57,7 @@ body { font-family: var(--sans); color: var(--text); background: var(--white); }
   display: block;
   filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));
 }
-.hero-center {
-  text-align: center;
-  flex: 1;
-}
+.hero-center { text-align: center; }
 .hero-title {
   font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
   font-size: 52px;
@@ -78,33 +74,27 @@ body { font-family: var(--sans); color: var(--text); background: var(--white); }
   text-transform: uppercase;
   color: #4fa3d1;
 }
-.hero-nav {
+.hero-bottomnav {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 10px;
-  min-width: 140px;
+  justify-content: center;
+  gap: 40px;
+  padding: 14px 0 20px;
+  border-top: 1px solid rgba(255,255,255,0.10);
+  flex-wrap: wrap;
 }
-.hero-nav a {
+.hero-bottomnav a {
   font-family: 'Share Tech Mono', 'Courier New', monospace;
   font-size: 15px;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.55);
+  color: rgba(255,255,255,0.6);
   text-decoration: none;
   transition: color 0.2s;
+  white-space: nowrap;
 }
-.hero-nav a:hover { color: var(--white); }
-.hero-nav-divider {
-  width: 100%;
-  height: 1px;
-  background: rgba(255,255,255,0.12);
-  margin: 4px 0;
-}
-a.hero-nav-contact {
-  color: #c94f2a !important;
-  font-weight: 500;
-}
+.hero-bottomnav a:hover { color: var(--white); }
+.hero-bottomnav a.hero-nav-contact { color: #c94f2a; font-weight: 500; }
+.hero-bottomnav a.hero-nav-directions { color: #c94f2a; font-weight: 500; }
 
 
 /* ================================================
@@ -337,14 +327,13 @@ footer {
 
 /* ── Tablet ── */
 @media (max-width: 900px) {
-  .hero { padding: 0 32px; min-height: auto; }
+  .hero { padding: 0 32px; }
+  .hero-bottomnav { gap: 24px; }
+  .hero-bottomnav a { font-size: 13px; letter-spacing: 0.16em; }
   .hero-inner { gap: 24px; padding: 24px 0; }
   .hero-title { font-size: 36px; margin-bottom: 8px; }
   .hero-subtitle { font-size: 24px; }
-  .hero-logo img { height: 64px; }
-  .hero-left { min-width: auto; }
-  .hero-nav { min-width: auto; gap: 8px; }
-  .hero-nav a { font-size: 12px; }
+  .hero-logo img { height: 60px; }
 
   .contact-body { padding: 60px 40px 0; }
   .contact-layout { grid-template-columns: 1fr; gap: 48px; }
@@ -363,41 +352,42 @@ footer {
     gap: 0;
     padding: 20px 0 0;
     align-items: flex-start;
+    justify-content: flex-start;
   }
-  .hero-left { order: 1; min-width: auto; }
+  .hero-left { position: static; order: 1; }
   .hero-logo img { height: 52px; }
   .nav-toggle { display: flex; order: 3; margin-left: auto; margin-top: 6px; }
   .hero-center {
     order: 2;
     width: 100%;
-    flex: none;
     padding: 16px 0 20px;
   }
   .hero-title { font-size: 26px; margin-bottom: 6px; }
   .hero-subtitle { font-size: 18px; letter-spacing: 0.18em; }
 
-  .hero-nav {
+  .hero-bottomnav {
     order: 4;
     width: 100%;
     flex-direction: column;
     align-items: stretch;
     gap: 0;
-    min-width: auto;
     max-height: 0;
+    padding: 0;
     overflow: hidden;
+    border-top: none;
     transition: max-height 0.3s ease;
+  }
+  .nav-open .hero-bottomnav {
+    max-height: 600px;
     border-top: 1px solid rgba(255,255,255,0.1);
   }
-  .nav-open .hero-nav { max-height: 400px; }
-  .hero-nav a {
+  .hero-bottomnav a {
     font-size: 13px;
     padding: 14px 0;
     border-bottom: 1px solid rgba(255,255,255,0.07);
     text-align: right;
     letter-spacing: 0.16em;
   }
-  .hero-nav-divider { display: none; }
-  a.hero-nav-contact { padding: 14px 0 20px; }
 
   .contact-body { padding: 40px 20px 0; }
   .contact-layout { grid-template-columns: 1fr; gap: 40px; }
@@ -417,36 +407,31 @@ footer {
 <body>
 
 
-<!-- HEADER (matches index.html) -->
+<!-- HEADER / NAV  (matches index.html — nav bar at bottom of blue header) -->
 <section class="hero">
   <div class="hero-inner">
-
     <div class="hero-left hero-logo">
       <img src="Logo.png" alt="Santa Barbara Sea Charters logo" />
     </div>
-
     <div class="hero-center">
       <h1 class="hero-title">Santa Barbara Sea Charters</h1>
       <div class="hero-subtitle">Finaddict</div>
     </div>
-
-    <!-- Hamburger (mobile only) -->
-    <button class="nav-toggle" aria-label="Toggle navigation" onclick="this.closest('.hero-inner').parentElement.classList.toggle('nav-open')">
+    <button class="nav-toggle" aria-label="Toggle navigation" onclick="this.closest('.hero').classList.toggle('nav-open')">
       <span></span><span></span><span></span>
     </button>
-
-    <nav class="hero-nav">
-      <a href="index.html">Home</a>
-      <a href="charters.html">Charters</a>
-      <a href="finaddict.html">The Boat</a>
-      <a href="crew.html">Crew</a>
-      <a href="faq.html">Directions/FAQ</a>
-      <a href="gallery.html">Gallery</a>
-      <div class="hero-nav-divider"></div>
-      <a href="contact.html" class="hero-nav-contact">Contact</a>
-    </nav>
-
   </div>
+  <nav class="hero-bottomnav">
+    <a href="index.html">Home</a>
+    <a href="charters.html">Charters</a>
+    <a href="finaddict.html">The Boat</a>
+    <a href="crew.html">Crew</a>
+    <a href="directions.html" class="hero-nav-directions">Directions</a>
+    <a href="faq.html">FAQ</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="reviews.html">Reviews</a>
+    <a href="contact.html" class="hero-nav-contact">Contact</a>
+  </nav>
 </section>
 
 
@@ -555,13 +540,15 @@ footer {
       <a href="finaddict.html">Finaddict</a>
       <a href="crew.html">Our Crew</a>
       <a href="faq.html">FAQ</a>
+      <a href="directions.html">Directions</a>
+      <a href="reviews.html">Reviews</a>
     </div>
 
     <div class="footer-col">
       <h4>Contact</h4>
       <a href="contact.html">Send a Message</a>
       <a href="tel:+18058960541">805-896-0541</a>
-      <a href="contact.html">Directions</a>
+      <a href="directions.html">Directions</a>
     </div>
 
   </div>
