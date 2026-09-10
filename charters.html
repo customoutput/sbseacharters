@@ -31,54 +31,71 @@ body { font-family: var(--sans); color: var(--text); background: var(--white); }
 
 
 /* ================================================
-   HEADER / NAV
+   SECTION 1: HEADER / NAV  (nav bar at bottom — matches index)
    ================================================ */
 .hero {
   background: #0b2e52;
   padding: 0 60px;
-  min-height: 160px;
-  display: flex;
-  align-items: center;
 }
 .hero-inner {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 40px;
-  padding: 32px 0;
+  padding: 30px 0;
+  position: relative;
 }
-.hero-left { min-width: 140px; display: flex; align-items: center; }
+.hero-left {
+  position: absolute;
+  left: 0;
+  display: flex;
+  align-items: center;
+}
 .hero-logo img {
-  height: 90px; width: auto; display: block;
+  height: 90px;
+  width: auto;
+  display: block;
   filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));
 }
-.hero-center { text-align: center; flex: 1; }
+.hero-center { text-align: center; }
 .hero-title {
   font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
-  font-size: 52px; font-weight: 400; color: var(--white);
-  letter-spacing: 0.01em; line-height: 1.1; margin-bottom: 14px;
+  font-size: 52px;
+  font-weight: 400;
+  color: var(--white);
+  letter-spacing: 0.01em;
+  line-height: 1.1;
+  margin-bottom: 14px;
 }
 .hero-subtitle {
   font-family: 'Share Tech Mono', 'Courier New', monospace;
-  font-size: 36px; letter-spacing: 0.22em; text-transform: uppercase; color: #4fa3d1;
+  font-size: 36px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #4fa3d1;
 }
-.hero-nav {
-  display: flex; flex-direction: column; align-items: flex-end; gap: 10px; min-width: 140px;
+.hero-bottomnav {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 14px 0 20px;
+  border-top: 1px solid rgba(255,255,255,0.10);
+  flex-wrap: wrap;
 }
-.hero-nav a {
+.hero-bottomnav a {
   font-family: 'Share Tech Mono', 'Courier New', monospace;
-  font-size: 15px; letter-spacing: 0.18em; text-transform: uppercase;
-  color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s;
+  font-size: 15px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  transition: color 0.2s;
+  white-space: nowrap;
 }
-.hero-nav a:hover { color: var(--white); }
-.hero-nav-divider { width: 100%; height: 1px; background: rgba(255,255,255,0.12); margin: 4px 0; }
-a.hero-nav-contact { color: #c94f2a !important; font-weight: 500; }
-.nav-toggle {
-  display: none; background: none; border: none; cursor: pointer;
-  padding: 8px; flex-direction: column; gap: 5px; flex-shrink: 0;
-}
-.nav-toggle span { display: block; width: 24px; height: 2px; background: rgba(255,255,255,0.7); border-radius: 2px; }
+.hero-bottomnav a:hover { color: var(--white); }
+.hero-bottomnav a.hero-nav-contact { color: #c94f2a; font-weight: 500; }
+.hero-bottomnav a.hero-nav-directions { color: #c94f2a; font-weight: 500; }
 
 
 /* ================================================
@@ -104,7 +121,7 @@ a.hero-nav-contact { color: #c94f2a !important; font-weight: 500; }
 
 
 /* ================================================
-   CHARTER QUICK-LINKS NAV
+   CHARTER QUICK-LINKS NAV (dark blue ribbon)
    ================================================ */
 .charter-nav {
   background: var(--navy);
@@ -117,12 +134,12 @@ a.hero-nav-contact { color: #c94f2a !important; font-weight: 500; }
 }
 .charter-nav a {
   font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.18em;
+  font-size: 14px;              /* was 10px — larger ribbon text */
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.5);
+  color: rgba(255,255,255,0.55);
   text-decoration: none;
-  padding: 18px 24px;
+  padding: 20px 26px;
   border-bottom: 2px solid transparent;
   white-space: nowrap;
   transition: color 0.2s, border-color 0.2s;
@@ -136,7 +153,6 @@ a.hero-nav-contact { color: #c94f2a !important; font-weight: 500; }
 
 /* ================================================
    CHARTER SECTIONS
-   Each charter type gets its own alternating section
    ================================================ */
 .charter-section {
   padding: 96px 80px;
@@ -153,8 +169,6 @@ a.hero-nav-contact { color: #c94f2a !important; font-weight: 500; }
   margin: 0 auto;
   align-items: center;
 }
-
-/* Flip image/text order on even sections */
 .charter-section:nth-child(even) .charter-section-inner {
   direction: rtl;
 }
@@ -162,7 +176,6 @@ a.hero-nav-contact { color: #c94f2a !important; font-weight: 500; }
   direction: ltr;
 }
 
-/* Photo placeholder */
 .charter-section-photo {
   position: relative;
   overflow: hidden;
@@ -173,23 +186,21 @@ a.hero-nav-contact { color: #c94f2a !important; font-weight: 500; }
   object-fit: cover;
   display: block;
   background: #b8cdd8;
-  /* placeholder colour — remove when image added */
 }
 .charter-section-photo-label {
   font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: 0.14em;
+  font-size: 12px;             /* was 9px — larger label */
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text-light);
   margin-top: 8px;
 }
 
-/* Text column */
 .charter-section-copy {}
 .charter-eyebrow {
   font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.24em;
+  font-size: 13px;             /* was 10px — larger light-blue eyebrow */
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--blue);
   margin-bottom: 16px;
@@ -210,7 +221,6 @@ a.hero-nav-contact { color: #c94f2a !important; font-weight: 500; }
   margin-bottom: 20px;
 }
 
-/* Detail chips row */
 .charter-details {
   display: flex;
   flex-wrap: wrap;
@@ -230,8 +240,8 @@ a.hero-nav-contact { color: #c94f2a !important; font-weight: 500; }
 .charter-detail-chip:last-child { border-right: none; padding-right: 0; }
 .charter-detail-label {
   font-family: var(--mono);
-  font-size: 8px;
-  letter-spacing: 0.18em;
+  font-size: 11px;             /* was 8px — larger light-blue label */
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--blue-light);
 }
@@ -241,14 +251,13 @@ a.hero-nav-contact { color: #c94f2a !important; font-weight: 500; }
   color: var(--navy);
 }
 
-/* Inquire button */
 .charter-inquire {
   display: inline-block;
   background: var(--navy);
   color: var(--white);
   font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.24em;
+  font-size: 12px;             /* was 10px — larger button text */
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   text-decoration: none;
   padding: 16px 36px;
@@ -270,7 +279,7 @@ a.hero-nav-contact { color: #c94f2a !important; font-weight: 500; }
   gap: 40px;
 }
 .charters-cta-eyebrow {
-  font-family: var(--mono); font-size: 10px; letter-spacing: 0.22em;
+  font-family: var(--mono); font-size: 13px; letter-spacing: 0.2em;
   text-transform: uppercase; color: var(--blue-light); margin-bottom: 10px; opacity: 0.8;
 }
 .charters-cta-headline {
@@ -280,7 +289,7 @@ a.hero-nav-contact { color: #c94f2a !important; font-weight: 500; }
 .charters-cta-btn {
   display: inline-block; background: transparent;
   border: 1px solid rgba(255,255,255,0.35); color: var(--white);
-  font-family: var(--mono); font-size: 11px; letter-spacing: 0.24em;
+  font-family: var(--mono); font-size: 13px; letter-spacing: 0.22em;
   text-transform: uppercase; text-decoration: none; padding: 18px 44px;
   transition: background 0.2s, border-color 0.2s; white-space: nowrap; flex-shrink: 0;
 }
@@ -325,21 +334,27 @@ footer { background: #0b2e52; padding: 52px 80px 32px; }
 /* ================================================
    MOBILE / RESPONSIVE
    ================================================ */
+.nav-toggle {
+  display: none; background: none; border: none; cursor: pointer;
+  padding: 8px; flex-direction: column; gap: 5px; flex-shrink: 0;
+}
+.nav-toggle span { display: block; width: 24px; height: 2px; background: rgba(255,255,255,0.7); border-radius: 2px; }
+
 @media (max-width: 900px) {
-  .hero { padding: 0 32px; min-height: auto; }
+  .hero { padding: 0 32px; }
+  .hero-bottomnav { gap: 24px; }
+  .hero-bottomnav a { font-size: 13px; letter-spacing: 0.16em; }
   .hero-inner { gap: 24px; padding: 24px 0; }
   .hero-title { font-size: 36px; margin-bottom: 8px; }
   .hero-subtitle { font-size: 24px; }
-  .hero-logo img { height: 64px; }
-  .hero-left { min-width: auto; }
-  .hero-nav { min-width: auto; gap: 8px; }
-  .hero-nav a { font-size: 12px; }
+  .hero-logo img { height: 60px; }
 
   .page-header { padding: 56px 40px 48px; }
   .page-header-inner { max-width: 100%; }
   .page-headline { font-size: 38px; }
 
   .charter-nav { padding: 0 40px; }
+  .charter-nav a { font-size: 13px; padding: 18px 20px; }
   .charter-section { padding: 64px 40px; }
   .charter-section-inner { grid-template-columns: 1fr; gap: 40px; direction: ltr !important; }
   .charter-section:nth-child(even) .charter-section-inner > * { direction: ltr; }
@@ -355,30 +370,36 @@ footer { background: #0b2e52; padding: 52px 80px 32px; }
 
 @media (max-width: 600px) {
   .hero { padding: 0 20px; }
-  .hero-inner { flex-wrap: wrap; gap: 0; padding: 20px 0 0; align-items: flex-start; }
-  .hero-left { order: 1; min-width: auto; }
+  .hero-inner {
+    flex-wrap: wrap; gap: 0; padding: 20px 0 0;
+    align-items: flex-start; justify-content: flex-start;
+  }
+  .hero-left { position: static; order: 1; }
   .hero-logo img { height: 52px; }
   .nav-toggle { display: flex; order: 3; margin-left: auto; margin-top: 6px; }
-  .hero-center { order: 2; width: 100%; flex: none; padding: 16px 0 20px; }
+  .hero-center { order: 2; width: 100%; padding: 16px 0 20px; }
   .hero-title { font-size: 26px; margin-bottom: 6px; }
   .hero-subtitle { font-size: 18px; letter-spacing: 0.18em; }
-  .hero-nav {
+  .hero-bottomnav {
     order: 4; width: 100%; flex-direction: column; align-items: stretch;
-    gap: 0; min-width: auto; max-height: 0; overflow: hidden;
+    gap: 0; max-height: 0; padding: 0; overflow: hidden; border-top: none;
     transition: max-height 0.3s ease;
-    border-top: 1px solid rgba(255,255,255,0.1);
   }
-  .nav-open .hero-nav { max-height: 400px; }
-  .hero-nav a { font-size: 13px; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.07); text-align: right; letter-spacing: 0.16em; }
-  .hero-nav-divider { display: none; }
-  a.hero-nav-contact { padding: 14px 0 20px; }
+  .nav-open .hero-bottomnav {
+    max-height: 600px; border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .hero-bottomnav a {
+    font-size: 13px; padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    text-align: right; letter-spacing: 0.16em;
+  }
 
   .page-header { padding: 40px 20px 36px; }
   .page-headline { font-size: 30px; }
   .page-desc { font-size: 16px; }
 
   .charter-nav { padding: 0 20px; }
-  .charter-nav a { padding: 16px 16px; font-size: 9px; }
+  .charter-nav a { padding: 16px 16px; font-size: 12px; }
 
   .charter-section { padding: 48px 20px; }
   .charter-headline { font-size: 26px; }
@@ -400,7 +421,7 @@ footer { background: #0b2e52; padding: 52px 80px 32px; }
 <body>
 
 
-<!-- HEADER / NAV -->
+<!-- HEADER / NAV  (matches index.html — nav bar at bottom of blue header) -->
 <section class="hero">
   <div class="hero-inner">
     <div class="hero-left hero-logo">
@@ -410,21 +431,21 @@ footer { background: #0b2e52; padding: 52px 80px 32px; }
       <h1 class="hero-title">Santa Barbara Sea Charters</h1>
       <div class="hero-subtitle">Finaddict</div>
     </div>
-    <button class="nav-toggle" aria-label="Toggle navigation"
-      onclick="this.closest('.hero-inner').parentElement.classList.toggle('nav-open')">
+    <button class="nav-toggle" aria-label="Toggle navigation" onclick="this.closest('.hero').classList.toggle('nav-open')">
       <span></span><span></span><span></span>
     </button>
-    <nav class="hero-nav">
-      <a href="index.html">Home</a>
-      <a href="charters.html">Charters</a>
-      <a href="finaddict.html">The Boat</a>
-      <a href="crew.html">Crew</a>
-      <a href="faq.html">FAQ</a>
-      <a href="gallery.html">Gallery</a>
-      <div class="hero-nav-divider"></div>
-      <a href="contact.html" class="hero-nav-contact">Contact</a>
-    </nav>
   </div>
+  <nav class="hero-bottomnav">
+    <a href="index.html">Home</a>
+    <a href="charters.html">Charters</a>
+    <a href="finaddict.html">The Boat</a>
+    <a href="crew.html">Crew</a>
+    <a href="directions.html" class="hero-nav-directions">Directions</a>
+    <a href="faq.html">FAQ</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="reviews.html">Reviews</a>
+    <a href="contact.html" class="hero-nav-contact">Contact</a>
+  </nav>
 </section>
 
 
@@ -454,7 +475,6 @@ footer { background: #0b2e52; padding: 52px 80px 32px; }
   <div class="charter-section-inner">
 
     <div class="charter-section-photo">
-      <!-- IMAGE PLACEHOLDER: replace src="" e.g. src="Sportfishing.png" -->
       <img src="Sportfishing.png" alt="Sportfishing" />
       <div class="charter-section-photo-label">▸ Sportfishing · Santa Barbara Channel</div>
     </div>
@@ -463,7 +483,6 @@ footer { background: #0b2e52; padding: 52px 80px 32px; }
       <div class="charter-eyebrow">Full-Day · ¾-Day · Half-Day</div>
       <h2 class="charter-headline">Sportfishing</h2>
 
-      <!-- COPY PLACEHOLDER — add your sportfishing description here -->
       <p class="charter-body">Captain Jim will work with you to target the best species in season from the rich waters of the Santa Barbara Channel.</p>
 
       <div class="charter-details">
@@ -477,7 +496,7 @@ footer { background: #0b2e52; padding: 52px 80px 32px; }
         </div>
         <div class="charter-detail-chip">
           <span class="charter-detail-label">Target Species</span>
-          <span class="charter-detail-value">Halibut, Sea Bass, Ling Cod</span>
+          <span class="charter-detail-value">Rock Fish, Sheepshead, Ling Cod &amp; Halibut</span>
         </div>
       </div>
 
@@ -493,7 +512,6 @@ footer { background: #0b2e52; padding: 52px 80px 32px; }
   <div class="charter-section-inner">
 
     <div class="charter-section-photo">
-      <!-- IMAGE PLACEHOLDER: replace src="" e.g. src="Tours.png" -->
       <img src="Tours.png" alt="Tours and Sightseeing" />
       <div class="charter-section-photo-label">▸ Tours &amp; Sightseeing · Channel Islands</div>
     </div>
@@ -502,7 +520,6 @@ footer { background: #0b2e52; padding: 52px 80px 32px; }
       <div class="charter-eyebrow">Coastal · Island · Sunset</div>
       <h2 class="charter-headline">Tours &amp; Sightseeing</h2>
 
-      <!-- COPY PLACEHOLDER — add your tours description here -->
       <p class="charter-body">Explore the Channel Islands, the Santa Barbara coastline, and everything in between aboard a private charter.</p>
 
       <div class="charter-details">
@@ -532,7 +549,6 @@ footer { background: #0b2e52; padding: 52px 80px 32px; }
   <div class="charter-section-inner">
 
     <div class="charter-section-photo">
-      <!-- IMAGE PLACEHOLDER: replace src="" e.g. src="Filming.png" -->
       <img src="Filming.png" alt="Photography and Filming" />
       <div class="charter-section-photo-label">▸ Photography &amp; Filming · On the Water</div>
     </div>
@@ -541,7 +557,6 @@ footer { background: #0b2e52; padding: 52px 80px 32px; }
       <div class="charter-eyebrow">Commercial · Editorial · Content</div>
       <h2 class="charter-headline">Photography &amp; Filming</h2>
 
-      <!-- COPY PLACEHOLDER — add your photography/filming description here -->
       <p class="charter-body">The Finaddict provides a stable, well-appointed platform for commercial shoots, film production, and content creation on the water.</p>
 
       <div class="charter-details">
@@ -571,7 +586,6 @@ footer { background: #0b2e52; padding: 52px 80px 32px; }
   <div class="charter-section-inner">
 
     <div class="charter-section-photo">
-      <!-- IMAGE PLACEHOLDER: replace src="" e.g. src="Memorial.png" -->
       <img src="Memorial.png" alt="Memorials at Sea" />
       <div class="charter-section-photo-label">▸ Memorials at Sea · Private &amp; Respectful</div>
     </div>
@@ -580,7 +594,6 @@ footer { background: #0b2e52; padding: 52px 80px 32px; }
       <div class="charter-eyebrow">Private · Dignified · Personal</div>
       <h2 class="charter-headline">Memorials at Sea</h2>
 
-      <!-- COPY PLACEHOLDER — add your memorials description here -->
       <p class="charter-body">Captain Jim provides a private, dignified setting for ash scatterings and memorial services on the water of the Santa Barbara Channel.</p>
 
       <div class="charter-details">
@@ -610,7 +623,6 @@ footer { background: #0b2e52; padding: 52px 80px 32px; }
   <div class="charter-section-inner">
 
     <div class="charter-section-photo">
-      <!-- IMAGE PLACEHOLDER: replace src="" e.g. src="Research.png" -->
       <img src="Research.png" alt="Research Trips" />
       <div class="charter-section-photo-label">▸ Research Trips · Santa Barbara Channel</div>
     </div>
@@ -619,7 +631,6 @@ footer { background: #0b2e52; padding: 52px 80px 32px; }
       <div class="charter-eyebrow">Scientific · Academic · Fieldwork</div>
       <h2 class="charter-headline">Research Trips</h2>
 
-      <!-- COPY PLACEHOLDER — add your research description here -->
       <p class="charter-body">Equipped for scientific and academic fieldwork in the Santa Barbara Channel. Captain Jim has worked with research institutions throughout the region.</p>
 
       <div class="charter-details">
@@ -649,7 +660,6 @@ footer { background: #0b2e52; padding: 52px 80px 32px; }
   <div class="charter-section-inner">
 
     <div class="charter-section-photo">
-      <!-- IMAGE PLACEHOLDER: replace src="" e.g. src="Whale.png" -->
       <img src="Whale.png" alt="Whale Watching" />
       <div class="charter-section-photo-label">▸ Whale Watching · Santa Barbara Channel</div>
     </div>
@@ -658,7 +668,6 @@ footer { background: #0b2e52; padding: 52px 80px 32px; }
       <div class="charter-eyebrow">Blue Whales · Humpbacks · Gray Whales</div>
       <h2 class="charter-headline">Whale Watching</h2>
 
-      <!-- COPY PLACEHOLDER — add your whale watching description here -->
       <p class="charter-body">The Santa Barbara Channel is one of the richest whale watching corridors on the Pacific Coast — home to blue whales, humpbacks, and gray whales throughout the year.</p>
 
       <div class="charter-details">
@@ -688,7 +697,6 @@ footer { background: #0b2e52; padding: 52px 80px 32px; }
   <div class="charter-section-inner">
 
     <div class="charter-section-photo">
-      <!-- IMAGE PLACEHOLDER: replace src="" e.g. src="Corporate.png" -->
       <img src="Corporate.png" alt="Corporate Events" />
       <div class="charter-section-photo-label">▸ Corporate Events · Private Charter</div>
     </div>
@@ -697,7 +705,6 @@ footer { background: #0b2e52; padding: 52px 80px 32px; }
       <div class="charter-eyebrow">Client Events · Team Outings · Celebrations</div>
       <h2 class="charter-headline">Corporate Events</h2>
 
-      <!-- COPY PLACEHOLDER — add your corporate description here -->
       <p class="charter-body">Host your next corporate outing, client entertainment, or team celebration on the water — an unforgettable setting for any group.</p>
 
       <div class="charter-details">
@@ -740,12 +747,14 @@ footer { background: #0b2e52; padding: 52px 80px 32px; }
       <a href="finaddict.html">Finaddict</a>
       <a href="crew.html">Our Crew</a>
       <a href="faq.html">FAQ</a>
+      <a href="directions.html">Directions</a>
+      <a href="reviews.html">Reviews</a>
     </div>
     <div class="footer-col">
       <h4>Contact</h4>
       <a href="contact.html">Send a Message</a>
       <a href="tel:+18058960541">805-896-0541</a>
-      <a href="contact.html">Directions</a>
+      <a href="directions.html">Directions</a>
     </div>
   </div>
   <div class="footer-bottom">
