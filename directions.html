@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Directions — Santa Barbara Sea Charters</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+/* ── TOKENS ── */
+:root {
+  --navy:       #0b2e52;
+  --blue:       #1a6fa8;
+  --blue-light: #4fa3d1;
+  --sky:        #e8f4fb;
+  --sky-pale:   #f4f9fd;
+  --white:      #ffffff;
+  --sand:       #f7f4ef;
+  --text:       #1a2a3a;
+  --text-muted: #4a6278;
+  --text-light: #7a95aa;
+  --border:     #d4e6f1;
+  --mono:       'Share Tech Mono', monospace;
+  --serif:      'Playfair Display', serif;
+  --sans:       'Jost', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); color: var(--text); background: var(--white); }
+
+
+/* ================================================
+   SECTION 1: HEADER / NAV  (nav bar at bottom)
+   ================================================ */
+.hero {
+  background: #0b2e52;
+  padding: 0 60px;
+}
+.hero-inner {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  padding: 30px 0;
+  position: relative;
+}
+.hero-left {
+  position: absolute;
+  left: 0;
+  display: flex;
+  align-items: center;
+}
+.hero-logo img {
+  height: 90px;
+  width: auto;
+  display: block;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));
+}
+.hero-center { text-align: center; }
+.hero-title {
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  font-size: 52px;
+  font-weight: 400;
+  color: var(--white);
+  letter-spacing: 0.01em;
+  line-height: 1.1;
+  margin-bottom: 14px;
+}
+.hero-subtitle {
+  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  font-size: 36px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #4fa3d1;
+}
+.hero-bottomnav {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 14px 0 20px;
+  border-top: 1px solid rgba(255,255,255,0.10);
+  flex-wrap: wrap;
+}
+.hero-bottomnav a {
+  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  font-size: 15px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+.hero-bottomnav a:hover { color: var(--white); }
+.hero-bottomnav a.hero-nav-contact { color: #c94f2a; font-weight: 500; }
+.hero-bottomnav a.hero-nav-directions { color: #c94f2a; font-weight: 500; }
+
+
+/* ================================================
+   PAGE HEADER
+   ================================================ */
+.page-header {
+  background: var(--sand);
+  padding: 56px 80px 48px;
+  border-bottom: 1px solid var(--border);
+  text-align: center;
+}
+.page-eyebrow {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.28em;
+  text-transform: uppercase; color: var(--blue); margin-bottom: 14px;
+}
+.page-headline {
+  font-family: 'Playfair Display', serif; font-size: 48px;
+  font-weight: 400; color: var(--navy); line-height: 1.1;
+}
+
+
+/* ================================================
+   MAP
+   ================================================ */
+.map-section {
+  background: var(--white);
+  padding: 56px 80px 24px;
+  display: flex;
+  justify-content: center;
+}
+.map-frame {
+  width: 75%;              /* 3/4 page width */
+  background: var(--sky-pale);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 14px 40px rgba(11,46,82,0.10);
+}
+.map-frame img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+/* Placeholder look before map.png is added */
+.map-frame--empty {
+  aspect-ratio: 16 / 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.map-frame--empty span {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-light);
+}
+
+
+/* ================================================
+   DIRECTIONS BODY
+   ================================================ */
+.directions-body {
+  background: var(--white);
+  padding: 40px 80px 96px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.directions-block { margin-bottom: 48px; }
+.directions-block:last-child { margin-bottom: 0; }
+.directions-block h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--navy);
+  margin-bottom: 18px;
+}
+.directions-block p {
+  font-size: 17px;
+  color: var(--text-muted);
+  line-height: 1.85;
+  font-weight: 300;
+  margin-bottom: 16px;
+}
+.directions-block p:last-child { margin-bottom: 0; }
+
+/* Highlighted dock-location box */
+.dock-callout {
+  background: var(--sky-pale);
+  border-left: 3px solid var(--blue);
+  border-radius: 6px;
+  padding: 28px 32px;
+}
+.dock-callout h2 { margin-bottom: 14px; }
+
+
+/* ================================================
+   FOOTER
+   ================================================ */
+footer { background: #0b2e52; padding: 52px 80px 32px; }
+.footer-grid {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px; margin-bottom: 48px;
+}
+.footer-logo img {
+  height: 56px; width: auto; margin-bottom: 16px; display: block;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.35));
+}
+.footer-desc { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.8; font-weight: 300; margin-top: 8px; }
+.footer-col h4 {
+  font-family: 'Share Tech Mono', monospace; font-size: 9px; letter-spacing: 0.22em;
+  text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 16px;
+}
+.footer-col a {
+  display: block; font-size: 13px; color: rgba(255,255,255,0.55);
+  text-decoration: none; margin-bottom: 10px; transition: color 0.2s;
+}
+.footer-col a:hover { color: var(--white); }
+.footer-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px;
+}
+.footer-bottom span { font-size: 12px; color: rgba(255,255,255,0.25); font-weight: 300; }
+.footer-back {
+  font-family: 'Share Tech Mono', monospace; font-size: 9px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: rgba(255,255,255,0.35);
+  text-decoration: none; transition: color 0.2s;
+}
+.footer-back:hover { color: rgba(255,255,255,0.7); }
+
+
+/* ================================================
+   MOBILE / RESPONSIVE
+   ================================================ */
+.nav-toggle {
+  display: none; background: none; border: none; cursor: pointer;
+  padding: 8px; flex-direction: column; gap: 5px; flex-shrink: 0;
+}
+.nav-toggle span { display: block; width: 24px; height: 2px; background: rgba(255,255,255,0.7); border-radius: 2px; }
+
+@media (max-width: 900px) {
+  .hero { padding: 0 32px; }
+  .hero-bottomnav { gap: 24px; }
+  .hero-bottomnav a { font-size: 13px; letter-spacing: 0.16em; }
+  .hero-inner { gap: 24px; padding: 24px 0; }
+  .hero-title { font-size: 36px; margin-bottom: 8px; }
+  .hero-subtitle { font-size: 24px; }
+  .hero-logo img { height: 60px; }
+
+  .page-header { padding: 48px 40px 40px; }
+  .page-headline { font-size: 38px; }
+
+  .map-section { padding: 44px 40px 20px; }
+  .map-frame { width: 90%; }
+
+  .directions-body { padding: 36px 40px 72px; }
+
+  footer { padding: 48px 40px 28px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+  .footer-logo { grid-column: 1 / -1; }
+}
+
+@media (max-width: 600px) {
+  .hero { padding: 0 20px; }
+  .hero-inner {
+    flex-wrap: wrap; gap: 0; padding: 20px 0 0;
+    align-items: flex-start; justify-content: flex-start;
+  }
+  .hero-left { position: static; order: 1; }
+  .hero-logo img { height: 52px; }
+  .nav-toggle { display: flex; order: 3; margin-left: auto; margin-top: 6px; }
+  .hero-center { order: 2; width: 100%; padding: 16px 0 20px; }
+  .hero-title { font-size: 26px; margin-bottom: 6px; }
+  .hero-subtitle { font-size: 18px; letter-spacing: 0.18em; }
+  .hero-bottomnav {
+    order: 4; width: 100%; flex-direction: column; align-items: stretch;
+    gap: 0; max-height: 0; padding: 0; overflow: hidden; border-top: none;
+    transition: max-height 0.3s ease;
+  }
+  .nav-open .hero-bottomnav {
+    max-height: 600px; border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .hero-bottomnav a {
+    font-size: 13px; padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    text-align: right; letter-spacing: 0.16em;
+  }
+
+  .page-header { padding: 40px 20px 32px; }
+  .page-headline { font-size: 30px; }
+
+  .map-section { padding: 32px 20px 16px; }
+  .map-frame { width: 100%; }
+
+  .directions-body { padding: 28px 20px 60px; }
+  .directions-block h2 { font-size: 23px; }
+  .directions-block p { font-size: 16px; }
+  .dock-callout { padding: 22px 22px; }
+
+  footer { padding: 40px 20px 24px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+  .footer-logo { grid-column: auto; }
+  .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+
+<!-- HEADER / NAV -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-left hero-logo">
+      <img src="Logo.png" alt="Santa Barbara Sea Charters logo" />
+    </div>
+    <div class="hero-center">
+      <h1 class="hero-title">Santa Barbara Sea Charters</h1>
+      <div class="hero-subtitle">Finaddict</div>
+    </div>
+    <button class="nav-toggle" aria-label="Toggle navigation" onclick="this.closest('.hero').classList.toggle('nav-open')">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="hero-bottomnav">
+    <a href="index.html">Home</a>
+    <a href="charters.html">Charters</a>
+    <a href="finaddict.html">The Boat</a>
+    <a href="crew.html">Crew</a>
+    <a href="directions.html" class="hero-nav-directions">Directions</a>
+    <a href="faq.html">FAQ</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="reviews.html">Reviews</a>
+    <a href="contact.html" class="hero-nav-contact">Contact</a>
+  </nav>
+</section>
+
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-eyebrow">Finaddict · Santa Barbara Harbor</div>
+  <h1 class="page-headline">Directions</h1>
+</div>
+
+
+<!-- MAP -->
+<!-- Replace the placeholder div below with the real map once map.png is uploaded:
+     <div class="map-frame"><img src="map.png" alt="Map to Finaddict at Santa Barbara Harbor, Marina 2, Slip B-2" /></div>
+-->
+<div class="map-section">
+  <div class="map-frame">
+    <img src="map.png" alt="Map to Finaddict at Santa Barbara Harbor, Marina 2, Slip B-2" />
+  </div>
+</div>
+
+
+<!-- DIRECTIONS BODY -->
+<div class="directions-body">
+
+  <div class="directions-block dock-callout">
+    <h2>Where is Finaddict docked?</h2>
+    <p>Finaddict is conveniently located at Santa Barbara Harbor — Marina 2, Slip B-2. It will be at the bottom of the ramp on the left. A gate secures access to the Marina II docks — Captain Jim will escort you through.</p>
+  </div>
+
+  <div class="directions-block">
+    <h2>Driving directions from the South</h2>
+    <p>Take the 101 to Santa Barbara. Take the Garden Street Exit and head toward the ocean on Garden Street. Turn right onto Cabrillo Boulevard at the beach. Continue on Cabrillo until you pass Los Banos Pool on the left, then turn left into the harbor.</p>
+    <p>Take the first left in the harbor into the parking lot. Take a ticket at the kiosk and find a parking space. The first building on the right is the restroom for Marina II. Wait at the gate — we will escort you through. Finaddict is in Slip B-2 at the bottom of the ramp on the left.</p>
+  </div>
+
+  <div class="directions-block">
+    <h2>Driving directions from the North</h2>
+    <p>Take the 101 to Santa Barbara. Take the Castillo Street Exit and head toward the ocean on Castillo Street. Turn right onto Cabrillo Boulevard at the beach, then turn left into the harbor.</p>
+    <p>Take the first left in the harbor into the parking lot. Take a ticket at the kiosk and find a parking space. The first building on the right is the restroom for Marina II. Wait at the gate — we will escort you through. Finaddict is in Slip B-2 at the bottom of the ramp on the left.</p>
+  </div>
+
+</div>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-logo">
+      <img src="Logo.png" alt="Santa Barbara Sea Charters" />
+      <p class="footer-desc">Sportfishing, whale watching, and coastal adventures aboard the Finaddict. Departing from Santa Barbara Harbor.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Charters</h4>
+      <a href="charters.html">Sportfishing</a>
+      <a href="charters.html">Tours &amp; Sightseeing</a>
+      <a href="charters.html">Photography &amp; Filming</a>
+      <a href="charters.html">All Charters</a>
+    </div>
+    <div class="footer-col">
+      <h4>The Boat</h4>
+      <a href="finaddict.html">Finaddict</a>
+      <a href="crew.html">Our Crew</a>
+      <a href="faq.html">FAQ</a>
+      <a href="directions.html">Directions</a>
+      <a href="reviews.html">Reviews</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="contact.html">Send a Message</a>
+      <a href="tel:+18058960541">805-896-0541</a>
+      <a href="directions.html">Directions</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Santa Barbara Sea Charters. All rights reserved.</span>
+    <a href="#" class="footer-back">Back to Top &uarr;</a>
+  </div>
+</footer>
+
+</body>
+</html>
