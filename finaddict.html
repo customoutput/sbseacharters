@@ -32,25 +32,24 @@ body { font-family: var(--sans); color: var(--text); background: var(--white); }
 
 
 /* ================================================
-   HEADER / NAV  (identical to index.html)
+   SECTION 1: HEADER / NAV  (nav bar at bottom — matches index)
    ================================================ */
 .hero {
   background: #0b2e52;
   padding: 0 60px;
-  min-height: 160px;
-  display: flex;
-  align-items: center;
 }
 .hero-inner {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 40px;
-  padding: 32px 0;
+  padding: 30px 0;
+  position: relative;
 }
 .hero-left {
-  min-width: 140px;
+  position: absolute;
+  left: 0;
   display: flex;
   align-items: center;
 }
@@ -60,10 +59,7 @@ body { font-family: var(--sans); color: var(--text); background: var(--white); }
   display: block;
   filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));
 }
-.hero-center {
-  text-align: center;
-  flex: 1;
-}
+.hero-center { text-align: center; }
 .hero-title {
   font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
   font-size: 52px;
@@ -80,33 +76,27 @@ body { font-family: var(--sans); color: var(--text); background: var(--white); }
   text-transform: uppercase;
   color: #4fa3d1;
 }
-.hero-nav {
+.hero-bottomnav {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 10px;
-  min-width: 140px;
+  justify-content: center;
+  gap: 40px;
+  padding: 14px 0 20px;
+  border-top: 1px solid rgba(255,255,255,0.10);
+  flex-wrap: wrap;
 }
-.hero-nav a {
+.hero-bottomnav a {
   font-family: 'Share Tech Mono', 'Courier New', monospace;
   font-size: 15px;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.55);
+  color: rgba(255,255,255,0.6);
   text-decoration: none;
   transition: color 0.2s;
+  white-space: nowrap;
 }
-.hero-nav a:hover { color: var(--white); }
-.hero-nav-divider {
-  width: 100%;
-  height: 1px;
-  background: rgba(255,255,255,0.12);
-  margin: 4px 0;
-}
-a.hero-nav-contact {
-  color: #c94f2a !important;
-  font-weight: 500;
-}
+.hero-bottomnav a:hover { color: var(--white); }
+.hero-bottomnav a.hero-nav-contact { color: #c94f2a; font-weight: 500; }
+.hero-bottomnav a.hero-nav-directions { color: #c94f2a; font-weight: 500; }
 /* Hamburger toggle */
 .nav-toggle {
   display: none;
@@ -130,7 +120,6 @@ a.hero-nav-contact {
 
 /* ================================================
    HERO PHOTO BANNER
-   IMAGE: set src="finaddict-hero.jpg" (or any filename you add)
    ================================================ */
 .boat-banner {
   width: 100%;
@@ -164,8 +153,8 @@ a.hero-nav-contact {
 }
 .boat-banner-tag {
   font-family: 'Share Tech Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 0.22em;
+  font-size: 13px;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: rgba(255,255,255,0.65);
 }
@@ -190,8 +179,8 @@ a.hero-nav-contact {
 /* Left — copy */
 .overview-eyebrow {
   font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.24em;
+  font-size: 13px;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--blue);
   margin-bottom: 20px;
@@ -254,18 +243,17 @@ a.hero-nav-contact {
   aspect-ratio: 4/3;
   object-fit: cover;
   display: block;
-  background: #b8cdd8;  /* placeholder colour — remove when real image added */
+  background: #b8cdd8;
 }
 .overview-photo-label {
   font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: 0.18em;
+  font-size: 12px;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--text-light);
   margin-top: 6px;
   margin-bottom: 10px;
 }
-/* IMAGE PLACEHOLDER NOTE: set src="" to your filename, e.g. src="finaddict-dock.jpg" */
 
 
 /* ================================================
@@ -281,8 +269,8 @@ a.hero-nav-contact {
 }
 .specs-eyebrow {
   font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.24em;
+  font-size: 13px;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--blue);
   margin-bottom: 16px;
@@ -306,14 +294,14 @@ a.hero-nav-contact {
 }
 .specs-table-head-label {
   font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.24em;
+  font-size: 14px;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: rgba(255,255,255,0.75);
 }
 .specs-table-head-mark {
   font-family: var(--mono);
-  font-size: 13px;
+  font-size: 15px;
   color: var(--blue-light);
   margin-right: 4px;
 }
@@ -334,8 +322,8 @@ a.hero-nav-contact {
 
 .spec-label {
   font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.18em;
+  font-size: 13px;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--blue);
   padding: 24px 32px 24px 32px;
@@ -362,18 +350,17 @@ a.hero-nav-contact {
   height: 340px;
   object-fit: cover;
   display: block;
-  background: #b8cdd8;  /* placeholder colour */
+  background: #b8cdd8;
 }
 .spec-photo-row .spec-photo-caption {
   padding: 12px 32px 14px;
   font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: 0.16em;
+  font-size: 12px;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--text-light);
   background: var(--white);
 }
-/* IMAGE PLACEHOLDER NOTE: add src="finaddict-specs.jpg" (etc.) to the img tags below */
 
 
 /* ================================================
@@ -409,8 +396,8 @@ a.hero-nav-contact {
 .cta-text {}
 .cta-eyebrow {
   font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.22em;
+  font-size: 13px;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--blue-light);
   margin-bottom: 12px;
@@ -429,8 +416,8 @@ a.hero-nav-contact {
   border: 1px solid rgba(255,255,255,0.35);
   color: var(--white);
   font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.24em;
+  font-size: 13px;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   text-decoration: none;
   padding: 18px 48px;
@@ -445,7 +432,7 @@ a.hero-nav-contact {
 
 
 /* ================================================
-   FOOTER  (identical to index.html)
+   FOOTER
    ================================================ */
 footer {
   background: #0b2e52;
@@ -519,14 +506,13 @@ footer {
 /* ── Tablet (≤900px) ── */
 @media (max-width: 900px) {
   /* Header */
-  .hero { padding: 0 32px; min-height: auto; }
+  .hero { padding: 0 32px; }
+  .hero-bottomnav { gap: 24px; }
+  .hero-bottomnav a { font-size: 13px; letter-spacing: 0.16em; }
   .hero-inner { gap: 24px; padding: 24px 0; }
   .hero-title { font-size: 36px; margin-bottom: 8px; }
   .hero-subtitle { font-size: 24px; }
-  .hero-logo img { height: 64px; }
-  .hero-left { min-width: auto; }
-  .hero-nav { min-width: auto; gap: 8px; }
-  .hero-nav a { font-size: 12px; }
+  .hero-logo img { height: 60px; }
 
   /* Banner */
   .boat-banner img { height: 400px; }
@@ -541,7 +527,7 @@ footer {
   /* Specs */
   .specs-section { padding: 64px 40px; }
   .spec-row { grid-template-columns: 160px 1fr; }
-  .spec-label { padding: 20px 20px; font-size: 9px; }
+  .spec-label { padding: 20px 20px; font-size: 12px; }
   .spec-value { padding: 20px 28px; font-size: 16px; }
 
   /* Wide photo */
@@ -561,27 +547,29 @@ footer {
 @media (max-width: 600px) {
   /* Header stacks */
   .hero { padding: 0 20px; }
-  .hero-inner { flex-wrap: wrap; gap: 0; padding: 20px 0 0; align-items: flex-start; }
-  .hero-left { order: 1; min-width: auto; }
+  .hero-inner {
+    flex-wrap: wrap; gap: 0; padding: 20px 0 0;
+    align-items: flex-start; justify-content: flex-start;
+  }
+  .hero-left { position: static; order: 1; }
   .hero-logo img { height: 52px; }
   .nav-toggle { display: flex; order: 3; margin-left: auto; margin-top: 6px; }
-  .hero-center { order: 2; width: 100%; flex: none; padding: 16px 0 20px; }
+  .hero-center { order: 2; width: 100%; padding: 16px 0 20px; }
   .hero-title { font-size: 26px; margin-bottom: 6px; }
   .hero-subtitle { font-size: 18px; letter-spacing: 0.18em; }
-  .hero-nav {
+  .hero-bottomnav {
     order: 4; width: 100%; flex-direction: column; align-items: stretch;
-    gap: 0; min-width: auto; max-height: 0; overflow: hidden;
+    gap: 0; max-height: 0; padding: 0; overflow: hidden; border-top: none;
     transition: max-height 0.3s ease;
-    border-top: 1px solid rgba(255,255,255,0.1);
   }
-  .nav-open .hero-nav { max-height: 400px; }
-  .hero-nav a {
+  .nav-open .hero-bottomnav {
+    max-height: 600px; border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .hero-bottomnav a {
     font-size: 13px; padding: 14px 0;
     border-bottom: 1px solid rgba(255,255,255,0.07);
     text-align: right; letter-spacing: 0.16em;
   }
-  .hero-nav-divider { display: none; }
-  a.hero-nav-contact { padding: 14px 0 20px; }
 
   /* Banner */
   .boat-banner img { height: 260px; }
@@ -601,7 +589,7 @@ footer {
     border-right: none;
     border-bottom: 1px solid var(--border);
     padding: 16px 20px 10px;
-    font-size: 9px;
+    font-size: 12px;
   }
   .spec-value { padding: 12px 20px 20px; font-size: 16px; }
   .spec-photo-row img { height: 220px; }
@@ -627,44 +615,37 @@ footer {
 
 
 <!-- ================================================
-     HEADER / NAV
+     HEADER / NAV  (matches index.html — nav bar at bottom of blue header)
      ================================================ -->
 <section class="hero">
   <div class="hero-inner">
-
     <div class="hero-left hero-logo">
       <img src="Logo.png" alt="Santa Barbara Sea Charters logo" />
     </div>
-
     <div class="hero-center">
       <h1 class="hero-title">Santa Barbara Sea Charters</h1>
       <div class="hero-subtitle">Finaddict</div>
     </div>
-
-    <!-- Hamburger (mobile only) -->
-    <button class="nav-toggle" aria-label="Toggle navigation"
-      onclick="this.closest('.hero-inner').parentElement.classList.toggle('nav-open')">
+    <button class="nav-toggle" aria-label="Toggle navigation" onclick="this.closest('.hero').classList.toggle('nav-open')">
       <span></span><span></span><span></span>
     </button>
-
-    <nav class="hero-nav">
-      <a href="index.html">Home</a>
-      <a href="charters.html">Charters</a>
-      <a href="finaddict.html">The Boat</a>
-      <a href="crew.html">Crew</a>
-      <a href="faq.html">FAQ</a>
-      <a href="gallery.html">Gallery</a>
-      <div class="hero-nav-divider"></div>
-      <a href="contact.html" class="hero-nav-contact">Contact</a>
-    </nav>
-
   </div>
+  <nav class="hero-bottomnav">
+    <a href="index.html">Home</a>
+    <a href="charters.html">Charters</a>
+    <a href="finaddict.html">The Boat</a>
+    <a href="crew.html">Crew</a>
+    <a href="directions.html" class="hero-nav-directions">Directions</a>
+    <a href="faq.html">FAQ</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="reviews.html">Reviews</a>
+    <a href="contact.html" class="hero-nav-contact">Contact</a>
+  </nav>
 </section>
 
 
 <!-- ================================================
      HERO PHOTO BANNER
-     IMAGE PLACEHOLDER: replace src="" with your filename, e.g. src="finaddict-hero.jpg"
      ================================================ -->
 <div class="boat-banner">
   <img src="Corporate.png" alt="The Finaddict at Santa Barbara Harbor" />
@@ -703,7 +684,6 @@ footer {
     </div>
 
     <!-- Right — photo stack -->
-    <!-- IMAGE PLACEHOLDERS: replace src="" with filenames, e.g. src="finaddict-dock.jpg" -->
     <div class="overview-photos">
       <img class="overview-photo" src="Sidedock.png" alt="Finaddict at the dock" />
       <div class="overview-photo-label"></div>
@@ -800,7 +780,6 @@ footer {
 
 <!-- ================================================
      FULL-WIDTH PHOTO
-     IMAGE PLACEHOLDER: replace src="" with your filename, e.g. src="finaddict-wide.jpg"
      ================================================ -->
 <div class="vessel-photo-wide">
   <img src="Engine.png" alt="The Finaddict" />
@@ -831,13 +810,15 @@ footer {
       <a href="finaddict.html">Finaddict</a>
       <a href="crew.html">Our Crew</a>
       <a href="faq.html">FAQ</a>
+      <a href="directions.html">Directions</a>
+      <a href="reviews.html">Reviews</a>
     </div>
 
     <div class="footer-col">
       <h4>Contact</h4>
       <a href="contact.html">Send a Message</a>
       <a href="tel:+18058960541">805-896-0541</a>
-      <a href="contact.html">Directions</a>
+      <a href="directions.html">Directions</a>
     </div>
 
   </div>
