@@ -228,14 +228,23 @@ body { font-family: var(--sans); color: var(--text); background: var(--white); }
    and the image grows to fill it, cropping via object-fit: cover.
    min-height keeps it sensible if it's ever alone in a row.
    Renders consistently across Chrome, Edge, and Safari. */
+/* Image-only cards fill the full height of their grid row in a
+   way every browser handles identically. The card is a
+   positioning context; the image is absolutely positioned to
+   cover it. Grid stretches all cards in a row to equal height,
+   so this fills reliably in Chrome, Edge, IE, and Safari
+   (no flexing of a replaced <img>, which browsers disagree on). */
 .charter-card--image-only {
-  display: flex;
-  flex-direction: column;
+  position: relative;
+  min-height: 280px;
+  overflow: hidden;
 }
 .charter-img--full {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  flex: 1 1 auto;
-  min-height: 280px;
+  height: 100%;
   object-fit: cover;
   object-position: center;
   display: block;
@@ -351,15 +360,20 @@ footer {
   .charters-section { padding: 60px 32px; }
   .charters-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
 
-  /* Keep image-only cards at their natural ratio so a taller
-     neighbor doesn't stretch and crop them. */
-  .charter-card--image-only { display: block; }
+  /* Keep image-only cards fully visible (no crop) — shrink to
+     fit rather than stretching to a taller neighbor. */
+  .charter-card--image-only {
+    display: block;
+    position: static;
+    min-height: 0;
+    background: var(--white);
+  }
   .charter-img--full {
+    position: static;
     width: 100%;
     height: auto;
-    min-height: 0;
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
+    max-height: 60vh;
+    object-fit: contain;
     object-position: center;
   }
 
@@ -429,15 +443,20 @@ footer {
   .charters-grid { grid-template-columns: 1fr; gap: 16px; }
 
   /* Image-only cards stack alone in one column on mobile.
-     Show the whole image (no top/bottom crop) at its natural
-     ratio instead of stretching to fill a tall card. */
-  .charter-card--image-only { display: block; }
+     Show the WHOLE image (no crop) by shrinking it to fit
+     inside the frame. contain preserves the full picture. */
+  .charter-card--image-only {
+    display: block;
+    position: static;
+    min-height: 0;
+    background: var(--white);
+  }
   .charter-img--full {
+    position: static;
     width: 100%;
     height: auto;
-    min-height: 0;
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
+    max-height: 70vh;
+    object-fit: contain;
     object-position: center;
   }
 
